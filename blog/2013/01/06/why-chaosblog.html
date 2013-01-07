@@ -113,7 +113,39 @@ $(document).ready(function(){
 </ul>
 <p>这一切看上去都相当美妙。
 可惜<a href="http://jekyllrb.com/" title="Jekyll">Jekyll</a>不是很符合我的哲学。</p>
-<p>未完待续...明天再写...</p>
+<h2 id="jekyll">为什么不用Jekyll</h2>
+<p>看过了大牛的用Jekyll写的博客，其实一开始也想用Jekyll的，为了测试一下这个环境我安装了很多东西，试玩了一下发现这个东西不是很适合我。</p>
+<ul>
+<li>markdown的方言很多，Jekyll在用的引擎支持的语法刚好我不是很喜欢</li>
+<li>Jekyll自身太少东西了，必须要配上皮肤，但是换上bootstarp-Jekyll又太复杂了，连disqus都设好了，只需要在config修改账号就可以了。但是换了好多个皮肤都不喜欢排版，也不喜欢</li>
+<li>windows部署相当麻烦</li>
+<li>本地的Jekyll和github的Jekyll有差异</li>
+</ul>
+<h2 id="_1">重写</h2>
+<p>所以我也不将就了，重写吧，我的目标是：</p>
+<ul>
+<li>文章内容版本管理与生成页面分开管理</li>
+<li>markdown引擎可更换，只需要在命令行调用你喜欢的引擎</li>
+<li>布局不要太复杂，尽可能把网页不同位置的部件分开</li>
+</ul>
+<p>由于我自己是做后端的，前端的东西也是慢慢摸索的，从元旦开始做了一个星期才算是完成了这个chaosblog。
+由于前端的东西确实接触不多，所以模板引擎我就挑了一个国人的开源<a href="http://www.oschina.net/p/beetl" title="beetl">Beetl</a>。</p>
+<p>暂时看上去也就这样子了，先用用看吧。</p>
+<h2 id="_2">现在在使用的一些服务</h2>
+<ul>
+<li>默认的社交化评论系统用的是多说的</li>
+<li>百度分享</li>
+</ul>
+<p>使用上面的这些服务主要是比较符合我们天朝的国情吧，你懂的。</p>
+<h2 id="chaosblog">ChaosBlog的使用说明</h2>
+<ul>
+<li>把文章以md或者html后缀存放在<code>/to-be-publish/post/</code>下任意子目录，命名规则为<code>yyyy-mm-dd-题目(英文).后缀</code></li>
+<li>文章开头需要写一段json，这个内容跟Jekyll是一样的</li>
+<li>修改<code>/to-be-publish/_config.json</code>中的<code>inputpath outputpath</code>到相应的目录，修改<code>markdownengine</code>为你喜欢的markdown引擎，修改其他个性化的项目</li>
+<li>修改<code>/to-be-publish/_component/</code>下面你需要修改的组件，你必须要修改的组件是<code>includefile</code>里面的评论系统的账号，当然你完全可以修改成你想要的社交化评论系统</li>
+<li>在<code>/to-be-publish/</code>下执行<code>buildBlog.bat</code> 如果是linux则执行<code>buildBlog.sh</code></li>
+<li>把你的/publish 发布到你的站点吧</li>
+</ul>
 
 <div style="background-color:#E0E0E0; border: 2px dashed #787878;padding: 5px 10px 5px 10px; margin-top:10px;">
 	<div style="text-align:center">
