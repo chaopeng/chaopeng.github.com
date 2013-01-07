@@ -9,7 +9,6 @@ body {
 }
 
 .navbar {
-	font-size: 13px;
 	border-bottom: 2px solid #FF0000;
 }
 
@@ -136,10 +135,6 @@ body {
 	line-height: 15px;
 }
 
-.article_item{
-	margin-bottom: 20px;
-}
-
 a.title_link{
 	color: #404040;
 	text-decoration: none;
@@ -150,7 +145,7 @@ a.title_link:hover{
 	text-decoration: none;
 }
 
-.archive_item, .tag_item, .category_item{
+.archive_item, .tag_item, .category_item, .article_item{
 	margin-bottom: 20px;
 }
 
