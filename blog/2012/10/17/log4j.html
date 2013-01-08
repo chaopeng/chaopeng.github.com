@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>log4j使用笔记</title>
+<meta name="description" content="log4j的使用笔记以及配置">
+<meta name="author" content="ChaoPeng">
+<!-- Le styles -->
+<link href="/favicon.ico" rel="shortcut icon"> 
+<link href="/assets/css/bootstrap.css" rel="stylesheet">
+<link href="/assets/css/my.css" rel="stylesheet">
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/assets/prettify/prettify.css" />
+<link rel="stylesheet" type="text/css" href="/assets/prettify/sons-of-obsidian.css" />
+<link rel="stylesheet" type="text/css" href="/assets/chaoscodebox/chaoscodebox.css" />
+<script type="text/javascript" src="/assets/prettify/prettify.js"></script>
+<script type="text/javascript" src="/assets/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/assets/chaoscodebox/chaoscodebox.js"></script>
+<script type="text/javascript" src="/assets/js/function.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript">
+
+// ie真心难搞
+var userAgent = navigator.userAgent.toLowerCase();
+var is_ie = userAgent.indexOf('msie') != -1;
+if(is_ie){
+	alert("请你换个浏览器吧！！！");
+}
+
+// 引入多说
+var duoshuoQuery = {short_name:"chaopeng"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = 'http://static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	|| document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+// 我只是想高亮
+$(document).ready(function(){
+	prettify();
+	back_to_top();
+});
+
+</script>
+</head>
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+<div class="navbar navbar-inverse navbar-fixed-top ">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+			<a class="brand" href="/blog/index.html">巢鹏的Pensieve</a>
+			<div class="nav-collapse">
+				<ul class="nav">
+						<li class="">
+							<a href="/blog/aboutme.html">关于我</a>
+						</li>
+						<li class="">
+							<a href="/blog/categories.html">分类</a>
+						</li>
+						<li class="">
+							<a href="/blog/tags.html">标签</a>
+						</li>
+						<li class="">
+							<a href="/blog/archive.html">归档</a>
+						</li>
+				</ul>
+				
+				<ul class="nav pull-right">
+					<li>
+						<form class="navbar-search" name="searchform" action="javascript:search();">
+							<input class="search-query" type="text" placeholder="Search" id="search"/>
+							<a href="javascript:search();"><i class="icon-search icon-white"></i></a>
+						</form>
+					</li>
+					<li class="divider-vertical"></li>
+					<li>
+						<a id="rss" href="/blog/rss.xml">
+							<img alt="rss" src="/assets/img/rss.png"></img>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container container-fluid">
+	<div class="row-fluid window">
+		<div class="span9 window_c">
+			<div class="entry_title">
+				<h1>【<a href="/blog/categories.html#java">java</a>】 log4j使用笔记</h1>
+				<i class="icon-calendar"></i> 2012-10-17
+			</div>
+
+			<div class="entry_content" >
+				<div class="toc">
+<ul>
+<li><a href="#_1">引言</a></li>
+<li><a href="#log4j">log4j的配置文件</a></li>
+<li><a href="#log">第三方库的log</a></li>
+<li><a href="#_2">怎样把配置文件放在包的外面</a></li>
+</ul>
+</div>
+<p>这篇文章写了好久了，扔在yunio的盘子里面忘记了。。。</p>
+<h2 id="_1">引言</h2>
+<p>之前一直不重视的log文件现在终于让人受不了了，debug一堆的遗留的stdout，郁闷啊。好不容易清理完了自己写的sysout，引入了commons.httpclient之后我彻底崩溃了。反正正要做商城的log，还是好好研究一下吧。
+看了一下项目引用的库。好多个log的库。google一下还有个叫logback的。</p>
+<ul>
+<li>java.util.logging</li>
+<li>org.apache.log4j</li>
+<li>org.apache.commons.logging</li>
+<li>org.slf4j</li>
+<li>logback</li>
+</ul>
+<p><strong> 这个咋办呢？？？ </strong></p>
+<p>这些都是啥：</p>
+<ul>
+<li><a href="http://docs.oracle.com/javase/1.4.2/docs/api/java/util/logging/package-summary.html" title="java.util.logging" target="_blank">java.util.logging</a></li>
+
+<li><a href="http://logging.apache.org/log4j/1.2/" title="org.apache.log4j" target="_blank">org.apache.log4j</a></li>
+
+<li><a href="http://commons.apache.org/logging/" title="org.apache.commons.logging" target="_blank">org.apache.commons.logging</a></li>
+
+<li><a href="http://www.slf4j.org/" title="org.slf4j" target="_blank">org.slf4j</a></li>
+
+<li><a href="http://logback.qos.ch/" title="logback" target="_blank">logback</a></li>
+</ul>
+
+<p>算了我用的库里面用得最多的就是log4j了，就用这个吧。</p>
+<h2 id="log4j">log4j的配置文件</h2>
+<p>先贴一下我现在的配置文件吧。</p>
+<pre><code class="properties"># Set log levels # 这里设置rootlogger的level和appender
+log4j.rootLogger = DEBUG, Console, LogFile, ErrorFile
+
+# Output the log info to the Java Console #
+log4j.appender.Console = org.apache.log4j.ConsoleAppender
+log4j.appender.Console.Target = System.out
+log4j.appender.Console.ImmediateFlush = true
+log4j.appender.Console.Threshold = DEBUG
+log4j.appender.Console.layout = org.apache.log4j.PatternLayout
+log4j.appender.Console.layout.ConversionPattern = &lt;%-d{yyyy-MM-dd HH:mm:ss}&gt; &lt;%t&gt; %l %n&lt;%p&gt; %m%n%n
+
+# Save the log info to the log file #
+log4j.appender.LogFile = org.apache.log4j.DailyRollingFileAppender
+log4j.appender.LogFile.File = logs/log.log
+log4j.appender.LogFile.Append = true
+log4j.appender.LogFile.ImmediateFlush = false
+log4j.appender.LogFile.Threshold = INFO
+log4j.appender.LogFile.layout = org.apache.log4j.PatternLayout
+log4j.appender.LogFile.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss} &lt;%c&gt; %l %n&lt;%p&gt; %m%n%n
+
+# Save the error info to the error file. A file one day. #
+log4j.appender.ErrorFile = org.apache.log4j.DailyRollingFileAppender
+log4j.appender.ErrorFile.File = logs/error.log
+log4j.appender.ErrorFile.Append = true
+log4j.appender.ErrorFile.ImmediateFlush = false
+log4j.appender.ErrorFile.Threshold = ERROR
+log4j.appender.ErrorFile.layout = org.apache.log4j.PatternLayout
+log4j.appender.ErrorFile.layout.ConversionPattern 
+
+# 自定义一个appender
+log4j.logger.test = DEBUG, test, Console
+# 不继承父log的配置，可以使得这个appender不输出到root
+log4j.additivity.test = false
+log4j.appender.test = org.apache.log4j.DailyRollingFileAppender
+log4j.appender.test.File = logs/main.log
+log4j.appender.test.Append = true
+log4j.appender.test.ImmediateFlush = true
+log4j.appender.test.Threshold = INFO
+log4j.appender.test.layout = org.apache.log4j.PatternLayout
+log4j.appender.test.layout.ConversionPattern = &lt;%-d{yyyy-MM-dd HH:mm:ss}&gt; &lt;%t&gt; %l &lt;%p&gt; %m%n
+</code></pre>
+
+<h2 id="log">第三方库的log</h2>
+<p>第三方库的log是一件比较麻烦的事情，作者都是大牛啊。总是有与众不同的想法，像spymemcached就自己做了一个log，幸好这位大牛还是对我们这些码农比较友好的。可以改为自己想用的log。具体如下：</p>
+<pre><code class="java">Properties systemProperties = System.getProperties();
+systemProperties.put(&quot;net.spy.log.LoggerImpl&quot;, &quot;net.spy.memcached.compat.log.Log4JLogger&quot;);
+//systemProperties.put(&quot;net.spy.log.LoggerImpl&quot;, &quot;net.spy.memcached.compat.log.SunLogger&quot;);
+System.setProperties(systemProperties);
+</code></pre>
+
+<p>如果你跟我一样还用couchbase的话，在log4j的配置文件的最后加上：</p>
+<pre><code class="properties">log4j.looger.com.couchbase.client = ERROR
+log4j.additivity.com.couchbase.client = false
+</code></pre>
+
+<p>httpclient这个库的log，分了3个，而且不是继承的，所以要分开关：</p>
+<pre><code class="properties">log4j.logger.httpclient.wire.header=INFO
+log4j.logger.httpclient.wire.content=INFO
+log4j.logger.org.apache.commons.httpclient = INFO
+</code></pre>
+
+<h2 id="_2">怎样把配置文件放在包的外面</h2>
+<p>请看我另外一篇文章<a href="/blog/2012/11/07/log4j-properties-out-of-jar.html" title="log4j怎样把配置文件放在包外">《log4j怎样把配置文件放在包外》</a></p>
+
+<div style="background-color:#E0E0E0; border: 2px dashed #787878;padding: 5px 10px 5px 10px; margin-top:10px;">
+	<div style="text-align:center">
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+			<img alt="知识共享许可协议" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/cn/88x31.png">
+		</a>
+		<br>
+		本作品采用
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+			知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议
+		</a>
+		进行许可。
+	</div>
+	<div>
+		»<b>本文链接：</b>
+		<a rel="bookmark" title="log4j使用笔记" href="http://chaopeng.github.com/blog/2012/10/17/log4j.html">
+			http://chaopeng.github.com/blog/2012/10/17/log4j.html
+		</a>
+	</div>
+	<div>
+		»<b>订阅本站：</b>
+		<a title="巢鹏的Pensieve" href="http://chaopeng.github.com/blog">
+			http://chaopeng.github.com/blog
+		</a>
+	</div>
+</div><!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread" data-thread-key="/blog/2012/10/17/log4j.html title=log4j使用笔记"></div>
+<!-- Duoshuo Comment END -->			</div>
+		</div>
+		<div class="span3">
+			<div class="window_r">
+<div class="namebox">
+	<div class="left">
+		<img alt="avatar" src="https://secure.gravatar.com/avatar/10c4fe4e35370eb0f447640d6cde844a?s=80">
+	</div>
+	<div class="right">
+		<a href="mailto:139025826@qq.com" target="_blank">联系我</a>
+		<br>
+		<a href="http://weibo.com/chaojianpeng" target="_blank">关注我的微博</a>
+		<br>
+		<a href="https://github.com/chaopeng" target="_blank">关注我的开源</a>
+		<br>
+	</div>
+</div>
+
+<form><fieldset class="line"><legend>分享</legend></fieldset></form>
+
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more">更多</span>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3012035" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+<form><fieldset class="line"><legend>本文标签</legend></fieldset></form>
+
+<div>
+<ul>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#java">java</a>
+	</li>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#log4j">log4j</a>
+	</li>
+</ul>
+</div>
+<form><fieldset class="line"><legend>友情链接</legend></fieldset></form>
+<ul>
+	<li><a href="http://www.wutianqi.com/" target="_blank">小狗狗的博客</a></li>
+</ul>
+
+<form><fieldset class="line"><legend>声明</legend></fieldset></form>
+本博客仅供自娱自乐，<br>不喜勿喷。<br>欢迎捐助！
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="container container-fluid">
+	<div class="row-fluid window">
+		<div class="span12 copyright">
+			&copy巢鹏的Pensieve-版权所有-转载请尊重文章许可
+			<br>
+			博客使用<a href="https://github.com/chaopeng/chaosblog" target="_blank">ChaosBlog</a>生成
+		</div>
+	</div>
+</div></body>
+</html>

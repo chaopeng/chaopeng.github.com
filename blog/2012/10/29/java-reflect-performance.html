@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Java反射效率</title>
+<meta name="description" content="java反射效率测试">
+<meta name="author" content="ChaoPeng">
+<!-- Le styles -->
+<link href="/favicon.ico" rel="shortcut icon"> 
+<link href="/assets/css/bootstrap.css" rel="stylesheet">
+<link href="/assets/css/my.css" rel="stylesheet">
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/assets/prettify/prettify.css" />
+<link rel="stylesheet" type="text/css" href="/assets/prettify/sons-of-obsidian.css" />
+<link rel="stylesheet" type="text/css" href="/assets/chaoscodebox/chaoscodebox.css" />
+<script type="text/javascript" src="/assets/prettify/prettify.js"></script>
+<script type="text/javascript" src="/assets/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="/assets/chaoscodebox/chaoscodebox.js"></script>
+<script type="text/javascript" src="/assets/js/function.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript">
+
+// ie真心难搞
+var userAgent = navigator.userAgent.toLowerCase();
+var is_ie = userAgent.indexOf('msie') != -1;
+if(is_ie){
+	alert("请你换个浏览器吧！！！");
+}
+
+// 引入多说
+var duoshuoQuery = {short_name:"chaopeng"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = 'http://static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	|| document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+// 我只是想高亮
+$(document).ready(function(){
+	prettify();
+	back_to_top();
+});
+
+</script>
+</head>
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+<div class="navbar navbar-inverse navbar-fixed-top ">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+			<a class="brand" href="/blog/index.html">巢鹏的Pensieve</a>
+			<div class="nav-collapse">
+				<ul class="nav">
+						<li class="">
+							<a href="/blog/aboutme.html">关于我</a>
+						</li>
+						<li class="">
+							<a href="/blog/categories.html">分类</a>
+						</li>
+						<li class="">
+							<a href="/blog/tags.html">标签</a>
+						</li>
+						<li class="">
+							<a href="/blog/archive.html">归档</a>
+						</li>
+				</ul>
+				
+				<ul class="nav pull-right">
+					<li>
+						<form class="navbar-search" name="searchform" action="javascript:search();">
+							<input class="search-query" type="text" placeholder="Search" id="search"/>
+							<a href="javascript:search();"><i class="icon-search icon-white"></i></a>
+						</form>
+					</li>
+					<li class="divider-vertical"></li>
+					<li>
+						<a id="rss" href="/blog/rss.xml">
+							<img alt="rss" src="/assets/img/rss.png"></img>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container container-fluid">
+	<div class="row-fluid window">
+		<div class="span9 window_c">
+			<div class="entry_title">
+				<h1>【<a href="/blog/categories.html#java">java</a>】 Java反射效率</h1>
+				<i class="icon-calendar"></i> 2012-10-29
+			</div>
+
+			<div class="entry_content" >
+				<p>Java的反射是个老问题了，因为有了反射的特性，Java是一个接近动态类型的语言，但是Java的反射的效率一直都是被诟病的地方。
+自从有了这个特性几乎每一次JDK大版本更新都会说反射的效率大大提高。
+因为我的ChaosBuff要更新，原来用数组的方式管理对象，实在是不适合调试。所以想一下还是降低一下运行效率提高生产效率吧。
+由于网上很多的测试都是抄来抄去的，这里我就重新测一下看看反射有多慢。</p>
+<p>当然反射不止一种方法的，而且也有一些比较常见的优化方式。我们将会测试一下：</p>
+<ol>
+<li>直接访问的耗时</li>
+<li>直接反射的耗时</li>
+<li>缓存需要查找的函数反射的耗时</li>
+<li>使用reflectasm的反射耗时</li>
+</ol>
+<pre><code class="java">long now;
+long sum = 0;
+TestClass t = new TestClass();
+
+now = System.currentTimeMillis();
+
+for(int i = 0; i&lt;500000; ++i){
+    t.setNum(i);
+    sum += t.getNum();
+}
+
+System.out.println(&quot;get-set耗时&quot;+(System.currentTimeMillis() - now) + &quot;ms秒，和是&quot; +sum);
+
+sum = 0;
+now = System.currentTimeMillis();
+
+for(int i = 0; i&lt;500000; ++i){
+    Class&lt;?&gt; c = Class.forName(&quot;test.TestClass&quot;);
+    Class&lt;?&gt;[] argsType = new Class[1];
+    argsType[0] = int.class;
+    Method m = c.getMethod(&quot;setNum&quot;, argsType);
+    m.invoke(t, i);
+    sum += t.getNum();
+}
+System.out.println(&quot;标准反射耗时&quot;+(System.currentTimeMillis() - now) + &quot;ms，和是&quot; +sum);
+
+sum = 0;
+
+Class&lt;?&gt; c = Class.forName(&quot;test.TestClass&quot;);
+Class&lt;?&gt;[] argsType = new Class[1];
+argsType[0] = int.class;
+Method m = c.getMethod(&quot;setNum&quot;, argsType);
+
+now = System.currentTimeMillis();
+
+for(int i = 0; i&lt;500000; ++i){
+    m.invoke(t, i);
+    sum += t.getNum();
+}
+System.out.println(&quot;缓存反射耗时&quot;+(System.currentTimeMillis() - now) + &quot;ms，和是&quot; +sum);
+
+sum = 0;
+MethodAccess ma = MethodAccess.get(TestClass.class);
+int index = ma.getIndex(&quot;setNum&quot;);
+now = System.currentTimeMillis();
+
+for(int i = 0; i&lt;500000; ++i){
+    ma.invoke(t, index, i);
+    sum += t.getNum();
+}
+System.out.println(&quot;reflectasm反射耗时&quot;+(System.currentTimeMillis() - now) + &quot;ms，和是&quot; +sum);
+</code></pre>
+
+<p>测试结果如下：
+<pre>
+get-set耗时6ms秒，和是124999750000
+标准反射耗时1838ms，和是124999750000
+缓存反射耗时70ms，和是124999750000
+reflectasm反射耗时20ms，和是124999750000
+</pre></p>
+<p>可以看出，查找函数依然是耗时最长的部分，JDK7的优化确实很不错，由JDK6的40倍降到10倍左右，reflectasm invoke的效率比java原生invoke好，大致是直接访问的4倍时间。效率确实可以一用。</p>
+
+<div style="background-color:#E0E0E0; border: 2px dashed #787878;padding: 5px 10px 5px 10px; margin-top:10px;">
+	<div style="text-align:center">
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+			<img alt="知识共享许可协议" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/cn/88x31.png">
+		</a>
+		<br>
+		本作品采用
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+			知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议
+		</a>
+		进行许可。
+	</div>
+	<div>
+		»<b>本文链接：</b>
+		<a rel="bookmark" title="Java反射效率" href="http://chaopeng.github.com/blog/2012/10/29/java-reflect-performance.html">
+			http://chaopeng.github.com/blog/2012/10/29/java-reflect-performance.html
+		</a>
+	</div>
+	<div>
+		»<b>订阅本站：</b>
+		<a title="巢鹏的Pensieve" href="http://chaopeng.github.com/blog">
+			http://chaopeng.github.com/blog
+		</a>
+	</div>
+</div><!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread" data-thread-key="/blog/2012/10/29/java-reflect-performance.html title=Java反射效率"></div>
+<!-- Duoshuo Comment END -->			</div>
+		</div>
+		<div class="span3">
+			<div class="window_r">
+<div class="namebox">
+	<div class="left">
+		<img alt="avatar" src="https://secure.gravatar.com/avatar/10c4fe4e35370eb0f447640d6cde844a?s=80">
+	</div>
+	<div class="right">
+		<a href="mailto:139025826@qq.com" target="_blank">联系我</a>
+		<br>
+		<a href="http://weibo.com/chaojianpeng" target="_blank">关注我的微博</a>
+		<br>
+		<a href="https://github.com/chaopeng" target="_blank">关注我的开源</a>
+		<br>
+	</div>
+</div>
+
+<form><fieldset class="line"><legend>分享</legend></fieldset></form>
+
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more">更多</span>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3012035" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+<form><fieldset class="line"><legend>本文标签</legend></fieldset></form>
+
+<div>
+<ul>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#java">java</a>
+	</li>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#reflect">reflect</a>
+	</li>
+</ul>
+</div>
+<form><fieldset class="line"><legend>友情链接</legend></fieldset></form>
+<ul>
+	<li><a href="http://www.wutianqi.com/" target="_blank">小狗狗的博客</a></li>
+</ul>
+
+<form><fieldset class="line"><legend>声明</legend></fieldset></form>
+本博客仅供自娱自乐，<br>不喜勿喷。<br>欢迎捐助！
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="container container-fluid">
+	<div class="row-fluid window">
+		<div class="span12 copyright">
+			&copy巢鹏的Pensieve-版权所有-转载请尊重文章许可
+			<br>
+			博客使用<a href="https://github.com/chaopeng/chaosblog" target="_blank">ChaosBlog</a>生成
+		</div>
+	</div>
+</div></body>
+</html>

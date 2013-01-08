@@ -6,8 +6,8 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Tue, 08 Jan 2013 04:27:27 GMT</pubDate>
-    <dc:date>2013-01-08T04:27:27Z</dc:date>
+    <pubDate>Tue, 08 Jan 2013 06:06:31 GMT</pubDate>
+    <dc:date>2013-01-08T06:06:31Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
     <item>
@@ -29,6 +29,56 @@
       <guid>http://chaopeng.github.com/blog/2013/01/05/test-markdown.html</guid>
       <dc:creator>ChaoPeng</dc:creator>
       <dc:date>2013-01-04T16:01:00Z</dc:date>
+    </item>
+    <item>
+      <title>linux的批量下载工具</title>
+      <link>http://chaopeng.github.com/blog/2012/12/07/linux-download.html</link>
+      <description>linux下载工具批量下载用法</description>
+      <category>linux</category>
+      <pubDate>Fri, 06 Jan 2012 16:12:00 GMT</pubDate>
+      <guid>http://chaopeng.github.com/blog/2012/12/07/linux-download.html</guid>
+      <dc:creator>ChaoPeng</dc:creator>
+      <dc:date>2012-01-06T16:12:00Z</dc:date>
+    </item>
+    <item>
+      <title>log4j怎样把配置文件放在包外</title>
+      <link>http://chaopeng.github.com/blog/2012/11/07/log4j-properties-out-of-jar.html</link>
+      <description>把log4j的配置文件放在包外的方法</description>
+      <category>java</category>
+      <pubDate>Fri, 06 Jan 2012 16:11:00 GMT</pubDate>
+      <guid>http://chaopeng.github.com/blog/2012/11/07/log4j-properties-out-of-jar.html</guid>
+      <dc:creator>ChaoPeng</dc:creator>
+      <dc:date>2012-01-06T16:11:00Z</dc:date>
+    </item>
+    <item>
+      <title>lftp使用笔记</title>
+      <link>http://chaopeng.github.com/blog/2012/11/05/lftp.html</link>
+      <description>lftp创建别名的方法以及一个快速同步的脚本</description>
+      <category>linux</category>
+      <pubDate>Wed, 04 Jan 2012 16:11:00 GMT</pubDate>
+      <guid>http://chaopeng.github.com/blog/2012/11/05/lftp.html</guid>
+      <dc:creator>ChaoPeng</dc:creator>
+      <dc:date>2012-01-04T16:11:00Z</dc:date>
+    </item>
+    <item>
+      <title>Java反射效率</title>
+      <link>http://chaopeng.github.com/blog/2012/10/29/java-reflect-performance.html</link>
+      <description>java反射效率测试</description>
+      <category>java</category>
+      <pubDate>Sat, 28 Jan 2012 16:10:00 GMT</pubDate>
+      <guid>http://chaopeng.github.com/blog/2012/10/29/java-reflect-performance.html</guid>
+      <dc:creator>ChaoPeng</dc:creator>
+      <dc:date>2012-01-28T16:10:00Z</dc:date>
+    </item>
+    <item>
+      <title>log4j使用笔记</title>
+      <link>http://chaopeng.github.com/blog/2012/10/17/log4j.html</link>
+      <description>log4j的使用笔记以及配置</description>
+      <category>java</category>
+      <pubDate>Mon, 16 Jan 2012 16:10:00 GMT</pubDate>
+      <guid>http://chaopeng.github.com/blog/2012/10/17/log4j.html</guid>
+      <dc:creator>ChaoPeng</dc:creator>
+      <dc:date>2012-01-16T16:10:00Z</dc:date>
     </item>
     <item>
       <title>Linux Mint笔记本亮度设置</title>
@@ -59,6 +109,16 @@
       <guid>http://chaopeng.github.com/blog/2012/09/09/linux-mint.html</guid>
       <dc:creator>ChaoPeng</dc:creator>
       <dc:date>2012-01-08T16:09:00Z</dc:date>
+    </item>
+    <item>
+      <title>ssh翻墙手记</title>
+      <link>http://chaopeng.github.com/blog/2012/05/24/ssh-proxy.html</link>
+      <description>linux以及windows使用ssh翻墙的方法</description>
+      <category>梯子</category>
+      <pubDate>Mon, 23 Jan 2012 16:05:00 GMT</pubDate>
+      <guid>http://chaopeng.github.com/blog/2012/05/24/ssh-proxy.html</guid>
+      <dc:creator>ChaoPeng</dc:creator>
+      <dc:date>2012-01-23T16:05:00Z</dc:date>
     </item>
   </channel>
 </rss>
