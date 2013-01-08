@@ -47,6 +47,26 @@ $(document).ready(function(){
 	back_to_top();
 });
 
+// 侧边栏随动
+$(function() {
+	var $sidebar   = $("#sidebar"),   
+	$window    = $(window),   
+	offset     = $sidebar.offset(),   
+	topPadding = 40;   
+      
+	$window.scroll(function() {   
+		if ($window.scrollTop() > offset.top) {   
+			$sidebar.stop().animate({   
+				marginTop: $window.scrollTop() - offset.top + topPadding   
+			});   
+		} else {   
+			$sidebar.stop().animate({   
+				marginTop: 0   
+			});   
+		}   
+	});   
+});   
+
 </script>
 </head>
 <body data-spy="scroll" data-target=".subnav" data-offset="50">
@@ -136,7 +156,7 @@ $(document).ready(function(){
 <!-- Duoshuo Comment END -->			</div>
 		</div>
 		<div class="span3">
-			<div class="window_r">
+			<div id="sidebar" class="window_r">
 <div class="namebox">
 	<div class="left">
 		<img alt="avatar" src="https://secure.gravatar.com/avatar/10c4fe4e35370eb0f447640d6cde844a?s=80">
