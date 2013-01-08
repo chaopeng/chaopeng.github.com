@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>为什么会有ChaosBlog</title>
-<meta name="description" content="构思ChaosBlog的心路历程">
+<title>Ubuntu安装SUN-JDK</title>
+<meta name="description" content="ubuntu发行版安装sun-jdk笔记">
 <meta name="author" content="ChaoPeng">
 <!-- Le styles -->
 <link href="/favicon.ico" rel="shortcut icon"> 
@@ -97,57 +97,36 @@ $(document).ready(function(){
 	<div class="row-fluid window">
 		<div class="span9 window_c">
 			<div class="entry_title">
-				<h1>【<a href="/blog/categories.html#ChaosBlog">ChaosBlog</a>】 为什么会有ChaosBlog</h1>
-				<i class="icon-calendar"></i> 2013-01-06
+				<h1>【<a href="/blog/categories.html#linux">linux</a>】 Ubuntu安装SUN-JDK</h1>
+				<i class="icon-calendar"></i> 2012-09-16
 			</div>
 
 			<div class="entry_content" >
-				<p>博客换了很多次了，这是我第二个技术博客，之前一个是比较长时间使用的sina sae的wordpress。
-用wordpress不爽的地方在于，我知道这个东西扩展性很好，但是自己做一些扩展总是很麻烦，太臃肿了。
-高亮插件用了好多个也始终没有找到一个很舒服的。
-后来看了一些用github page写blog大牛，才发现这个才是我想要的写作环境。</p>
-<ul>
-<li>没有坑爹的富文本编辑器，可以用任意的文本编辑器写作</li>
-<li>支持版本管理</li>
-<li>支持用markdown语法写作</li>
-<li>生成静态页面，免除安全隐患</li>
-<li>github page 免费</li>
-</ul>
-<p>这一切看上去都相当美妙。
-可惜<a href="http://jekyllrb.com/" title="Jekyll">Jekyll</a>不是很符合我的哲学。</p>
-<h2 id="jekyll">为什么不用Jekyll</h2>
-<p>看过了大牛的用Jekyll写的博客，其实一开始也想用Jekyll的，为了测试一下这个环境我安装了很多东西，试玩了一下发现这个东西不是很适合我。</p>
-<ul>
-<li>markdown的方言很多，Jekyll在用的引擎支持的语法刚好我不是很喜欢</li>
-<li>Jekyll自身太少东西了，必须要配上皮肤，但是换上bootstarp-Jekyll又太复杂了，连disqus都设好了，只需要在config修改账号就可以了。但是换了好多个皮肤都不喜欢排版，也不喜欢</li>
-<li>windows部署相当麻烦</li>
-<li>本地的Jekyll和github的Jekyll有差异</li>
-</ul>
-<h2 id="_1">重写</h2>
-<p>所以我也不将就了，重写吧，我的目标是：</p>
-<ul>
-<li>文章内容版本管理与生成页面分开管理</li>
-<li>markdown引擎可更换，只需要在命令行调用你喜欢的引擎</li>
-<li>布局不要太复杂，尽可能把网页不同位置的部件分开</li>
-</ul>
-<p>由于我自己是做后端的，前端的东西也是慢慢摸索的，从元旦开始做了一个星期才算是完成了这个chaosblog。
-由于前端的东西确实接触不多，所以模板引擎我就挑了一个国人的开源<a href="http://www.oschina.net/p/beetl" title="beetl">Beetl</a>。</p>
-<p>暂时看上去也就这样子了，先用用看吧。</p>
-<h2 id="_2">现在在使用的一些服务</h2>
-<ul>
-<li>默认的社交化评论系统用的是多说的</li>
-<li>百度分享</li>
-</ul>
-<p>使用上面的这些服务主要是比较符合我们天朝的国情吧，你懂的。</p>
-<h2 id="chaosblog">ChaosBlog的使用说明</h2>
-<ul>
-<li>把文章以md或者html后缀存放在<code>/to-be-publish/post/</code>下任意子目录，命名规则为<code>yyyy-mm-dd-题目(英文).后缀</code></li>
-<li>文章开头需要写一段json，这个内容跟Jekyll是一样的</li>
-<li>修改<code>/to-be-publish/_config.json</code>中的<code>inputpath outputpath</code>到相应的目录，修改<code>markdownengine</code>为你喜欢的markdown引擎，修改其他个性化的项目</li>
-<li>修改<code>/to-be-publish/_component/</code>下面你需要修改的组件，你必须要修改的组件是<code>includefile</code>里面的评论系统的账号，当然你完全可以修改成你想要的社交化评论系统</li>
-<li>在<code>/to-be-publish/</code>下执行<code>buildBlog.bat</code> 如果是linux则执行<code>buildBlog.sh</code></li>
-<li>把你的/publish 发布到你的站点吧</li>
-</ul>
+				<p>安装sun-jdk，其实一点都不简单。网上其实很多中文教程都很坑。</p>
+<p>这是别人的教程：</p>
+<ol>
+<li>第一步谁都会的，先去oracle下最新的jdk</li>
+<li>解压到/opt/java</li>
+<li>添加环境变量，在<code>/etc/profile</code>末尾添加</li>
+</ol>
+<pre><code class="text">export JAVA_HOME=/opt/jdk1.7
+export JRE_HOME=/opt/jdk1.7/jre
+export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH
+export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
+</code></pre>
+
+<p>现在用命令行查看java版本。对了。好吧这看上去成功了。教程到此结束。</p>
+<p>小白的我一开始以为这真的就对了。后来部署flash的安全沙箱监听843端口，需要sudo，然后就找不到主函数了。</p>
+<p>怎么检查都是正常的，后来突发奇想，<code>sudo java -version</code>尼玛gij1.5这也太坑了。</p>
+<p>查了一下英文才知道ubuntu是用update-alternatives管理软件版本的。</p>
+<pre><code class="bash">update-alternatives --display java
+</code></pre>
+
+<p>查看现在的java的链接指向，并查看优先级的值。建议顺便把这个降低。然后设置新装的这个jdk。</p>
+<pre><code class="bash">update-alternatives --install /usr/bin/java java /opt/jdk1.7/bin/java 300
+</code></pre>
+
+<p>现在装sun-jdk终于不用改<code>profile</code>，原来世界是这么美好的。</p>
 
 <div style="background-color:#E0E0E0; border: 2px dashed #787878;padding: 5px 10px 5px 10px; margin-top:10px;">
 	<div style="text-align:center">
@@ -163,8 +142,8 @@ $(document).ready(function(){
 	</div>
 	<div>
 		»<b>本文链接：</b>
-		<a rel="bookmark" title="为什么会有ChaosBlog" href="http://chaopeng.github.com/blog/2013/01/06/why-chaosblog.html">
-			http://chaopeng.github.com/blog/2013/01/06/why-chaosblog.html
+		<a rel="bookmark" title="Ubuntu安装SUN-JDK" href="http://chaopeng.github.com/blog/2012/09/16/ubuntu-sun-jdk.html">
+			http://chaopeng.github.com/blog/2012/09/16/ubuntu-sun-jdk.html
 		</a>
 	</div>
 	<div>
@@ -174,7 +153,7 @@ $(document).ready(function(){
 		</a>
 	</div>
 </div><!-- Duoshuo Comment BEGIN -->
-	<div class="ds-thread" data-thread-key="/blog/2013/01/06/why-chaosblog.html title=为什么会有ChaosBlog"></div>
+	<div class="ds-thread" data-thread-key="/blog/2012/09/16/ubuntu-sun-jdk.html title=Ubuntu安装SUN-JDK"></div>
 <!-- Duoshuo Comment END -->			</div>
 		</div>
 		<div class="span3">
@@ -217,10 +196,16 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 <div>
 <ul>
 	<li>
-		<i class="icon-tag"></i> <a href="/blog/tags.html#ChaosBlog">ChaosBlog</a>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#linux">linux</a>
 	</li>
 	<li>
-		<i class="icon-tag"></i> <a href="/blog/tags.html#jekyll">jekyll</a>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#ubuntu">ubuntu</a>
+	</li>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#java">java</a>
+	</li>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#jdk">jdk</a>
 	</li>
 </ul>
 </div>
