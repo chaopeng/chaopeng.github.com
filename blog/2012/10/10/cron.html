@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>归档</title>
-<meta name="description" content="巢鹏的Pensieve文章归档">
+<title>linux下设置cron</title>
+<meta name="description" content="简单说明linux下如何设置cron">
 <meta name="author" content="ChaoPeng">
 <!-- Le styles -->
 <link href="/favicon.ico" rel="shortcut icon"> 
@@ -70,7 +70,7 @@ $(document).ready(function(){
 						<li class="">
 							<a href="/blog/tags.html">标签</a>
 						</li>
-						<li class="active">
+						<li class="">
 							<a href="/blog/archive.html">归档</a>
 						</li>
 				</ul>
@@ -95,156 +95,65 @@ $(document).ready(function(){
 </div>
 <div class="container container-fluid">
 	<div class="row-fluid window">
-		<div class="span9">
-			
-	<div class="window_c archive_item">
-		<div class="entry_title">
-			<h1>
-				<a name="2013-01"></a>2013-01
-			</h1>
-		</div>
+		<div class="span9 window_c">
+			<div class="entry_title">
+				<h1>【<a href="/blog/categories.html#linux">linux</a>】 linux下设置cron</h1>
+				<i class="icon-calendar"></i> 2012-10-10
+			</div>
 
-		<div class="entry_content" >
-			<ul>
-			<li>
-				<a href="/blog/2013/01/06/why-chaosblog.html" class="title_link">为什么会有ChaosBlog</a>
-			</li>
-			<li>
-				<a href="/blog/2013/01/05/test-markdown.html" class="title_link">markdown测试</a>
-			</li>
-			</ul>
-		</div>
+			<div class="entry_content" >
+				<p>cron是一个linux下的定时执行工具，可以在无需人工干预的情况下运行作业。我准备用cron来实现游戏排行榜定时更新，每日任务更新等等。</p>
+<h2 id="cron">启动cron</h2>
+<p>ubuntu下是这样启动</p>
+<pre><code class="bash">/etc/init.d/cron start
+</code></pre>
+
+<p>顺便用<code>sysv-rc-conf</code>设置开机启动</a>吧。</p>
+<h2 id="etccrontab-cron">编辑/etc/crontab 文件配置cron</h2>
+<pre><code class="bash"># 命令格式是：分钟(0~59) 小时(0~23) 日期(1~31) 月份(1~12) 星期(0~6，6是星期天) 执行用户 要执行的命令
+* * * * * root /home/chao/script/hello.sh
+</code></pre>
+
+<p>好了现在重启cron就可以看效果了：
+<pre>
+hello cron : 2012年 10月 10日 星期三 22:53:01 CST
+hello cron : 2012年 10月 10日 星期三 22:54:01 CST
+hello cron : 2012年 10月 10日 星期三 22:55:01 CST
+hello cron : 2012年 10月 10日 星期三 22:56:01 CST
+hello cron : 2012年 10月 10日 星期三 22:57:01 CST
+</pre></p>
+<p>附测试脚本：</p>
+<pre><code class="bash">#!/bin/sh
+echo &quot;hello cron : $(date)&quot; &gt;&gt; /tmp/cron
+</code></pre>
+
+<div style="background-color:#E0E0E0; border: 2px dashed #787878;padding: 5px 10px 5px 10px; margin-top:10px;">
+	<div style="text-align:center">
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+			<img alt="知识共享许可协议" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/cn/88x31.png">
+		</a>
+		<br>
+		本作品采用
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+			知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议
+		</a>
+		进行许可。
 	</div>
-	<div class="window_c archive_item">
-		<div class="entry_title">
-			<h1>
-				<a name="2012-12"></a>2012-12
-			</h1>
-		</div>
-
-		<div class="entry_content" >
-			<ul>
-			<li>
-				<a href="/blog/2012/12/07/linux-download.html" class="title_link">linux的批量下载工具</a>
-			</li>
-			</ul>
-		</div>
+	<div>
+		»<b>本文链接：</b>
+		<a rel="bookmark" title="linux下设置cron" href="http://chaopeng.github.com/blog/2012/10/10/cron.html">
+			http://chaopeng.github.com/blog/2012/10/10/cron.html
+		</a>
 	</div>
-	<div class="window_c archive_item">
-		<div class="entry_title">
-			<h1>
-				<a name="2012-11"></a>2012-11
-			</h1>
-		</div>
-
-		<div class="entry_content" >
-			<ul>
-			<li>
-				<a href="/blog/2012/11/21/akka-matrix.html" class="title_link">akka试用——矩阵乘法</a>
-			</li>
-			<li>
-				<a href="/blog/2012/11/08/golang.html" class="title_link">golang的坑</a>
-			</li>
-			<li>
-				<a href="/blog/2012/11/07/log4j-properties-out-of-jar.html" class="title_link">log4j怎样把配置文件放在包外</a>
-			</li>
-			<li>
-				<a href="/blog/2012/11/05/lftp.html" class="title_link">lftp使用笔记</a>
-			</li>
-			<li>
-				<a href="/blog/2012/11/01/scala.html" class="title_link">Scala学习笔记整理</a>
-			</li>
-			</ul>
-		</div>
+	<div>
+		»<b>订阅本站：</b>
+		<a title="巢鹏的Pensieve" href="http://chaopeng.github.com/blog">
+			http://chaopeng.github.com/blog
+		</a>
 	</div>
-	<div class="window_c archive_item">
-		<div class="entry_title">
-			<h1>
-				<a name="2012-10"></a>2012-10
-			</h1>
-		</div>
-
-		<div class="entry_content" >
-			<ul>
-			<li>
-				<a href="/blog/2012/10/29/java-string-split.html" class="title_link">Java字符串分割</a>
-			</li>
-			<li>
-				<a href="/blog/2012/10/29/java-reflect-performance.html" class="title_link">Java反射效率</a>
-			</li>
-			<li>
-				<a href="/blog/2012/10/26/cywin-font.html" class="title_link">奇葩的Cygwin</a>
-			</li>
-			<li>
-				<a href="/blog/2012/10/17/log4j.html" class="title_link">log4j使用笔记</a>
-			</li>
-			<li>
-				<a href="/blog/2012/10/13/flash-air-mobile.html" class="title_link">Flash Air 移动端开发效率相关文章整理</a>
-			</li>
-			<li>
-				<a href="/blog/2012/10/10/cron.html" class="title_link">linux下设置cron</a>
-			</li>
-			<li>
-				<a href="/blog/2012/10/09/linux-mint-laptop-lcd-brightness.html" class="title_link">Linux Mint笔记本亮度设置</a>
-			</li>
-			</ul>
-		</div>
-	</div>
-	<div class="window_c archive_item">
-		<div class="entry_title">
-			<h1>
-				<a name="2012-09"></a>2012-09
-			</h1>
-		</div>
-
-		<div class="entry_content" >
-			<ul>
-			<li>
-				<a href="/blog/2012/09/27/flash-air-mobile-push.html" class="title_link">关于Flash Air移动端的消息推送</a>
-			</li>
-			<li>
-				<a href="/blog/2012/09/20/linux-cocos2d-x.html" class="title_link">linux下部署cocos2d-x</a>
-			</li>
-			<li>
-				<a href="/blog/2012/09/16/ubuntu-sun-jdk.html" class="title_link">Ubuntu安装SUN-JDK</a>
-			</li>
-			<li>
-				<a href="/blog/2012/09/09/linux-mint.html" class="title_link">linux mint 笔记</a>
-			</li>
-			</ul>
-		</div>
-	</div>
-	<div class="window_c archive_item">
-		<div class="entry_title">
-			<h1>
-				<a name="2012-07"></a>2012-07
-			</h1>
-		</div>
-
-		<div class="entry_content" >
-			<ul>
-			<li>
-				<a href="/blog/2012/07/15/erlang.html" class="title_link">淘宝的一篇erlang的整理文章</a>
-			</li>
-			</ul>
-		</div>
-	</div>
-	<div class="window_c archive_item">
-		<div class="entry_title">
-			<h1>
-				<a name="2012-05"></a>2012-05
-			</h1>
-		</div>
-
-		<div class="entry_content" >
-			<ul>
-			<li>
-				<a href="/blog/2012/05/24/ssh-proxy.html" class="title_link">ssh翻墙手记</a>
-			</li>
-			</ul>
-		</div>
-	</div>
-
+</div><!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread" data-thread-key="/blog/2012/10/10/cron.html title=linux下设置cron"></div>
+<!-- Duoshuo Comment END -->			</div>
 		</div>
 		<div class="span3">
 			<div class="window_r">
@@ -262,15 +171,41 @@ $(document).ready(function(){
 	</div>
 </div>
 
+<form><fieldset class="line"><legend>分享</legend></fieldset></form>
 
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more">更多</span>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3012035" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+<form><fieldset class="line"><legend>本文标签</legend></fieldset></form>
+
+<div>
+<ul>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#cron">cron</a>
+	</li>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#linux">linux</a>
+	</li>
+</ul>
+</div>
 <form><fieldset class="line"><legend>友情链接</legend></fieldset></form>
 <ul>
 	<li><a href="http://www.wutianqi.com/" target="_blank">小狗狗的博客</a></li>
 </ul>
-
-<form><fieldset class="line"><legend>最新评论</legend></fieldset></form>
-<ul class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" ></ul>
-
 
 <form><fieldset class="line"><legend>声明</legend></fieldset></form>
 本博客仅供自娱自乐，<br>不喜勿喷。<br>欢迎捐助！
@@ -278,6 +213,7 @@ $(document).ready(function(){
 		</div>
 	</div>
 </div>
+
 
 
 <div class="container container-fluid">

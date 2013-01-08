@@ -126,14 +126,14 @@ body {
 }
 
 #back-to-top {
-    background-color: #2A2A2A;
-    bottom: 100px;
-    box-shadow: 0 0 10px #F5F5F5;
-    color: #B5B9BE;
-    padding: 5px;
-    position: fixed;
-    right: 0px;
-    cursor: pointer;
+	background-color: #2A2A2A;
+	bottom: 100px;
+	box-shadow: 0 0 10px #F5F5F5;
+	color: #B5B9BE;
+	padding: 5px;
+	position: fixed;
+	right: 0px;
+	cursor: pointer;
 	width: 15px;
 	font-size: 14px;
 	line-height: 15px;
@@ -182,6 +182,10 @@ a.title_link:hover{
 	padding:5px 15px 5px 5px;
 	background-color:#efefef;
 	border:1px solid #aaa;
+}
+
+.entry_content hr {
+	border-color: #333333;
 }
 
 
