@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>归档</title>
-<meta name="description" content="巢鹏的Pensieve文章归档">
+<title>Flash与JS交互笔记</title>
+<meta name="description" content="记录flash调用javascript以及javascript调用flash的方法">
 <meta name="author" content="ChaoPeng">
 <!-- Le styles -->
 <link href="/favicon.ico" rel="shortcut icon"> 
@@ -90,7 +90,7 @@ $(function() {
 						<li class="">
 							<a href="/blog/tags.html">标签</a>
 						</li>
-						<li class="active">
+						<li class="">
 							<a href="/blog/archive.html">归档</a>
 						</li>
 				</ul>
@@ -115,159 +115,61 @@ $(function() {
 </div>
 <div class="container container-fluid">
 	<div class="row-fluid window">
-		<div class="span9">
-			
-	<div class="window_c archive_item">
-		<div class="entry_title">
-			<h1>
-				<a name="2013-01"></a>2013-01
-			</h1>
-		</div>
+		<div class="span9 window_c">
+			<div class="entry_title">
+				<h1>【<a href="/blog/categories.html#flash">flash</a>】 Flash与JS交互笔记</h1>
+				<i class="icon-calendar"></i> 2013-01-10
+			</div>
 
-		<div class="entry_content" >
-			<ul>
-			<li>
-				<a href="/blog/2013/01/10/flash-js.html" class="title_link">Flash与JS交互笔记</a>
-			</li>
-			<li>
-				<a href="/blog/2013/01/06/why-chaosblog.html" class="title_link">为什么会有ChaosBlog</a>
-			</li>
-			<li>
-				<a href="/blog/2013/01/05/test-markdown.html" class="title_link">markdown测试</a>
-			</li>
-			</ul>
-		</div>
+			<div class="entry_content" >
+				<p>之前其实也写过一篇类似的博文，但是后来，时间长了，flash更新了，安全策略也不一样了。
+结果我上个月调试这个又花了好长时间，所以还是重写一下吧。以下代码的安全规则是对应flash player 11.5。</p>
+<h2 id="flashjavascript">flash调用javascript的函数</h2>
+<p>flash调用javascript的函数是不需要设置安全参数的。调用的方法是：</p>
+<pre><code class="actionscript3">ExternalInterface.call(&quot;functionname&quot;, ...args);
+</code></pre>
+
+<p>可以返回任意值，尽量对返回值进行校验吧，或者这个值只是弹个提示框然后不要跟服务器交互。</p>
+<h2 id="javascriptflash">javascript调用flash的函数</h2>
+<p>可以通过这样的方法注册允许被javascript调用的函数：</p>
+<pre><code class="actionscropt3">ExternalInterface.addCallback(&quot;functionname&quot;, function():returnType{
+    do something...
+    return ret;
+});
+</code></pre>
+
+<p>这个是非常复杂的事情，首先需要在嵌入flash的html标签加入：<code>&lt;param name="allowScriptAccess" value="always" /&gt;</code>，
+然后在程序第一次注册之前(建议在程序入口处添加)：<code>flash.system.Security.allowDomain(sourceDomain)</code>。</p>
+<p>或许你现在想测试一下这个调用是否成功，那么请在httpserver的目录测试，本地目录是死都不行的。</p>
+<p>好了记录下来了，以后不用到处找了。</p>
+
+<div style="background-color:#E0E0E0; border: 2px dashed #787878;padding: 5px 10px 5px 10px; margin-top:10px;">
+	<div style="text-align:center">
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+			<img alt="知识共享许可协议" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/cn/88x31.png">
+		</a>
+		<br>
+		本作品采用
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+			知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议
+		</a>
+		进行许可。
 	</div>
-	<div class="window_c archive_item">
-		<div class="entry_title">
-			<h1>
-				<a name="2012-12"></a>2012-12
-			</h1>
-		</div>
-
-		<div class="entry_content" >
-			<ul>
-			<li>
-				<a href="/blog/2012/12/07/linux-download.html" class="title_link">linux的批量下载工具</a>
-			</li>
-			</ul>
-		</div>
+	<div>
+		»<b>本文链接：</b>
+		<a rel="bookmark" title="Flash与JS交互笔记" href="http://chaopeng.github.com/blog/2013/01/10/flash-js.html">
+			http://chaopeng.github.com/blog/2013/01/10/flash-js.html
+		</a>
 	</div>
-	<div class="window_c archive_item">
-		<div class="entry_title">
-			<h1>
-				<a name="2012-11"></a>2012-11
-			</h1>
-		</div>
-
-		<div class="entry_content" >
-			<ul>
-			<li>
-				<a href="/blog/2012/11/21/akka-matrix.html" class="title_link">akka试用——矩阵乘法</a>
-			</li>
-			<li>
-				<a href="/blog/2012/11/08/golang.html" class="title_link">golang的坑</a>
-			</li>
-			<li>
-				<a href="/blog/2012/11/07/log4j-properties-out-of-jar.html" class="title_link">log4j怎样把配置文件放在包外</a>
-			</li>
-			<li>
-				<a href="/blog/2012/11/05/lftp.html" class="title_link">lftp使用笔记</a>
-			</li>
-			<li>
-				<a href="/blog/2012/11/01/scala.html" class="title_link">Scala学习笔记整理</a>
-			</li>
-			</ul>
-		</div>
+	<div>
+		»<b>订阅本站：</b>
+		<a title="巢鹏的Pensieve" href="http://chaopeng.github.com/blog">
+			http://chaopeng.github.com/blog
+		</a>
 	</div>
-	<div class="window_c archive_item">
-		<div class="entry_title">
-			<h1>
-				<a name="2012-10"></a>2012-10
-			</h1>
-		</div>
-
-		<div class="entry_content" >
-			<ul>
-			<li>
-				<a href="/blog/2012/10/29/java-string-split.html" class="title_link">Java字符串分割</a>
-			</li>
-			<li>
-				<a href="/blog/2012/10/29/java-reflect-performance.html" class="title_link">Java反射效率</a>
-			</li>
-			<li>
-				<a href="/blog/2012/10/26/cywin-font.html" class="title_link">奇葩的Cygwin</a>
-			</li>
-			<li>
-				<a href="/blog/2012/10/17/log4j.html" class="title_link">log4j使用笔记</a>
-			</li>
-			<li>
-				<a href="/blog/2012/10/13/flash-air-mobile.html" class="title_link">Flash Air 移动端开发效率相关文章整理</a>
-			</li>
-			<li>
-				<a href="/blog/2012/10/10/cron.html" class="title_link">linux下设置cron</a>
-			</li>
-			<li>
-				<a href="/blog/2012/10/09/linux-mint-laptop-lcd-brightness.html" class="title_link">Linux Mint笔记本亮度设置</a>
-			</li>
-			</ul>
-		</div>
-	</div>
-	<div class="window_c archive_item">
-		<div class="entry_title">
-			<h1>
-				<a name="2012-09"></a>2012-09
-			</h1>
-		</div>
-
-		<div class="entry_content" >
-			<ul>
-			<li>
-				<a href="/blog/2012/09/27/flash-air-mobile-push.html" class="title_link">关于Flash Air移动端的消息推送</a>
-			</li>
-			<li>
-				<a href="/blog/2012/09/20/linux-cocos2d-x.html" class="title_link">linux下部署cocos2d-x</a>
-			</li>
-			<li>
-				<a href="/blog/2012/09/16/ubuntu-sun-jdk.html" class="title_link">Ubuntu安装SUN-JDK</a>
-			</li>
-			<li>
-				<a href="/blog/2012/09/09/linux-mint.html" class="title_link">linux mint 笔记</a>
-			</li>
-			</ul>
-		</div>
-	</div>
-	<div class="window_c archive_item">
-		<div class="entry_title">
-			<h1>
-				<a name="2012-07"></a>2012-07
-			</h1>
-		</div>
-
-		<div class="entry_content" >
-			<ul>
-			<li>
-				<a href="/blog/2012/07/15/erlang.html" class="title_link">淘宝的一篇erlang的整理文章</a>
-			</li>
-			</ul>
-		</div>
-	</div>
-	<div class="window_c archive_item">
-		<div class="entry_title">
-			<h1>
-				<a name="2012-05"></a>2012-05
-			</h1>
-		</div>
-
-		<div class="entry_content" >
-			<ul>
-			<li>
-				<a href="/blog/2012/05/24/ssh-proxy.html" class="title_link">ssh翻墙手记</a>
-			</li>
-			</ul>
-		</div>
-	</div>
-
+</div><!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread" data-thread-key="/blog/2013/01/10/flash-js.html title=Flash与JS交互笔记"></div>
+<!-- Duoshuo Comment END -->			</div>
 		</div>
 		<div class="span3">
 			<div id="sidebar" class="window_r">
@@ -285,15 +187,41 @@ $(function() {
 	</div>
 </div>
 
+<form><fieldset class="line"><legend>分享</legend></fieldset></form>
 
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more">更多</span>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3012035" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+<form><fieldset class="line"><legend>本文标签</legend></fieldset></form>
+
+<div>
+<ul>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#flash">flash</a>
+	</li>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#javascript">javascript</a>
+	</li>
+</ul>
+</div>
 <form><fieldset class="line"><legend>友情链接</legend></fieldset></form>
 <ul>
 	<li><a href="http://www.wutianqi.com/" target="_blank">小狗狗的博客</a></li>
 </ul>
-
-<form><fieldset class="line"><legend>最新评论</legend></fieldset></form>
-<ul class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" ></ul>
-
 
 <form><fieldset class="line"><legend>声明</legend></fieldset></form>
 本博客仅供自娱自乐，<br>不喜勿喷。<br>欢迎捐助！
@@ -301,6 +229,7 @@ $(function() {
 		</div>
 	</div>
 </div>
+
 
 
 <div class="container container-fluid">
