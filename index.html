@@ -2,178 +2,214 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>巢鹏的Pensieve</title>
-<meta name="description" content="巢鹏，专注程序、算法，爱折腾，好读书。">
-<meta name="author" content="ChaoPeng">
-<!-- Le styles -->
-<link href="/assets/css/bootstrap.css" rel="stylesheet">
-<link href="/assets/css/my.css" rel="stylesheet">
-<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
-<link rel="stylesheet" type="text/css" href="/assets/prettify/prettify.css" />
-<link rel="stylesheet" type="text/css" href="/assets/prettify/sons-of-obsidian.css" />
-<link rel="stylesheet" type="text/css" href="/assets/chaoscodebox/chaoscodebox.css" />
-<script type="text/javascript" src="/assets/prettify/prettify.js"></script>
-<script type="text/javascript" src="/assets/js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="/assets/chaoscodebox/chaoscodebox.js"></script>
-<script type="text/javascript" src="/assets/js/function.js" charset="utf-8"></script>
-<script type="text/javascript">
+<meta name="description" content="chao's home page">
+<meta name="author" content="巢鹏">
 
-// ie真心难搞
-var userAgent = navigator.userAgent.toLowerCase();
-var is_ie = userAgent.indexOf('msie') != -1;
-if(is_ie){
-	alert("请你换个浏览器吧！！！");
+<title>巢鹏的HOME</title>
+
+<link href="/assets/modern/modern.css" rel="stylesheet">
+<link href="/assets/modern/theme-dark.css" rel="stylesheet">
+<link href="/assets/modern/modern-responsive.css" rel="stylesheet">
+
+<script src="/assets/js/jquery-1.8.3.min.js"></script>
+<script src="/assets/js/jquery.mousewheel.min.js"></script>
+<script src="/assets/modern/tile-slider.js"></script>
+<script src="/assets/modern/tile-drag.js"></script>
+
+<style>
+body {
+	background: #1d1d1d;
+}
+</style>
+
+<script>
+function Resize(){
+	var tiles_area = 0;
+	$(".tile-group").each(function(){
+		tiles_area += $(this).outerWidth() + 80;
+	});
+
+	$(".tiles").css("width", 120 + tiles_area + 20);
+
+	$(".page").css({
+		height: $(document).height() - 20,
+		width: $(document).width()
+	});
 }
 
-// 引入多说
-var duoshuoQuery = {short_name:"chaopeng"};
-(function() {
-	var ds = document.createElement('script');
-	ds.type = 'text/javascript';ds.async = true;
-	ds.src = 'http://static.duoshuo.com/embed.js';
-	ds.charset = 'UTF-8';
-	(document.getElementsByTagName('head')[0] 
-	|| document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
+function AddMouseWheel(){
+	$("body").mousewheel(function(event, delta){
+		var scroll_value = delta * 50;
+		if (jQuery.browser.webkit) {
+			this.scrollLeft -= scroll_value;
 
-// 我只是想高亮
+		} else {
+			document.documentElement.scrollLeft -= scroll_value;
+		}
+		return false;
+	});
+}
+
+$(function(){
+	Resize();
+	AddMouseWheel();
+})
+
 $(document).ready(function(){
-	prettify();
-	back_to_top();
+	var i = 0;
+
+	var blog = $("#blog");
+	blog.removeData('tileBlockSlider');
+	$.get("/blog/rss.xml", function(xml){
+		$(xml).find("rss > channel > item").each(function(){
+			if(i>4) return;
+			var title = $($(this).find("title")).text();
+			var date = $($(this).find("pubDate")).text().substr(5, 11);
+			var link = $($(this).find("link")).text();
+
+			blog.append(
+				'<div class="tile-content">' 
+				+ '<a href="' + link + '" target="_blank"><h2>'+ title +'</h2></a>'
+				+ '<h5>' + date + '</h5>'
+				+ '</div>'
+			);
+
+			i += 1;
+		});
+
+		var params = {};
+		params.direction = blog.data('paramDirection');
+		params.duration = blog.data('paramDuration');
+		params.period = blog.data('paramPeriod');
+		blog.tileBlockSlider(params);
+	});
 });
 
-</script></head>
-<body data-spy="scroll" data-target=".subnav" data-offset="50">
-<div class="navbar navbar-inverse navbar-fixed-top ">
-	<div class="navbar-inner">
-		<div class="container">
-			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</a>
-			<a class="brand" href="/blog/index.html">巢鹏的Pensieve</a>
-			<div class="nav-collapse">
-				<ul class="nav">
-						<li class="">
-							<a href="/blog/aboutme.html">关于我</a>
-						</li>
-						<li class="">
-							<a href="/blog/categories.html">分类</a>
-						</li>
-						<li class="">
-							<a href="/blog/tags.html">标签</a>
-						</li>
-						<li class="">
-							<a href="/blog/archive.html">归档</a>
-						</li>
-				</ul>
-				
-				<ul class="nav pull-right">
-					<li class="">
-						<form class="navbar-search" name="searchform" action="javascript:search();">
-							<input class="search-query" type="text" placeholder="Search" id="search"/>
-							<a href="javascript:search();"><i class="icon-search icon-white"></i></a>
-						</form>
-					</li>
-				</ul>
+</script>
+
+</head>
+
+<body class="modern-ui" onresize="Resize()">
+	<div class="page secondary fixed-header">
+		<div class="page-header ">
+			<div class="page-header-content">
+				<div class="user-login">
+					<div class="name">
+						<span class="first-name">
+							Chao
+						</span>
+						<span class="last-name">
+							Peng
+						</span>
+					</div>
+					<div class="avatar">
+						<img src="https://secure.gravatar.com/avatar/10c4fe4e35370eb0f447640d6cde844a?s=40"/>
+					</div>
+				</div>
+				<h1>
+					巢鹏的HOME
+				</h1>
+			</div>
+		</div>
+		<div class="page-region">
+			<div class="page-region-content tiles">
+				<div class="tile-group tile-drag" style="width: 322px; position: relative;">
+					<div class="tile image outline-color-blue">
+						<div class="tile-content">
+							<img src="https://secure.gravatar.com/avatar/10c4fe4e35370eb0f447640d6cde844a?s=128">
+						</div>
+					</div>
+					<a class="tile icon outline-color-blue" href="mailto:139025826@qq.com" target="_blank">
+						<div class="tile-content">
+							<img src="/assets/img/Mail128.png" />
+						</div>
+						<div class="brand">
+							<div class="name">
+								MailMe
+							</div>
+						</div>
+					</a>
+
+					<a class="tile icon bg-color-orange outline-color-blue" href="http://weibo.com/chaojianpeng" target="_blank">
+						<div class="tile-content">
+							<img src="/assets/img/weibo.png" />
+						</div>
+						<div class="brand">
+							<div class="name">
+								新浪微博
+							</div>
+						</div>
+					</a>
+
+					<a class="tile icon bg-color-purple outline-color-blue" href="https://github.com/chaopeng" target="_blank">
+						<div class="tile-content">
+							<img src="/assets/img/github.png" />
+						</div>
+						<div class="brand">
+							<div class="name">
+								github
+							</div>
+						</div>
+					</a>
+				</div>
+
+				<div class="tile-group tile-drag" style="width: 322px; position: relative;">
+					<a href="/blog/index.html" target="_blank" class="tile double bg-color-blueDark" data-role="tile-slider" data-param-period="4000" id="blog">
+						<div class="brand">
+							<div class="name">
+								进入巢鹏的Pensieve
+							</div>
+						</div>
+					</a>
+					
+					<a href="https://github.com/chaopeng/chaoscodebox" target="_blank" class="tile bg-color-orangeDark">
+						<div class="tile-content">
+							<h4>ChaosCodebox</h4>
+							<p>本站使用的代码高亮插件，支持一键复制。</p>
+						</div>
+					</a>
+
+					<a href="https://github.com/chaopeng/chaosblog" target="_blank" class="tile bg-color-darken">
+						<div class="tile-content">
+							<h4>ChaosBlog</h4>
+							<p>本站使用的博客生成系统，让你比Jekyll更自由地写博客。</p>
+						</div>
+					</a>
+					
+				</div>
+
+				<div class="tile-group tile-drag" style="width: 322px; position: relative;">
+					<div class="tile double bg-color-greenLight">
+						<div class="tile-content">
+							<h3 style="margin-bottom: 5px;">
+								独立博客欢迎捐助，链接交换。
+							</h3>
+						</div>
+						<div class="brand">
+							<span class="name">
+								weibo <a href="http://weibo.com/chaojianpeng" target="_blank">@巢鹏</a>
+							</span>
+						</div>
+					</div>
+
+					<div class="tile double bg-color-greenDark">
+						<div class="tile-content">
+							<h3 style="margin-bottom: 5px;">
+								说明
+							</h3>
+							<p>
+								本页使用<a href="https://github.com/olton/Metro-UI-CSS" target="_blank">Metro-UI-CSS</a>制作，暂时只有firefox有较好的支持。
+							</p>
+						</div>
+						<div class="brand">
+							<span class="name">
+								weibo <a href="http://weibo.com/chaojianpeng" target="_blank">@巢鹏</a>
+							</span>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<div class="container container-fluid">
-	<div class="row-fluid window">
-		<div class="span9">
-			
-
-<div class="window_c article_item">
-		<div class="entry_title">
-			<h1>
-				【<a href="/blog/categories.html#ChaosBlog">ChaosBlog</a>】 
-				<a href="/blog/2013/01/06/why-chaosblog.html" class="title_link">为什么会有ChaosBlog</a>
-			</h1>
-			<i class="icon-calendar"></i> 2013-01-06
-		</div>
-
-		<div class="entry_content" >
-			<p>博客换了很多次了，这是我第二个技术博客，之前一个是比较长时间使用的sina sae的wordpress。
-用wordpress不爽的地方在于，我知道这个东西扩展性很好，但是自己做一些扩展总是很麻烦，太臃肿了。
-高亮插件用了好多个也始终没有找到一个很舒服的。
-后来看了一些用github page写blog大牛，才发现这个才是我想要的写作环境。</p>
-		</div>
-			
-		<div class="entry_tags">
-			<i class="icon-tags"></i> 
-		<a href="/blog/tags.html#ChaosBlog">ChaosBlog</a> 
-		<a href="/blog/tags.html#jekyll">jekyll</a> 
-	</div>
-	</div>
-<div class="window_c article_item">
-		<div class="entry_title">
-			<h1>
-				【<a href="/blog/categories.html#ChaosBlog">ChaosBlog</a>】 
-				<a href="/blog/2013/01/05/test-markdown.html" class="title_link">markdown测试</a>
-			</h1>
-			<i class="icon-calendar"></i> 2013-01-05
-		</div>
-
-		<div class="entry_content" >
-			<p>[TOC]</p>
-		</div>
-			
-		<div class="entry_tags">
-			<i class="icon-tags"></i> 
-		<a href="/blog/tags.html#ChaosBlog">ChaosBlog</a> 
-		<a href="/blog/tags.html#测试">测试</a> 
-		<a href="/blog/tags.html#markdown">markdown</a> 
-	</div>
-	</div>
-
-		</div>
-		<div class="span3">
-			<div class="window_r">
-<div class="namebox">
-	<div class="left">
-		<img alt="avatar" src="https://secure.gravatar.com/avatar/10c4fe4e35370eb0f447640d6cde844a?s=80">
-	</div>
-	<div class="right">
-		<a href="mailto:139025826@qq.com" target="_blank">联系我</a>
-		<br>
-		<a href="http://weibo.com/chaojianpeng" target="_blank">关注我的微博</a>
-		<br>
-		<a href="https://github.com/chaopeng" target="_blank">关注我的开源</a>
-		<br>
-	</div>
-</div>
-
-
-<form><fieldset class="line"><legend>友情链接</legend></fieldset></form>
-<ul>
-	<li><a href="http://www.wutianqi.com/" target="_blank">小狗狗的博客</a></li>
-</ul>
-
-<form><fieldset class="line"><legend>最新评论</legend></fieldset></form>
-<ul class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" ></ul>
-
-
-<form><fieldset class="line"><legend>声明</legend></fieldset></form>
-本博客仅供自娱自乐，<br>不喜勿喷。<br>欢迎捐助！
-			</div>
-		</div>
-	</div>
-</div>
-
-
-<div class="container container-fluid">
-	<div class="row-fluid window">
-		<div class="span12 copyright">
-			&copy巢鹏的Pensieve-版权所有-转载请尊重文章许可
-			<br>
-			博客使用<a href="https://github.com/chaopeng/chaosblog" target="_blank">ChaosBlog</a>生成
-		</div>
-	</div>
-</div></body>
+</body>
 </html>
