@@ -6,10 +6,20 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Thu, 10 Jan 2013 03:27:05 GMT</pubDate>
-    <dc:date>2013-01-10T03:27:05Z</dc:date>
+    <pubDate>Mon, 14 Jan 2013 15:10:27 GMT</pubDate>
+    <dc:date>2013-01-14T15:10:27Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
+    <item>
+      <title>怎样获取你gravatar的头像</title>
+      <link>http://chaopeng.github.com/blog/2013/01/14/how-to-get-gravatar.html</link>
+      <description>通过api获取gravatar的头像的方法</description>
+      <category>ChaosBlog</category>
+      <pubDate>Sun, 13 Jan 2013 16:01:00 GMT</pubDate>
+      <guid>http://chaopeng.github.com/blog/2013/01/14/how-to-get-gravatar.html</guid>
+      <dc:creator>ChaoPeng</dc:creator>
+      <dc:date>2013-01-13T16:01:00Z</dc:date>
+    </item>
     <item>
       <title>Flash与JS交互笔记</title>
       <link>http://chaopeng.github.com/blog/2013/01/10/flash-js.html</link>
@@ -199,16 +209,6 @@
       <guid>http://chaopeng.github.com/blog/2012/09/16/ubuntu-sun-jdk.html</guid>
       <dc:creator>ChaoPeng</dc:creator>
       <dc:date>2012-01-15T16:09:00Z</dc:date>
-    </item>
-    <item>
-      <title>linux mint 笔记</title>
-      <link>http://chaopeng.github.com/blog/2012/09/09/linux-mint.html</link>
-      <description>我使用linux的笔记，也适用于部分ubuntu的发行版</description>
-      <category>linux</category>
-      <pubDate>Sun, 08 Jan 2012 16:09:00 GMT</pubDate>
-      <guid>http://chaopeng.github.com/blog/2012/09/09/linux-mint.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
-      <dc:date>2012-01-08T16:09:00Z</dc:date>
     </item>
   </channel>
 </rss>
