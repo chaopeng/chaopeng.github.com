@@ -6,208 +6,208 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Mon, 14 Jan 2013 15:19:14 GMT</pubDate>
-    <dc:date>2013-01-14T15:19:14Z</dc:date>
+    <pubDate>Wed, 23 Jan 2013 08:13:07 GMT</pubDate>
+    <dc:date>2013-01-23T08:13:07Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
     <item>
       <title>怎样获取你gravatar的头像</title>
-      <link>http://chaopeng.github.com/blog/2013/01/14/how-to-get-gravatar.html</link>
+      <link>http://chaopeng.me/blog/2013/01/14/how-to-get-gravatar.html</link>
       <description>通过api获取gravatar的头像的方法</description>
       <category>ChaosBlog</category>
       <pubDate>Sun, 13 Jan 2013 16:01:00 GMT</pubDate>
-      <guid>http://chaopeng.github.com/blog/2013/01/14/how-to-get-gravatar.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
+      <guid>http://chaopeng.me/blog/2013/01/14/how-to-get-gravatar.html</guid>
+      <dc:creator>巢鹏</dc:creator>
       <dc:date>2013-01-13T16:01:00Z</dc:date>
     </item>
     <item>
       <title>erlang学习笔记</title>
-      <link>http://chaopeng.github.com/blog/2013/01/13/erlang.html</link>
+      <link>http://chaopeng.me/blog/2013/01/13/erlang.html</link>
       <description>学习erlang的笔记</description>
       <category>erlang</category>
       <pubDate>Sat, 12 Jan 2013 16:01:00 GMT</pubDate>
-      <guid>http://chaopeng.github.com/blog/2013/01/13/erlang.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
+      <guid>http://chaopeng.me/blog/2013/01/13/erlang.html</guid>
+      <dc:creator>巢鹏</dc:creator>
       <dc:date>2013-01-12T16:01:00Z</dc:date>
     </item>
     <item>
       <title>Flash与JS交互笔记</title>
-      <link>http://chaopeng.github.com/blog/2013/01/10/flash-js.html</link>
+      <link>http://chaopeng.me/blog/2013/01/10/flash-js.html</link>
       <description>记录flash调用javascript以及javascript调用flash的方法</description>
       <category>flash</category>
       <pubDate>Wed, 09 Jan 2013 16:01:00 GMT</pubDate>
-      <guid>http://chaopeng.github.com/blog/2013/01/10/flash-js.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
+      <guid>http://chaopeng.me/blog/2013/01/10/flash-js.html</guid>
+      <dc:creator>巢鹏</dc:creator>
       <dc:date>2013-01-09T16:01:00Z</dc:date>
     </item>
     <item>
       <title>为什么会有ChaosBlog</title>
-      <link>http://chaopeng.github.com/blog/2013/01/06/why-chaosblog.html</link>
+      <link>http://chaopeng.me/blog/2013/01/06/why-chaosblog.html</link>
       <description>构思ChaosBlog的心路历程</description>
       <category>ChaosBlog</category>
       <pubDate>Sat, 05 Jan 2013 16:01:00 GMT</pubDate>
-      <guid>http://chaopeng.github.com/blog/2013/01/06/why-chaosblog.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
+      <guid>http://chaopeng.me/blog/2013/01/06/why-chaosblog.html</guid>
+      <dc:creator>巢鹏</dc:creator>
       <dc:date>2013-01-05T16:01:00Z</dc:date>
     </item>
     <item>
       <title>markdown测试</title>
-      <link>http://chaopeng.github.com/blog/2013/01/05/test-markdown.html</link>
+      <link>http://chaopeng.me/blog/2013/01/05/test-markdown.html</link>
       <description>测试markdown引擎的语法</description>
       <category>ChaosBlog</category>
       <pubDate>Fri, 04 Jan 2013 16:01:00 GMT</pubDate>
-      <guid>http://chaopeng.github.com/blog/2013/01/05/test-markdown.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
+      <guid>http://chaopeng.me/blog/2013/01/05/test-markdown.html</guid>
+      <dc:creator>巢鹏</dc:creator>
       <dc:date>2013-01-04T16:01:00Z</dc:date>
     </item>
     <item>
       <title>linux的批量下载工具</title>
-      <link>http://chaopeng.github.com/blog/2012/12/07/linux-download.html</link>
+      <link>http://chaopeng.me/blog/2012/12/07/linux-download.html</link>
       <description>linux下载工具批量下载用法</description>
       <category>linux</category>
       <pubDate>Fri, 06 Jan 2012 16:12:00 GMT</pubDate>
-      <guid>http://chaopeng.github.com/blog/2012/12/07/linux-download.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
+      <guid>http://chaopeng.me/blog/2012/12/07/linux-download.html</guid>
+      <dc:creator>巢鹏</dc:creator>
       <dc:date>2012-01-06T16:12:00Z</dc:date>
     </item>
     <item>
       <title>akka试用——矩阵乘法</title>
-      <link>http://chaopeng.github.com/blog/2012/11/21/akka-matrix.html</link>
+      <link>http://chaopeng.me/blog/2012/11/21/akka-matrix.html</link>
       <description>用java、scala的库akka编写矩阵乘法的心得</description>
       <category>java</category>
       <pubDate>Fri, 20 Jan 2012 16:11:00 GMT</pubDate>
-      <guid>http://chaopeng.github.com/blog/2012/11/21/akka-matrix.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
+      <guid>http://chaopeng.me/blog/2012/11/21/akka-matrix.html</guid>
+      <dc:creator>巢鹏</dc:creator>
       <dc:date>2012-01-20T16:11:00Z</dc:date>
     </item>
     <item>
       <title>golang的坑</title>
-      <link>http://chaopeng.github.com/blog/2012/11/08/golang.html</link>
+      <link>http://chaopeng.me/blog/2012/11/08/golang.html</link>
       <description>记录golang的坑，有些可能不是坑，只是我不习惯而已。</description>
       <category>golang</category>
       <pubDate>Sat, 07 Jan 2012 16:11:00 GMT</pubDate>
-      <guid>http://chaopeng.github.com/blog/2012/11/08/golang.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
+      <guid>http://chaopeng.me/blog/2012/11/08/golang.html</guid>
+      <dc:creator>巢鹏</dc:creator>
       <dc:date>2012-01-07T16:11:00Z</dc:date>
     </item>
     <item>
       <title>log4j怎样把配置文件放在包外</title>
-      <link>http://chaopeng.github.com/blog/2012/11/07/log4j-properties-out-of-jar.html</link>
+      <link>http://chaopeng.me/blog/2012/11/07/log4j-properties-out-of-jar.html</link>
       <description>把log4j的配置文件放在包外的方法</description>
       <category>java</category>
       <pubDate>Fri, 06 Jan 2012 16:11:00 GMT</pubDate>
-      <guid>http://chaopeng.github.com/blog/2012/11/07/log4j-properties-out-of-jar.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
+      <guid>http://chaopeng.me/blog/2012/11/07/log4j-properties-out-of-jar.html</guid>
+      <dc:creator>巢鹏</dc:creator>
       <dc:date>2012-01-06T16:11:00Z</dc:date>
     </item>
     <item>
       <title>lftp使用笔记</title>
-      <link>http://chaopeng.github.com/blog/2012/11/05/lftp.html</link>
+      <link>http://chaopeng.me/blog/2012/11/05/lftp.html</link>
       <description>lftp创建别名的方法以及一个快速同步的脚本</description>
       <category>linux</category>
       <pubDate>Wed, 04 Jan 2012 16:11:00 GMT</pubDate>
-      <guid>http://chaopeng.github.com/blog/2012/11/05/lftp.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
+      <guid>http://chaopeng.me/blog/2012/11/05/lftp.html</guid>
+      <dc:creator>巢鹏</dc:creator>
       <dc:date>2012-01-04T16:11:00Z</dc:date>
     </item>
     <item>
       <title>Scala学习笔记整理</title>
-      <link>http://chaopeng.github.com/blog/2012/11/01/scala.html</link>
+      <link>http://chaopeng.me/blog/2012/11/01/scala.html</link>
       <description>Scala的学习笔记整理</description>
       <category>scala</category>
       <pubDate>Sat, 31 Dec 2011 16:11:00 GMT</pubDate>
-      <guid>http://chaopeng.github.com/blog/2012/11/01/scala.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
+      <guid>http://chaopeng.me/blog/2012/11/01/scala.html</guid>
+      <dc:creator>巢鹏</dc:creator>
       <dc:date>2011-12-31T16:11:00Z</dc:date>
     </item>
     <item>
       <title>Java字符串分割</title>
-      <link>http://chaopeng.github.com/blog/2012/10/29/java-string-split.html</link>
+      <link>http://chaopeng.me/blog/2012/10/29/java-string-split.html</link>
       <description>比较各种java字符串分割的坑</description>
       <category>java</category>
       <pubDate>Sat, 28 Jan 2012 16:10:00 GMT</pubDate>
-      <guid>http://chaopeng.github.com/blog/2012/10/29/java-string-split.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
+      <guid>http://chaopeng.me/blog/2012/10/29/java-string-split.html</guid>
+      <dc:creator>巢鹏</dc:creator>
       <dc:date>2012-01-28T16:10:00Z</dc:date>
     </item>
     <item>
       <title>Java反射效率</title>
-      <link>http://chaopeng.github.com/blog/2012/10/29/java-reflect-performance.html</link>
+      <link>http://chaopeng.me/blog/2012/10/29/java-reflect-performance.html</link>
       <description>java反射效率测试</description>
       <category>java</category>
       <pubDate>Sat, 28 Jan 2012 16:10:00 GMT</pubDate>
-      <guid>http://chaopeng.github.com/blog/2012/10/29/java-reflect-performance.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
+      <guid>http://chaopeng.me/blog/2012/10/29/java-reflect-performance.html</guid>
+      <dc:creator>巢鹏</dc:creator>
       <dc:date>2012-01-28T16:10:00Z</dc:date>
     </item>
     <item>
       <title>奇葩的Cygwin</title>
-      <link>http://chaopeng.github.com/blog/2012/10/26/cywin-font.html</link>
+      <link>http://chaopeng.me/blog/2012/10/26/cywin-font.html</link>
       <description>修复cygwin字体很丑</description>
       <category>cygwin</category>
       <pubDate>Wed, 25 Jan 2012 16:10:00 GMT</pubDate>
-      <guid>http://chaopeng.github.com/blog/2012/10/26/cywin-font.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
+      <guid>http://chaopeng.me/blog/2012/10/26/cywin-font.html</guid>
+      <dc:creator>巢鹏</dc:creator>
       <dc:date>2012-01-25T16:10:00Z</dc:date>
     </item>
     <item>
       <title>log4j使用笔记</title>
-      <link>http://chaopeng.github.com/blog/2012/10/17/log4j.html</link>
+      <link>http://chaopeng.me/blog/2012/10/17/log4j.html</link>
       <description>log4j的使用笔记以及配置</description>
       <category>java</category>
       <pubDate>Mon, 16 Jan 2012 16:10:00 GMT</pubDate>
-      <guid>http://chaopeng.github.com/blog/2012/10/17/log4j.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
+      <guid>http://chaopeng.me/blog/2012/10/17/log4j.html</guid>
+      <dc:creator>巢鹏</dc:creator>
       <dc:date>2012-01-16T16:10:00Z</dc:date>
     </item>
     <item>
       <title>Flash Air 移动端开发效率相关文章整理</title>
-      <link>http://chaopeng.github.com/blog/2012/10/13/flash-air-mobile.html</link>
+      <link>http://chaopeng.me/blog/2012/10/13/flash-air-mobile.html</link>
       <description>Flash Air 移动端开发效率相关文章整理</description>
       <category>flash</category>
       <pubDate>Thu, 12 Jan 2012 16:10:00 GMT</pubDate>
-      <guid>http://chaopeng.github.com/blog/2012/10/13/flash-air-mobile.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
+      <guid>http://chaopeng.me/blog/2012/10/13/flash-air-mobile.html</guid>
+      <dc:creator>巢鹏</dc:creator>
       <dc:date>2012-01-12T16:10:00Z</dc:date>
     </item>
     <item>
       <title>linux下设置cron</title>
-      <link>http://chaopeng.github.com/blog/2012/10/10/cron.html</link>
+      <link>http://chaopeng.me/blog/2012/10/10/cron.html</link>
       <description>简单说明linux下如何设置cron</description>
       <category>linux</category>
       <pubDate>Mon, 09 Jan 2012 16:10:00 GMT</pubDate>
-      <guid>http://chaopeng.github.com/blog/2012/10/10/cron.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
+      <guid>http://chaopeng.me/blog/2012/10/10/cron.html</guid>
+      <dc:creator>巢鹏</dc:creator>
       <dc:date>2012-01-09T16:10:00Z</dc:date>
     </item>
     <item>
       <title>Linux Mint笔记本亮度设置</title>
-      <link>http://chaopeng.github.com/blog/2012/10/09/linux-mint-laptop-lcd-brightness.html</link>
+      <link>http://chaopeng.me/blog/2012/10/09/linux-mint-laptop-lcd-brightness.html</link>
       <description>Linux Mint使用laptop-mode-tools调节笔记本亮度设置笔记</description>
       <category>linux</category>
       <pubDate>Sun, 08 Jan 2012 16:10:00 GMT</pubDate>
-      <guid>http://chaopeng.github.com/blog/2012/10/09/linux-mint-laptop-lcd-brightness.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
+      <guid>http://chaopeng.me/blog/2012/10/09/linux-mint-laptop-lcd-brightness.html</guid>
+      <dc:creator>巢鹏</dc:creator>
       <dc:date>2012-01-08T16:10:00Z</dc:date>
     </item>
     <item>
       <title>关于Flash Air移动端的消息推送</title>
-      <link>http://chaopeng.github.com/blog/2012/09/27/flash-air-mobile-push.html</link>
+      <link>http://chaopeng.me/blog/2012/09/27/flash-air-mobile-push.html</link>
       <description>关于Flash Air移动端的消息推送文章整理</description>
       <category>flash</category>
       <pubDate>Thu, 26 Jan 2012 16:09:00 GMT</pubDate>
-      <guid>http://chaopeng.github.com/blog/2012/09/27/flash-air-mobile-push.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
+      <guid>http://chaopeng.me/blog/2012/09/27/flash-air-mobile-push.html</guid>
+      <dc:creator>巢鹏</dc:creator>
       <dc:date>2012-01-26T16:09:00Z</dc:date>
     </item>
     <item>
       <title>linux下部署cocos2d-x</title>
-      <link>http://chaopeng.github.com/blog/2012/09/20/linux-cocos2d-x.html</link>
+      <link>http://chaopeng.me/blog/2012/09/20/linux-cocos2d-x.html</link>
       <description>linux下部署android开发环境以及部署cocos2d-x</description>
       <category>linux</category>
       <pubDate>Thu, 19 Jan 2012 16:09:00 GMT</pubDate>
-      <guid>http://chaopeng.github.com/blog/2012/09/20/linux-cocos2d-x.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
+      <guid>http://chaopeng.me/blog/2012/09/20/linux-cocos2d-x.html</guid>
+      <dc:creator>巢鹏</dc:creator>
       <dc:date>2012-01-19T16:09:00Z</dc:date>
     </item>
   </channel>
