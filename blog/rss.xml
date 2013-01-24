@@ -6,10 +6,20 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Wed, 23 Jan 2013 08:13:07 GMT</pubDate>
-    <dc:date>2013-01-23T08:13:07Z</dc:date>
+    <pubDate>Thu, 24 Jan 2013 05:18:47 GMT</pubDate>
+    <dc:date>2013-01-24T05:18:47Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
+    <item>
+      <title>新域名</title>
+      <link>http://chaopeng.me/blog/2013/01/24/new-domain.html</link>
+      <description>换域名咯</description>
+      <category>杂谈</category>
+      <pubDate>Wed, 23 Jan 2013 16:01:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2013/01/24/new-domain.html</guid>
+      <dc:creator>巢鹏</dc:creator>
+      <dc:date>2013-01-23T16:01:00Z</dc:date>
+    </item>
     <item>
       <title>怎样获取你gravatar的头像</title>
       <link>http://chaopeng.me/blog/2013/01/14/how-to-get-gravatar.html</link>
@@ -199,16 +209,6 @@
       <guid>http://chaopeng.me/blog/2012/09/27/flash-air-mobile-push.html</guid>
       <dc:creator>巢鹏</dc:creator>
       <dc:date>2012-01-26T16:09:00Z</dc:date>
-    </item>
-    <item>
-      <title>linux下部署cocos2d-x</title>
-      <link>http://chaopeng.me/blog/2012/09/20/linux-cocos2d-x.html</link>
-      <description>linux下部署android开发环境以及部署cocos2d-x</description>
-      <category>linux</category>
-      <pubDate>Thu, 19 Jan 2012 16:09:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2012/09/20/linux-cocos2d-x.html</guid>
-      <dc:creator>巢鹏</dc:creator>
-      <dc:date>2012-01-19T16:09:00Z</dc:date>
     </item>
   </channel>
 </rss>
