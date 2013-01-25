@@ -6,10 +6,20 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Thu, 24 Jan 2013 05:22:56 GMT</pubDate>
-    <dc:date>2013-01-24T05:22:56Z</dc:date>
+    <pubDate>Fri, 25 Jan 2013 13:58:13 GMT</pubDate>
+    <dc:date>2013-01-25T13:58:13Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
+    <item>
+      <title>notepad++上使用markdown</title>
+      <link>http://chaopeng.me/blog/2013/01/25/markdown-npp.html</link>
+      <description>在notepad++上的markdown高亮以及生成</description>
+      <category>chaosblog</category>
+      <pubDate>Thu, 24 Jan 2013 16:01:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2013/01/25/markdown-npp.html</guid>
+      <dc:creator>巢鹏</dc:creator>
+      <dc:date>2013-01-24T16:01:00Z</dc:date>
+    </item>
     <item>
       <title>新域名</title>
       <link>http://chaopeng.me/blog/2013/01/24/new-domain.html</link>
@@ -131,22 +141,22 @@
       <dc:date>2011-12-31T16:11:00Z</dc:date>
     </item>
     <item>
-      <title>Java字符串分割</title>
-      <link>http://chaopeng.me/blog/2012/10/29/java-string-split.html</link>
-      <description>比较各种java字符串分割的坑</description>
-      <category>java</category>
-      <pubDate>Sat, 28 Jan 2012 16:10:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2012/10/29/java-string-split.html</guid>
-      <dc:creator>巢鹏</dc:creator>
-      <dc:date>2012-01-28T16:10:00Z</dc:date>
-    </item>
-    <item>
       <title>Java反射效率</title>
       <link>http://chaopeng.me/blog/2012/10/29/java-reflect-performance.html</link>
       <description>java反射效率测试</description>
       <category>java</category>
       <pubDate>Sat, 28 Jan 2012 16:10:00 GMT</pubDate>
       <guid>http://chaopeng.me/blog/2012/10/29/java-reflect-performance.html</guid>
+      <dc:creator>巢鹏</dc:creator>
+      <dc:date>2012-01-28T16:10:00Z</dc:date>
+    </item>
+    <item>
+      <title>Java字符串分割</title>
+      <link>http://chaopeng.me/blog/2012/10/29/java-string-split.html</link>
+      <description>比较各种java字符串分割的坑</description>
+      <category>java</category>
+      <pubDate>Sat, 28 Jan 2012 16:10:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2012/10/29/java-string-split.html</guid>
       <dc:creator>巢鹏</dc:creator>
       <dc:date>2012-01-28T16:10:00Z</dc:date>
     </item>
@@ -199,16 +209,6 @@
       <guid>http://chaopeng.me/blog/2012/10/09/linux-mint-laptop-lcd-brightness.html</guid>
       <dc:creator>巢鹏</dc:creator>
       <dc:date>2012-01-08T16:10:00Z</dc:date>
-    </item>
-    <item>
-      <title>关于Flash Air移动端的消息推送</title>
-      <link>http://chaopeng.me/blog/2012/09/27/flash-air-mobile-push.html</link>
-      <description>关于Flash Air移动端的消息推送文章整理</description>
-      <category>flash</category>
-      <pubDate>Thu, 26 Jan 2012 16:09:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2012/09/27/flash-air-mobile-push.html</guid>
-      <dc:creator>巢鹏</dc:creator>
-      <dc:date>2012-01-26T16:09:00Z</dc:date>
     </item>
   </channel>
 </rss>
