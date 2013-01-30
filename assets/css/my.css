@@ -196,3 +196,21 @@ a.title_link:hover{
 .fanketi{
 	line-height: 50px;
 }
+
+blockquote
+{
+	border-left: 5px solid #bfbfbf;
+	margin: 10px 0;
+}
+
+blockquote p
+{
+	color: #666666;
+}
+
+code{
+	background-color: #333333;
+	color: #FFFFFF;
+	border: 0;
+	padding: 4px 5px 1px 5px;
+}
