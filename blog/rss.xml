@@ -6,10 +6,20 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Wed, 30 Jan 2013 04:22:00 GMT</pubDate>
-    <dc:date>2013-01-30T04:22:00Z</dc:date>
+    <pubDate>Fri, 08 Mar 2013 03:46:27 GMT</pubDate>
+    <dc:date>2013-03-08T03:46:27Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
+    <item>
+      <title>chrome上用markdown</title>
+      <link>http://chaopeng.me/blog/2013/03/08/markdown-chrome.html</link>
+      <description>在chrome上的markdown写作与演示</description>
+      <category>chaosblog</category>
+      <pubDate>Mon, 07 Jan 2013 16:03:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2013/03/08/markdown-chrome.html</guid>
+      <dc:creator>巢鹏</dc:creator>
+      <dc:date>2013-01-07T16:03:00Z</dc:date>
+    </item>
     <item>
       <title>notepad++上使用markdown</title>
       <link>http://chaopeng.me/blog/2013/01/25/markdown-npp.html</link>
@@ -141,22 +151,22 @@
       <dc:date>2011-12-31T16:11:00Z</dc:date>
     </item>
     <item>
-      <title>Java字符串分割</title>
-      <link>http://chaopeng.me/blog/2012/10/29/java-string-split.html</link>
-      <description>比较各种java字符串分割的坑</description>
-      <category>java</category>
-      <pubDate>Sat, 28 Jan 2012 16:10:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2012/10/29/java-string-split.html</guid>
-      <dc:creator>巢鹏</dc:creator>
-      <dc:date>2012-01-28T16:10:00Z</dc:date>
-    </item>
-    <item>
       <title>Java反射效率</title>
       <link>http://chaopeng.me/blog/2012/10/29/java-reflect-performance.html</link>
       <description>java反射效率测试</description>
       <category>java</category>
       <pubDate>Sat, 28 Jan 2012 16:10:00 GMT</pubDate>
       <guid>http://chaopeng.me/blog/2012/10/29/java-reflect-performance.html</guid>
+      <dc:creator>巢鹏</dc:creator>
+      <dc:date>2012-01-28T16:10:00Z</dc:date>
+    </item>
+    <item>
+      <title>Java字符串分割</title>
+      <link>http://chaopeng.me/blog/2012/10/29/java-string-split.html</link>
+      <description>比较各种java字符串分割的坑</description>
+      <category>java</category>
+      <pubDate>Sat, 28 Jan 2012 16:10:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2012/10/29/java-string-split.html</guid>
       <dc:creator>巢鹏</dc:creator>
       <dc:date>2012-01-28T16:10:00Z</dc:date>
     </item>
@@ -199,16 +209,6 @@
       <guid>http://chaopeng.me/blog/2012/10/10/cron.html</guid>
       <dc:creator>巢鹏</dc:creator>
       <dc:date>2012-01-09T16:10:00Z</dc:date>
-    </item>
-    <item>
-      <title>Linux Mint笔记本亮度设置</title>
-      <link>http://chaopeng.me/blog/2012/10/09/linux-mint-laptop-lcd-brightness.html</link>
-      <description>Linux Mint使用laptop-mode-tools调节笔记本亮度设置笔记</description>
-      <category>linux</category>
-      <pubDate>Sun, 08 Jan 2012 16:10:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2012/10/09/linux-mint-laptop-lcd-brightness.html</guid>
-      <dc:creator>巢鹏</dc:creator>
-      <dc:date>2012-01-08T16:10:00Z</dc:date>
     </item>
   </channel>
 </rss>
