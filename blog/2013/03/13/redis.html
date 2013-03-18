@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>巢鹏的Pensieve</title>
-<meta name="description" content="巢鹏，专注程序、算法，爱折腾，好读书。">
+<title>redis整理</title>
+<meta name="description" content="redis资料、心得整理">
 <meta name="author" content="巢鹏">
 <!-- Le styles -->
 <link href="/favicon.ico" rel="shortcut icon"> 
@@ -115,20 +115,14 @@ $(function() {
 </div>
 <div class="container container-fluid">
 	<div class="row-fluid window">
-		<div class="span9">
-			
+		<div class="span9 window_c">
+			<div class="entry_title">
+				<h1>【<a href="/blog/categories.html#nosql">nosql</a>】 redis整理</h1>
+				<i class="icon-calendar"></i> 2013-03-13
+			</div>
 
-	<div class="window_c article_item">
-		<div class="entry_title">
-			<h1>
-				【<a href="/blog/categories.html#nosql">nosql</a>】 
-				<a href="/blog/2013/03/13/redis.html" class="title_link">redis整理</a>
-			</h1>
-			<i class="icon-calendar"></i> 2013-03-13
-		</div>
-
-		<div class="entry_content" >
-			<div class="toc">
+			<div class="entry_content" >
+				<div class="toc">
 <ul>
 <li><a href="#_1">参考资料</a></li>
 <li><a href="#redis">redis适合怎么用</a></li>
@@ -147,106 +141,65 @@ $(function() {
 <ul>
 <li>
 <p>排行榜</p>
-		</div>
-			
-		<div class="entry_tags">
-			<i class="icon-tags"></i> 
-			<a href="/blog/tags.html#服务器框架">服务器框架</a> 
-			<a href="/blog/tags.html#缓存">缓存</a> 
-			<a href="/blog/tags.html#nosql">nosql</a> 
-			<a href="/blog/tags.html#redis">redis</a> 
-		</div>
+<p>排行榜一直是一个很麻烦的问题，我之前一直想做一个东西可以比较好的实现排行榜托管。排行榜主要的难的是:</p>
+<ol>
+<li>需要排行榜的size</li>
+<li>实时调整积分</li>
+</ol>
+<p>所以排行榜对数据结构的要求很高。以前我都是忽略其中一个问题去实现排行榜。现在出现了需要做实时排行榜的需求的时候，我第一时间想到的还是跳表，所以也测试一下redis的跳表效率，在1,000,000的数据量上大致插入100,000次6秒，更新100,000次10秒。而且很平稳O，(logN)的复杂度就是好啊。</p>
+</li>
+<li>
+<p>一对多数据</p>
+<p>游戏很多麻烦的一对多数据，但是关系其实很简单。我现在项目的就遇到玩家物品比平均1:500的情况，这种情况下memcached很难满足这样的需求，如果全部存在一起的话，序列化的压力大，如果分开存，维护一个数组的话，memcached的key数量和访问次数都会增加。别小看memcached的key的数量，其实是会影响memcached的get的效率的。而redis就可以很轻松的用一个hashmap存起来。</p>
+</li>
+<li>
+<p>消息队列</p>
+<p>redis的list是链表的实现，而且还有pubsub的功能，十分适合用来充当一个轻量级消息队列。</p>
+</li>
+</ul>
+<h2 id="redis_1">redis使用需要注意的地方</h2>
+<p>这里不完全是我遇到过的情况，有些是群(46859267)里面的朋友遇到的:</p>
+<ul>
+<li>主从redis必须同样的版本</li>
+<li>
+<p>小心选择redis的持久化方案以及超出内存后的处理方案</p>
+<ul>
+<li>rdb会大量消耗磁盘io，特别是1秒写入的次数大于你设定的1秒内写操作次数后进行bgsave以后</li>
+<li>aof的文件会增长很快，必须定期rewrite，文件达到硬盘大小的时候会各种杯具</li>
+</ul>
+</li>
+<li>
+<p>时刻注意redis的持久化是非常不可靠的，请尽可能保证重要数据不仅仅存在于redis，除非你在数据量规划的时候能确保redis的数据小于可用内存。</p>
+</li>
+</ul>
+
+<div style="background-color:#E0E0E0; border: 2px dashed #787878;padding: 5px 10px 5px 10px; margin-top:10px;">
+	<div style="text-align:center">
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+			<img alt="知识共享许可协议" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/cn/88x31.png">
+		</a>
+		<br>
+		本作品采用
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+			知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议
+		</a>
+		进行许可。
 	</div>
-	<div class="window_c article_item">
-		<div class="entry_title">
-			<h1>
-				【<a href="/blog/categories.html#chaosblog">chaosblog</a>】 
-				<a href="/blog/2013/03/08/markdown-chrome.html" class="title_link">chrome上用markdown写作</a>
-			</h1>
-			<i class="icon-calendar"></i> 2013-03-08
-		</div>
-
-		<div class="entry_content" >
-			<p>之前跟大家分享过使用notepad++写作markdown的方式。今天要跟大家分享的是在chrome上写作makrdown而且方法会更加简单以及便捷。</p>
-		</div>
-			
-		<div class="entry_tags">
-			<i class="icon-tags"></i> 
-			<a href="/blog/tags.html#markdown">markdown</a> 
-			<a href="/blog/tags.html#chrome">chrome</a> 
-		</div>
+	<div>
+		»<b>本文链接：</b>
+		<a rel="bookmark" title="redis整理" href="http://chaopeng.me/blog/2013/03/13/redis.html">
+			http://chaopeng.me/blog/2013/03/13/redis.html
+		</a>
 	</div>
-	<div class="window_c article_item">
-		<div class="entry_title">
-			<h1>
-				【<a href="/blog/categories.html#chaosblog">chaosblog</a>】 
-				<a href="/blog/2013/01/25/markdown-npp.html" class="title_link">notepad++上使用markdown</a>
-			</h1>
-			<i class="icon-calendar"></i> 2013-01-25
-		</div>
-
-		<div class="entry_content" >
-			<h2 id="_1">引言</h2>
-<blockquote>
-<p>自从开始用markdown写博客以后，开始越来越喜欢使用markdown写作，
-而且最近开始使用markdown写作更多的东西，尝试了好多个markdown的编辑器都不尽人意。
-或者说是使用起来相当不习惯。所以试着去配置一下notepad++。使得更适合我写作。</p>
-		</div>
-			
-		<div class="entry_tags">
-			<i class="icon-tags"></i> 
-			<a href="/blog/tags.html#markdown">markdown</a> 
-			<a href="/blog/tags.html#notepad++">notepad++</a> 
-		</div>
+	<div>
+		»<b>订阅本站：</b>
+		<a title="巢鹏的Pensieve" href="http://chaopeng.me/blog">
+			http://chaopeng.me/blog
+		</a>
 	</div>
-	<div class="window_c article_item">
-		<div class="entry_title">
-			<h1>
-				【<a href="/blog/categories.html#杂谈">杂谈</a>】 
-				<a href="/blog/2013/01/24/new-domain.html" class="title_link">新域名</a>
-			</h1>
-			<i class="icon-calendar"></i> 2013-01-24
-		</div>
-
-		<div class="entry_content" >
-			<p>之前的github pages事件，相信大家都有所关注。由于无法忍受github不能使用，有不想换地方托管，只好去申请一个域名。
-一开始其实是想申请chaopeng.com的，与域名所有者联系，居然不卖。
-你又不用又不卖，这是炒域名的人也得有<strong>职业道德</strong>吧，占了我名字的域名，居然还不愿意卖。
-后来几经纠结还是选择了chaopeng.me。
-其实这个域名看上去还不错吧。做博客还是可以的。
-之后就去DNSPOD折腾了一下DNS解释，也很简单。就不说太多了。</p>
-		</div>
-			
-		<div class="entry_tags">
-			<i class="icon-tags"></i> 
-			<a href="/blog/tags.html#域名">域名</a> 
-			<a href="/blog/tags.html#github">github</a> 
-		</div>
-	</div>
-	<div class="window_c article_item">
-		<div class="entry_title">
-			<h1>
-				【<a href="/blog/categories.html#ChaosBlog">ChaosBlog</a>】 
-				<a href="/blog/2013/01/14/how-to-get-gravatar.html" class="title_link">怎样获取你gravatar的头像</a>
-			</h1>
-			<i class="icon-calendar"></i> 2013-01-14
-		</div>
-
-		<div class="entry_content" >
-			<p>ChaosBlog一开始做的时候，头像是写死的靠上传来替换，但是由于完全静态，这样用起来相当不方便，所以还是用回gravatar的头像服务吧。</p>
-		</div>
-			
-		<div class="entry_tags">
-			<i class="icon-tags"></i> 
-			<a href="/blog/tags.html#ChaosBlog">ChaosBlog</a> 
-			<a href="/blog/tags.html#gravatar">gravatar</a> 
-		</div>
-	</div>
-
-<div class="window_c" style="text-align: center;">
-<a href="/blog/archive.html">更多文章</a>
-</div>
-
+</div><!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread" data-thread-key="/blog/2013/03/13/redis.html title=redis整理"></div>
+<!-- Duoshuo Comment END -->			</div>
 		</div>
 		<div class="span3">
 			<div id="sidebar" class="window_r">
@@ -264,15 +217,47 @@ $(function() {
 	</div>
 </div>
 
+<form><fieldset class="line"><legend>分享</legend></fieldset></form>
 
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more">更多</span>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3012035" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+<form><fieldset class="line"><legend>本文标签</legend></fieldset></form>
+
+<div>
+<ul>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#服务器框架">服务器框架</a>
+	</li>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#缓存">缓存</a>
+	</li>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#nosql">nosql</a>
+	</li>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#redis">redis</a>
+	</li>
+</ul>
+</div>
 <form><fieldset class="line"><legend>友情链接</legend></fieldset></form>
 <ul>
 	<li><a href="http://www.wutianqi.com/" target="_blank">小狗狗的博客</a></li>
 </ul>
-
-<form><fieldset class="line"><legend>最新评论</legend></fieldset></form>
-<ul class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" ></ul>
-
 
 <form><fieldset class="line"><legend>声明</legend></fieldset></form>
 本博客仅供自娱自乐，<br>不喜勿喷。<br>欢迎捐助！
@@ -280,6 +265,7 @@ $(function() {
 		</div>
 	</div>
 </div>
+
 
 
 <div class="container container-fluid">
