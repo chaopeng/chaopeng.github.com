@@ -6,10 +6,20 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Tue, 19 Mar 2013 01:55:41 GMT</pubDate>
-    <dc:date>2013-03-19T01:55:41Z</dc:date>
+    <pubDate>Mon, 01 Apr 2013 02:19:12 GMT</pubDate>
+    <dc:date>2013-04-01T02:19:12Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
+    <item>
+      <title>Play! Framework 的使用</title>
+      <link>http://chaopeng.me/blog/2013/04/01/play-framework.html</link>
+      <description>playframework的使用笔记</description>
+      <category>java</category>
+      <pubDate>Mon, 31 Dec 2012 16:04:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2013/04/01/play-framework.html</guid>
+      <dc:creator>巢鹏</dc:creator>
+      <dc:date>2012-12-31T16:04:00Z</dc:date>
+    </item>
     <item>
       <title>redis整理</title>
       <link>http://chaopeng.me/blog/2013/03/13/redis.html</link>
@@ -199,16 +209,6 @@
       <guid>http://chaopeng.me/blog/2012/10/17/log4j.html</guid>
       <dc:creator>巢鹏</dc:creator>
       <dc:date>2012-01-16T16:10:00Z</dc:date>
-    </item>
-    <item>
-      <title>Flash Air 移动端开发效率相关文章整理</title>
-      <link>http://chaopeng.me/blog/2012/10/13/flash-air-mobile.html</link>
-      <description>Flash Air 移动端开发效率相关文章整理</description>
-      <category>flash</category>
-      <pubDate>Thu, 12 Jan 2012 16:10:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2012/10/13/flash-air-mobile.html</guid>
-      <dc:creator>巢鹏</dc:creator>
-      <dc:date>2012-01-12T16:10:00Z</dc:date>
     </item>
   </channel>
 </rss>

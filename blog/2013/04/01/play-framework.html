@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>redis整理</title>
-<meta name="description" content="redis资料、心得整理">
+<title>Play! Framework 的使用</title>
+<meta name="description" content="playframework的使用笔记">
 <meta name="author" content="巢鹏">
 <!-- Le styles -->
 <link href="/favicon.ico" rel="shortcut icon"> 
@@ -117,61 +117,46 @@ $(function() {
 	<div class="row-fluid window">
 		<div class="span9 window_c">
 			<div class="entry_title">
-				<h1>【<a href="/blog/categories.html#nosql">nosql</a>】 redis整理</h1>
-				<i class="icon-calendar"></i> 2013-03-13
+				<h1>【<a href="/blog/categories.html#java">java</a>】 Play! Framework 的使用</h1>
+				<i class="icon-calendar"></i> 2013-04-01
 			</div>
 
 			<div class="entry_content" >
-				<div class="toc">
-<ul>
-<li><a href="#_1">参考资料</a></li>
-<li><a href="#redis">redis适合怎么用</a></li>
-<li><a href="#redis_1">redis使用需要注意的地方</a></li>
-</ul>
-</div>
-<h2 id="_1">参考资料</h2>
-<ul>
-<li><a href="redis.io">redis官网</a></li>
-<li><a href="redis.cn">redis中文网</a></li>
-<li><a href="http://www.redisbook.com/en/latest/">redis设计与实现</a></li>
-<li><a href="github.com/redisbook/book">redis-book</a></li>
-<li><a href="https://github.com/chaopeng/redis-conf">我翻译的redis配置文件</a></li>
-</ul>
-<h2 id="redis">redis适合怎么用</h2>
+				<h2 id="jdk">安装jdk</h2>
+<h2 id="python">安装python</h2>
+<h2 id="_1">安装二进制包</h2>
 <ul>
 <li>
-<p>排行榜</p>
-<p>排行榜一直是一个很麻烦的问题，我之前一直想做一个东西可以比较好的实现排行榜托管。排行榜主要的难的是:</p>
+<p>二进制包</p>
 <ol>
-<li>需要排行榜的size</li>
-<li>实时调整积分</li>
+<li>下载<a href="http://downloads.typesafe.com/releases/play-1.2.4.zip">进制包</a></li>
+<li>添加目录到环境变量PATH</li>
+<li>命令行输入<code>play</code>检查是否安装成功</li>
 </ol>
-<p>所以排行榜对数据结构的要求很高。以前我都是忽略其中一个问题去实现排行榜。现在出现了需要做实时排行榜的需求的时候，我第一时间想到的还是跳表，所以也测试一下redis的跳表效率，在1,000,000的数据量上大致插入100,000次6秒，更新100,000次10秒。而且很平稳O，(logN)的复杂度就是好啊。</p>
-</li>
-<li>
-<p>一对多数据</p>
-<p>游戏很多麻烦的一对多数据，但是关系其实很简单。我现在项目的就遇到玩家物品比平均1:500的情况，这种情况下memcached很难满足这样的需求，如果全部存在一起的话，序列化的压力大，如果分开存，维护一个数组的话，memcached的key数量和访问次数都会增加。别小看memcached的key的数量，其实是会影响memcached的get的效率的。而redis就可以很轻松的用一个hashmap存起来。</p>
-</li>
-<li>
-<p>消息队列</p>
-<p>redis的list是链表的实现，而且还有pubsub的功能，十分适合用来充当一个轻量级消息队列。</p>
 </li>
 </ul>
-<h2 id="redis_1">redis使用需要注意的地方</h2>
-<p>这里不完全是我遇到过的情况，有些是群(46859267)里面的朋友遇到的:</p>
+<p><strong>注意坑</strong></p>
+<p>linux下如果安装了sox的话play的符号已经被占用，需重命名play脚本。</p>
+<h2 id="play">建立play项目</h2>
 <ul>
-<li>主从redis必须同样的版本</li>
-<li>
-<p>小心选择redis的持久化方案以及超出内存后的处理方案</p>
+<li><code>play new 项目名</code></li>
+<li>导入到eclipse <code>play eclipsify 项目名</code></li>
+</ul>
+<p><strong>注意坑</strong></p>
+<p>在eclipse debug的时候会出现</p>
+<pre><code>Error occurred during initialization of VM
+agent library failed to init: jdwp
+ERROR: Cannot load this JVM TI agent twice, check your java command line for duplicate jdwp options.
+</code></pre>
+<p>需要删除<code>eclispe/helloworld.launch</code>中的<code>-Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=n</code>。</p>
+<h2 id="_2">参考网站</h2>
 <ul>
-<li>rdb会大量消耗磁盘io，特别是1秒写入的次数大于你设定的1秒内写操作次数后进行bgsave以后</li>
-<li>aof的文件会增长很快，必须定期rewrite，文件达到硬盘大小的时候会各种杯具</li>
+<li><a href="http://djb4ke.iteye.com/blog/662240">Play! Framework 学习笔记（一）：初识Play</a></li>
+<li><a href="http://xbgd.iteye.com/blog/813281">Play! Framework 的模板引擎</a></li>
+<li><a href="http://play-framework.herokuapp.com/zh/home">Play! Framework 中文文档</a></li>
+<li><a href="http://www.ibm.com/developerworks/cn/java/j-lo-play/">玩转 Java Web 应用开发：Play 框架</a></li>
 </ul>
-</li>
-<li>
-<p>时刻注意redis的持久化是非常不可靠的，请尽可能保证重要数据不仅仅存在于redis，除非你在数据量规划的时候能确保redis的数据小于可用内存。</p>
-</li>
-</ul>
+<p><strong>还有任何疑惑的话看官方文档吧</strong></p>
 
 <div style="background-color:#E0E0E0; border: 2px dashed #787878;padding: 5px 10px 5px 10px; margin-top:10px;">
 	<div style="text-align:center">
@@ -187,8 +172,8 @@ $(function() {
 	</div>
 	<div>
 		»<b>本文链接：</b>
-		<a rel="bookmark" title="redis整理" href="http://chaopeng.me/blog/2013/03/13/redis.html">
-			http://chaopeng.me/blog/2013/03/13/redis.html
+		<a rel="bookmark" title="Play! Framework 的使用" href="http://chaopeng.me/blog/2013/04/01/play-framework.html">
+			http://chaopeng.me/blog/2013/04/01/play-framework.html
 		</a>
 	</div>
 	<div>
@@ -198,7 +183,7 @@ $(function() {
 		</a>
 	</div>
 </div><!-- Duoshuo Comment BEGIN -->
-	<div class="ds-thread" data-thread-key="/blog/2013/03/13/redis.html title=redis整理"></div>
+	<div class="ds-thread" data-thread-key="/blog/2013/04/01/play-framework.html title=Play! Framework 的使用"></div>
 <!-- Duoshuo Comment END -->			</div>
 		</div>
 		<div class="span3">
@@ -241,16 +226,10 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 <div>
 <ul>
 	<li>
-		<i class="icon-tag"></i> <a href="/blog/tags.html#服务器框架">服务器框架</a>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#java">java</a>
 	</li>
 	<li>
-		<i class="icon-tag"></i> <a href="/blog/tags.html#缓存">缓存</a>
-	</li>
-	<li>
-		<i class="icon-tag"></i> <a href="/blog/tags.html#nosql">nosql</a>
-	</li>
-	<li>
-		<i class="icon-tag"></i> <a href="/blog/tags.html#redis">redis</a>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#playframework">playframework</a>
 	</li>
 </ul>
 </div>
