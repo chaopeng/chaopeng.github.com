@@ -125,7 +125,7 @@ $(function() {
 				<p>ChaosBlog一开始做的时候，头像是写死的靠上传来替换，但是由于完全静态，这样用起来相当不方便，所以还是用回gravatar的头像服务吧。</p>
 <h2 id="gravatar">gravatar头像的地址</h2>
 <p><code>头像服务器/avatar/邮箱的md5值?s=头像尺寸&amp;d=默认头像&amp;r=头像等级</code></p>
-<h2 id="_1">头像服务器</h2>
+<h2 id="">头像服务器</h2>
 <ul>
 <li>http://www.gravatar.com</li>
 <li>http://0.gravatar.com</li>
@@ -137,9 +137,9 @@ $(function() {
 <li>https://secure.gravatar.com</li>
 </ul>
 <p>据说在国内最稳定的是最后一个。</p>
-<h2 id="_2">头像尺寸</h2>
+<h2 id="_1">头像尺寸</h2>
 <p>可以选择1～512，即1～512px。</p>
-<h2 id="_3">默认头像</h2>
+<h2 id="_2">默认头像</h2>
 <p>默认头像这个参数我也没有试出来，但是据说是有这些可以选的：</p>
 <ul>
 <li>留空 显示gravatar官方图形</li>
@@ -150,7 +150,7 @@ $(function() {
 <li>wavatar 用不同面孔和背景组合生成的头像</li>
 <li>retro 八位像素复古头像</li>
 </ul>
-<h2 id="_4">头像等级</h2>
+<h2 id="_3">头像等级</h2>
 <p>最后一个就是限制级的问题了，自己用gravatar的时候都知道，头像上传以后会审核分级的。</p>
 <ul>
 <li>g 适合任何年龄的访客查看，一般都用这个</li>
@@ -158,7 +158,7 @@ $(function() {
 <li>r 成人级，只适合17岁以上成人查看</li>
 <li>x 最高等级，不适合大多数人查看</li>
 </ul>
-<h2 id="_5">源代码</h2>
+<h2 id="_4">源代码</h2>
 <p>最后附上我的写的一个获取头像的类的吧，此类基于apache lisence开源，请尊重版权。</p>
 <pre><code class="java">/** @author chao */
 public class GravatarUtils {

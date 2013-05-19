@@ -124,14 +124,14 @@ $(function() {
 			<div class="entry_content" >
 				<div class="toc">
 <ul>
-<li><a href="#_1">引言</a></li>
+<li><a href="#">引言</a></li>
 <li><a href="#log4j">log4j的配置文件</a></li>
 <li><a href="#log">第三方库的log</a></li>
-<li><a href="#_2">怎样把配置文件放在包的外面</a></li>
+<li><a href="#_1">怎样把配置文件放在包的外面</a></li>
 </ul>
 </div>
 <p>这篇文章写了好久了，扔在yunio的盘子里面忘记了。。。</p>
-<h2 id="_1">引言</h2>
+<h2 id="">引言</h2>
 <p>之前一直不重视的log文件现在终于让人受不了了，debug一堆的遗留的stdout，郁闷啊。好不容易清理完了自己写的sysout，引入了commons.httpclient之后我彻底崩溃了。反正正要做商城的log，还是好好研究一下吧。
 看了一下项目引用的库。好多个log的库。google一下还有个叫logback的。</p>
 <ul>
@@ -219,7 +219,7 @@ log4j.logger.httpclient.wire.content=INFO
 log4j.logger.org.apache.commons.httpclient = INFO
 </code></pre>
 
-<h2 id="_2">怎样把配置文件放在包的外面</h2>
+<h2 id="_1">怎样把配置文件放在包的外面</h2>
 <p>请看我另外一篇文章<a href="/blog/2012/11/07/log4j-properties-out-of-jar.html" title="log4j怎样把配置文件放在包外">《log4j怎样把配置文件放在包外》</a></p>
 
 <div style="background-color:#E0E0E0; border: 2px dashed #787878;padding: 5px 10px 5px 10px; margin-top:10px;">

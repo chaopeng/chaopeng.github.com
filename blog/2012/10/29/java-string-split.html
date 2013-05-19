@@ -128,7 +128,7 @@ String[] substrs = s.split(&quot;&amp;&quot;);
 </code></pre>
 
 <p>但是这个常用的函数是有不少坑的。</p>
-<h2 id="_1">对特殊串的分割处理</h2>
+<h2 id="">对特殊串的分割处理</h2>
 <p>比如这样的例子</p>
 <pre><code class="java">//--------1---------
 String[] substrs = &quot;&quot;.split(&quot;&amp;&quot;); 
@@ -144,7 +144,7 @@ String[] substrs = &quot;1&amp;&amp;&quot;.split(&quot;&amp;&quot;);
 // 这样会substrs 的长度是1, 这个按照上面的逻辑稍微又好理解了一些
 </code></pre>
 
-<h2 id="_2">出现错误不抛出</h2>
+<h2 id="_1">出现错误不抛出</h2>
 <p>上面的问题通过尝试还是可以有所了解的。问题出现在一次我对uri的处理上面，如这样的串: <code>http://www.baidu.com/s?wd=av</code>，ok现在我要分割这个问号了：</p>
 <pre><code class="java">String[] substr = &quot;http://www.baidu.com/s?wd=av&quot;.split(&quot;?&quot;);
 </code></pre>
@@ -166,7 +166,7 @@ int n = st.countTokens(); // 结果是1
 </code></pre>
 
 <p>这样的结果比起split好处理多了</p>
-<h2 id="_3">不支持正则表达式</h2>
+<h2 id="_2">不支持正则表达式</h2>
 <p>StringTokenizer不支持正则表达式，但是支持一种很奇怪的方法delim的每一个字符都会视作分割符。当然如果有这样的需求的话，还是用split的正则表达式比较划算。</p>
 
 <div style="background-color:#E0E0E0; border: 2px dashed #787878;padding: 5px 10px 5px 10px; margin-top:10px;">

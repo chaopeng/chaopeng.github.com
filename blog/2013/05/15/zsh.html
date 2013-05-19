@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Java反射效率</title>
-<meta name="description" content="java反射效率测试">
+<title>zsh配置</title>
+<meta name="description" content="linux下载工具批量下载用法">
 <meta name="author" content="巢鹏">
 <!-- Le styles -->
 <link href="/favicon.ico" rel="shortcut icon"> 
@@ -117,83 +117,28 @@ $(function() {
 	<div class="row-fluid window">
 		<div class="span9 window_c">
 			<div class="entry_title">
-				<h1>【<a href="/blog/categories.html#java">java</a>】 Java反射效率</h1>
-				<i class="icon-calendar"></i> 2012-10-29
+				<h1>【<a href="/blog/categories.html#linux">linux</a>】 zsh配置</h1>
+				<i class="icon-calendar"></i> 2013-05-15
 			</div>
 
 			<div class="entry_content" >
-				<p>Java的反射是个老问题了，因为有了反射的特性，Java是一个接近动态类型的语言，但是Java的反射的效率一直都是被诟病的地方。
-自从有了这个特性几乎每一次JDK大版本更新都会说反射的效率大大提高。
-因为我的ChaosBuff要更新，原来用数组的方式管理对象，实在是不适合调试。所以想一下还是降低一下运行效率提高生产效率吧。
-由于网上很多的测试都是抄来抄去的，这里我就重新测一下看看反射有多慢。</p>
-<p>当然反射不止一种方法的，而且也有一些比较常见的优化方式。我们将会测试一下：</p>
-<ol>
-<li>直接访问的耗时</li>
-<li>直接反射的耗时</li>
-<li>缓存需要查找的函数反射的耗时</li>
-<li>使用reflectasm的反射耗时</li>
-</ol>
-<pre><code class="java">long now;
-long sum = 0;
-TestClass t = new TestClass();
- 
-now = System.currentTimeMillis();
- 
-for(int i = 0; i&lt;500000; ++i){
-    t.setNum(i);
-    sum += t.getNum();
-}
- 
-System.out.println(&quot;get-set耗时&quot;+(System.currentTimeMillis() - now) + &quot;ms秒，和是&quot; +sum);
- 
-sum = 0;
-now = System.currentTimeMillis();
- 
-for(int i = 0; i&lt;500000; ++i){
-    Class&lt;?&gt; c = Class.forName(&quot;test.TestClass&quot;);
-    Class&lt;?&gt;[] argsType = new Class[1];
-    argsType[0] = int.class;
-    Method m = c.getMethod(&quot;setNum&quot;, argsType);
-    m.invoke(t, i);
-    sum += t.getNum();
-}
-System.out.println(&quot;标准反射耗时&quot;+(System.currentTimeMillis() - now) + &quot;ms，和是&quot; +sum);
- 
-sum = 0;
- 
-Class&lt;?&gt; c = Class.forName(&quot;test.TestClass&quot;);
-Class&lt;?&gt;[] argsType = new Class[1];
-argsType[0] = int.class;
-Method m = c.getMethod(&quot;setNum&quot;, argsType);
- 
-now = System.currentTimeMillis();
- 
-for(int i = 0; i&lt;500000; ++i){
-    m.invoke(t, i);
-    sum += t.getNum();
-}
-System.out.println(&quot;缓存反射耗时&quot;+(System.currentTimeMillis() - now) + &quot;ms，和是&quot; +sum);
- 
-sum = 0;
-MethodAccess ma = MethodAccess.get(TestClass.class);
-int index = ma.getIndex(&quot;setNum&quot;);
-now = System.currentTimeMillis();
- 
-for(int i = 0; i&lt;500000; ++i){
-    ma.invoke(t, index, i);
-    sum += t.getNum();
-}
-System.out.println(&quot;reflectasm反射耗时&quot;+(System.currentTimeMillis() - now) + &quot;ms，和是&quot; +sum);
-</code></pre>
-
-<p>测试结果如下：
-<pre>
-get-set耗时6ms秒，和是124999750000
-标准反射耗时1838ms，和是124999750000
-缓存反射耗时70ms，和是124999750000
-reflectasm反射耗时20ms，和是124999750000
-</pre></p>
-<p>可以看出，查找函数依然是耗时最长的部分，JDK7的优化确实很不错，由JDK6的40倍降到10倍左右，reflectasm invoke的效率比java原生invoke好，大致是直接访问的4倍时间。效率确实可以一用。</p>
+				<p>最近看到的几篇介绍zsh的文章，看得相当爽。自己也就上手玩了一下。先介绍一下安装：</p>
+<p>*安装
+    <code>sudo apt-get install zsh</code></p>
+<p>*安装oh-my-zsh配置
+    <code>wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh</code></p>
+<p>*切换成默认的sh
+    <code>chsh -s /bin/zsh</code></p>
+<h1 id="zsh">修改zsh的配置</h1>
+<p>zsh的配置文件在<code>$HOME/.zshrc</code>，alias什么的大家都知道的就不说了。说说一些能装逼的功能吧。</p>
+<h2 id="">换主题</h2>
+<p>去<code>https://github.com/robbyrussell/oh-my-zsh/wiki/themes</code>看看有什么主题，挑到喜欢的就检查一下<code>$HOME/.oh-my-zsh/themes</code>有没有。没有就下载放进去。有就简单了。修改<code>.zshrc</code>的ZSH_THEME。</p>
+<h2 id="_1">装插件</h2>
+<p>看看<code>$HOME/.oh-my-zsh/plugins</code>有什么你喜欢的插件，一般常用的命令补全都装上就对了。我的是plugins=(git tmux mvn svn)。</p>
+<h2 id="_2">更新</h2>
+<p>oh-my-zsh的更新有点诡异。直接<code>$HOME/.oh-my-zsh/tools/upgrade.sh</code>会报错。。。但是<code>bash upgrade.sh</code>是可以正常运行的。。。难道oh-my-zsh也鄙视用zsh？不懂，反正这玩意的功能就是<code>git pull</code>一下而已。</p>
+<p><strong>更多参考</strong>
+<a href="http://lostjs.com/2012/09/27/zsh/">使用 Zsh 的九个理由</a></p>
 
 <div style="background-color:#E0E0E0; border: 2px dashed #787878;padding: 5px 10px 5px 10px; margin-top:10px;">
 	<div style="text-align:center">
@@ -209,8 +154,8 @@ reflectasm反射耗时20ms，和是124999750000
 	</div>
 	<div>
 		»<b>本文链接：</b>
-		<a rel="bookmark" title="Java反射效率" href="http://chaopeng.me/blog/2012/10/29/java-reflect-performance.html">
-			http://chaopeng.me/blog/2012/10/29/java-reflect-performance.html
+		<a rel="bookmark" title="zsh配置" href="http://chaopeng.me/blog/2013/05/15/zsh.html">
+			http://chaopeng.me/blog/2013/05/15/zsh.html
 		</a>
 	</div>
 	<div>
@@ -220,7 +165,7 @@ reflectasm反射耗时20ms，和是124999750000
 		</a>
 	</div>
 </div><!-- Duoshuo Comment BEGIN -->
-	<div class="ds-thread" data-thread-key="/blog/2012/10/29/java-reflect-performance.html title=Java反射效率"></div>
+	<div class="ds-thread" data-thread-key="/blog/2013/05/15/zsh.html title=zsh配置"></div>
 <!-- Duoshuo Comment END -->			</div>
 		</div>
 		<div class="span3">
@@ -263,10 +208,10 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 <div>
 <ul>
 	<li>
-		<i class="icon-tag"></i> <a href="/blog/tags.html#java">java</a>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#linux">linux</a>
 	</li>
 	<li>
-		<i class="icon-tag"></i> <a href="/blog/tags.html#reflect">reflect</a>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#zsh">zsh</a>
 	</li>
 </ul>
 </div>
