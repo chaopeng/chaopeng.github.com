@@ -122,7 +122,8 @@ $(function() {
 			</div>
 
 			<div class="entry_content" >
-				<ul>
+				<p>每次搞ssh公钥登陆，都要去google，记忆力真心下降啊。还是写一下笔记好了。</p>
+<ul>
 <li>生成钥匙对<code>ssh-keygen -t rsa</code>，<code>-c</code>参数修改注释，<code>-f</code>参数修改钥匙文件名</li>
 <li>指定钥匙需要在<code>config</code>设置<code>IdentityFile</code></li>
 <li>将公钥加入到远程机器<code>.ssh/authorized_keys</code>，并设置为600权限</li>
