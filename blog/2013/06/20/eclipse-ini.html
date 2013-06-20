@@ -123,9 +123,9 @@ $(function() {
 
 			<div class="entry_content" >
 				<p>这仅仅是一个eclipse加速的笔记，是参考《深入理解java虚拟机》一书修改eclipse.ini的。具体过程不表。下面是主要修改的部分：</p>
-<p>```{eclipse.ini}
-在-vmargs下面加：</p>
-<p>-Xverify:none
+<pre><code class="ini">在-vmargs下面加：
+
+-Xverify:none
 -Xms512m
 -Xmx512m
 -Xmn128m
@@ -136,7 +136,7 @@ $(function() {
 -XX:+UseParNewGC
 -XX:+UseConcMarkSweepGC
 -XX:CMSInitiatingOccupancyFraction=85
-```</p>
+</code></pre>
 
 <div style="background-color:#E0E0E0; border: 2px dashed #787878;padding: 5px 10px 5px 10px; margin-top:10px;">
 	<div style="text-align:center">
