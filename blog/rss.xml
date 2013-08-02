@@ -6,10 +6,20 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Thu, 04 Jul 2013 01:38:09 GMT</pubDate>
-    <dc:date>2013-07-04T01:38:09Z</dc:date>
+    <pubDate>Fri, 02 Aug 2013 07:55:28 GMT</pubDate>
+    <dc:date>2013-08-02T07:55:28Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
+    <item>
+      <title>mysqldump常用语句</title>
+      <link>http://chaopeng.me/blog/2013/08/02/mysqldump.html</link>
+      <description>mysqldump常用语句笔记</description>
+      <category>运维心得</category>
+      <pubDate>Tue, 01 Jan 2013 16:08:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2013/08/02/mysqldump.html</guid>
+      <dc:creator>巢鹏</dc:creator>
+      <dc:date>2013-01-01T16:08:00Z</dc:date>
+    </item>
     <item>
       <title>在线书单</title>
       <link>http://chaopeng.me/blog/2013/07/04/open-source-book.html</link>
@@ -199,16 +209,6 @@
       <guid>http://chaopeng.me/blog/2012/11/21/akka-matrix.html</guid>
       <dc:creator>巢鹏</dc:creator>
       <dc:date>2012-01-20T16:11:00Z</dc:date>
-    </item>
-    <item>
-      <title>golang的坑</title>
-      <link>http://chaopeng.me/blog/2012/11/08/golang.html</link>
-      <description>记录golang的坑，有些可能不是坑，只是我不习惯而已。</description>
-      <category>golang</category>
-      <pubDate>Sat, 07 Jan 2012 16:11:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2012/11/08/golang.html</guid>
-      <dc:creator>巢鹏</dc:creator>
-      <dc:date>2012-01-07T16:11:00Z</dc:date>
     </item>
   </channel>
 </rss>
