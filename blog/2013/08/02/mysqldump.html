@@ -123,15 +123,15 @@ $(function() {
 
 			<div class="entry_content" >
 				<h2 id="_1">导出全库/表</h2>
-<pre><code>mysqldump -h{host} -u{用户名} -p{密码} -P{端口} --default-character-set=utf8 --opt -e --triggers -R --hex-blob --single-transaction {库名} {表名} &gt; {文件名}
+<pre><code class="bash">mysqldump -h{host} -u{用户名} -p{密码} -P{端口} --default-character-set=utf8 --opt -e --triggers -R --hex-blob --single-transaction {库名} {表名} &gt; {文件名}
 </code></pre>
 
 <h2 id="_2">导出表结构</h2>
-<pre><code>mysqldump --opt -d -h{host} -u{用户名} -p{密码} -P{端口} {库名} {表名} &gt; {文件名}
+<pre><code class="bash">mysqldump --opt -d -h{host} -u{用户名} -p{密码} -P{端口} {库名} {表名} &gt; {文件名}
 </code></pre>
 
 <h2 id="_3">按条件导出表数据(只有数据)</h2>
-<pre><code>mysqldump -e -t -c -h{host} -u{用户名} -p{密码} -P{端口} {库名} {表名} --where=&quot;{字段1}='' and {字段2}='' and {字段3}=''&quot; &gt; {文件名}
+<pre><code class="bash">mysqldump -e -t -c -h{host} -u{用户名} -p{密码} -P{端口} {库名} {表名} --where=&quot;{字段1}='' and {字段2}='' and {字段3}=''&quot; &gt; {文件名}
 </code></pre>
 
 <h2 id="_4">参数说明</h2>
@@ -143,7 +143,7 @@ $(function() {
 </code></pre>
 
 <h2 id="_5">数据库表结构同步工具</h2>
-<pre><code>schemasync mysql://{用户名}:{密码}@{ip}/{库名} mysql://{用户名}:{密码}@{ip}/{库名} # 前为源 后为目标
+<pre><code class="bash">schemasync mysql://{用户名}:{密码}@{ip}/{库名} mysql://{用户名}:{密码}@{ip}/{库名} # 前为源 后为目标
 </code></pre>
 
 <div style="background-color:#E0E0E0; border: 2px dashed #787878;padding: 5px 10px 5px 10px; margin-top:10px;">
@@ -218,6 +218,9 @@ document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static
 	</li>
 	<li>
 		<i class="icon-tag"></i> <a href="/blog/tags.html#mysql">mysql</a>
+	</li>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#schemasync">schemasync</a>
 	</li>
 </ul>
 </div>

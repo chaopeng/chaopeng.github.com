@@ -129,15 +129,15 @@ $(function() {
 
 		<div class="entry_content" >
 			<h2 id="_1">导出全库/表</h2>
-<pre><code>mysqldump -h{host} -u{用户名} -p{密码} -P{端口} --default-character-set=utf8 --opt -e --triggers -R --hex-blob --single-transaction {库名} {表名} &gt; {文件名}
+<pre><code class="bash">mysqldump -h{host} -u{用户名} -p{密码} -P{端口} --default-character-set=utf8 --opt -e --triggers -R --hex-blob --single-transaction {库名} {表名} &gt; {文件名}
 </code></pre>
 
 <h2 id="_2">导出表结构</h2>
-<pre><code>mysqldump --opt -d -h{host} -u{用户名} -p{密码} -P{端口} {库名} {表名} &gt; {文件名}
+<pre><code class="bash">mysqldump --opt -d -h{host} -u{用户名} -p{密码} -P{端口} {库名} {表名} &gt; {文件名}
 </code></pre>
 
 <h2 id="_3">按条件导出表数据(只有数据)</h2>
-<pre><code>mysqldump -e -t -c -h{host} -u{用户名} -p{密码} -P{端口} {库名} {表名} --where=&quot;{字段1}='' and {字段2}='' and {字段3}=''&quot; &gt; {文件名}
+<pre><code class="bash">mysqldump -e -t -c -h{host} -u{用户名} -p{密码} -P{端口} {库名} {表名} --where=&quot;{字段1}='' and {字段2}='' and {字段3}=''&quot; &gt; {文件名}
 </code></pre>
 
 <h2 id="_4">参数说明</h2>
@@ -148,6 +148,7 @@ $(function() {
 			<i class="icon-tags"></i> 
 			<a href="/blog/tags.html#mysqldump">mysqldump</a> 
 			<a href="/blog/tags.html#mysql">mysql</a> 
+			<a href="/blog/tags.html#schemasync">schemasync</a> 
 		</div>
 	</div>
 	<div class="window_c article_item">
