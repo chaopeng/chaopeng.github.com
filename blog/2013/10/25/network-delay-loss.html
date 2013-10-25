@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>巢鹏的Pensieve</title>
-<meta name="description" content="巢鹏，专注程序、算法，爱折腾，好读书。">
+<title>linux下模拟网络延迟丢包</title>
+<meta name="description" content="用tc netem模拟linux下的恶劣网络环境">
 <meta name="author" content="巢鹏">
 <!-- Le styles -->
 <link href="/favicon.ico" rel="shortcut icon"> 
@@ -115,127 +115,85 @@ $(function() {
 </div>
 <div class="container container-fluid">
 	<div class="row-fluid window">
-		<div class="span9">
-			
+		<div class="span9 window_c">
+			<div class="entry_title">
+				<h1>【<a href="/blog/categories.html#linux">linux</a>】 linux下模拟网络延迟丢包</h1>
+				<i class="icon-calendar"></i> 2013-10-25
+			</div>
 
-	<div class="window_c article_item">
-		<div class="entry_title">
-			<h1>
-				【<a href="/blog/categories.html#linux">linux</a>】 
-				<a href="/blog/2013/10/25/network-delay-loss.html" class="title_link">linux下模拟网络延迟丢包</a>
-			</h1>
-			<i class="icon-calendar"></i> 2013-10-25
-		</div>
+			<div class="entry_content" >
+				<p>开始开发手游以来，网络环境的恶劣是以前做页游无法想象的。而往往由于设计上考虑不充分，恶劣的网络环境会导致各种莫名其妙的bug。最近调整到公司的研发部工作。第一件事就是想用linux模拟恶劣网络环境让游戏能得到更方便的测试以及方便验证设计。</p>
+<p>我的一开始的想法是用一台linux做网关，然后用iptables来模拟恶劣环境。找了一下原来linux上有netem可以方便模拟恶劣环境，而且功能还非常强大。</p>
+<pre><code class="bash">## 基本命令 ##
 
-		<div class="entry_content" >
-			<p>开始开发手游以来，网络环境的恶劣是以前做页游无法想象的。而往往由于设计上考虑不充分，恶劣的网络环境会导致各种莫名其妙的bug。最近调整到公司的研发部工作。第一件事就是想用linux模拟恶劣网络环境让游戏能得到更方便的测试以及方便验证设计。</p>
-		</div>
-			
-		<div class="entry_tags">
-			<i class="icon-tags"></i> 
-			<a href="/blog/tags.html#linux">linux</a> 
-			<a href="/blog/tags.html#网络">网络</a> 
-			<a href="/blog/tags.html#延迟">延迟</a> 
-			<a href="/blog/tags.html#丢包">丢包</a> 
-		</div>
-	</div>
-	<div class="window_c article_item">
-		<div class="entry_title">
-			<h1>
-				【<a href="/blog/categories.html#java">java</a>】 
-				<a href="/blog/2013/09/15/java-timer.html" class="title_link">java timer是个坑</a>
-			</h1>
-			<i class="icon-calendar"></i> 2013-09-15
-		</div>
+# 显示当前有哪些命令
+tc qdisc show
+# 加入
+tc qdisc  add dev eth0 root ...... 
+# 修改存在的 qdisc ,记的,加入同一条后只能用 change 来修改
+tc qdisc  change  dev eth0 root ...... 
+# 删除
+tc qdisc del dev eth0 root
 
-		<div class="entry_content" >
-			<p>上周我要开发一个ios的push，push这坑很深就暂且不表了。这里说说这段开发差点触发的一次服务器的故障。</p>
-		</div>
-			
-		<div class="entry_tags">
-			<i class="icon-tags"></i> 
-			<a href="/blog/tags.html#java">java</a> 
-			<a href="/blog/tags.html#timer">timer</a> 
-		</div>
-	</div>
-	<div class="window_c article_item">
-		<div class="entry_title">
-			<h1>
-				【<a href="/blog/categories.html#运维心得">运维心得</a>】 
-				<a href="/blog/2013/08/02/mysqldump.html" class="title_link">mysqldump常用语句</a>
-			</h1>
-			<i class="icon-calendar"></i> 2013-08-02
-		</div>
+## 网络延迟 ##
 
-		<div class="entry_content" >
-			<h2 id="_1">导出全库/表</h2>
-<pre><code class="bash">mysqldump -h{host} -u{用户名} -p{密码} -P{端口} --default-character-set=utf8 --opt -e --triggers -R --hex-blob --single-transaction {库名} {表名} &gt; {文件名}
+# 设置固定delay 100ms (所有经过eth0的包都被延时了100ms)：
+tc qdisc add dev eth0 root netem delay 100ms
+# 设置delay 100ms Jitter 10ms:
+tc qdisc change dev eth0 root netem delay 100ms 10ms
+# 其实Jitter是有相关性的，如果要设置Jitter的相关性25%：
+tc qdisc change dev eth0 root netem delay 100ms 10ms 25%
+# 设置Jitter为正态分布。
+tc qdisc change dev eth0 root netem delay 100ms 20ms distribution normal
+
+## 网络丢包 ##
+
+# 设置丢包率10%
+tc qdisc change dev eth0 root netem loss 10%
+# 丢包率也有相关性。 如设置10%的丢包率，但是丢包率之间的相关性为25%
+tc qdisc change dev eth0 root netem loss 0.3% 25%
+
+## 包乱序 ##
+
+# 乱序， 每第5个包马上发送，其他的包间隔10ms发送。
+tc qdisc change dev eth0 root netem gap 5 delay 10ms
+# 乱序， 10%的包（相关性为25%）马上发送，其他的包间隔10ms发送。
+tc qdisc change dev eth0 root netem delay 10ms reorder 10% 25%
+
+
+# 包的duplication。
+tc qdisc change dev eth0 root netem duplicate 3%
+# 包的corruption。
+tc qdisc change dev eth0 root netem corrupt 0.1%
 </code></pre>
 
-<h2 id="_2">导出表结构</h2>
-<pre><code class="bash">mysqldump --opt -d -h{host} -u{用户名} -p{密码} -P{端口} {库名} {表名} &gt; {文件名}
-</code></pre>
-
-<h2 id="_3">按条件导出表数据(只有数据)</h2>
-<pre><code class="bash">mysqldump -e -t -c -h{host} -u{用户名} -p{密码} -P{端口} {库名} {表名} --where=&quot;{字段1}='' and {字段2}='' and {字段3}=''&quot; &gt; {文件名}
-</code></pre>
-
-<h2 id="_4">参数说明</h2>
-<p>使用--help看。</p>
-		</div>
-			
-		<div class="entry_tags">
-			<i class="icon-tags"></i> 
-			<a href="/blog/tags.html#mysqldump">mysqldump</a> 
-			<a href="/blog/tags.html#mysql">mysql</a> 
-			<a href="/blog/tags.html#schemasync">schemasync</a> 
-		</div>
+<div style="background-color:#E0E0E0; border: 2px dashed #787878;padding: 5px 10px 5px 10px; margin-top:10px;">
+	<div style="text-align:center">
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+			<img alt="知识共享许可协议" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/cn/88x31.png">
+		</a>
+		<br>
+		本作品采用
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+			知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议
+		</a>
+		进行许可。
 	</div>
-	<div class="window_c article_item">
-		<div class="entry_title">
-			<h1>
-				【<a href="/blog/categories.html#book">book</a>】 
-				<a href="/blog/2013/07/04/open-source-book.html" class="title_link">在线书单</a>
-			</h1>
-			<i class="icon-calendar"></i> 2013-07-04
-		</div>
-
-		<div class="entry_content" >
-			<p>这里整理了一些不错的在线图书。在线的好处不用多说就是更新及时。。。都是干货。</p>
-		</div>
-			
-		<div class="entry_tags">
-			<i class="icon-tags"></i> 
-			<a href="/blog/tags.html#书单">书单</a> 
-		</div>
+	<div>
+		»<b>本文链接：</b>
+		<a rel="bookmark" title="linux下模拟网络延迟丢包" href="http://chaopeng.me/blog/2013/10/25/network-delay-loss.html">
+			http://chaopeng.me/blog/2013/10/25/network-delay-loss.html
+		</a>
 	</div>
-	<div class="window_c article_item">
-		<div class="entry_title">
-			<h1>
-				【<a href="/blog/categories.html#linux">linux</a>】 
-				<a href="/blog/2013/06/28/sogou-input.html" class="title_link">ubuntu安装搜狗输入法</a>
-			</h1>
-			<i class="icon-calendar"></i> 2013-06-28
-		</div>
-
-		<div class="entry_content" >
-			<p>相信用linux的兄弟心中一直都一根去不掉的刺，没有一个好的拼音输入法。至于有什么问题相信用linux做桌面系统的都知道。</p>
-		</div>
-			
-		<div class="entry_tags">
-			<i class="icon-tags"></i> 
-			<a href="/blog/tags.html#linux">linux</a> 
-			<a href="/blog/tags.html#ubuntu">ubuntu</a> 
-			<a href="/blog/tags.html#ppa">ppa</a> 
-			<a href="/blog/tags.html#搜狗">搜狗</a> 
-			<a href="/blog/tags.html#输入法">输入法</a> 
-		</div>
+	<div>
+		»<b>订阅本站：</b>
+		<a title="巢鹏的Pensieve" href="http://chaopeng.me/blog">
+			http://chaopeng.me/blog
+		</a>
 	</div>
-
-<div class="window_c" style="text-align: center;">
-<a href="/blog/archive.html">更多文章</a>
-</div>
-
+</div><!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread" data-thread-key="/blog/2013/10/25/network-delay-loss.html title=linux下模拟网络延迟丢包"></div>
+<!-- Duoshuo Comment END -->			</div>
 		</div>
 		<div class="span3">
 			<div id="sidebar" class="window_r">
@@ -253,16 +211,48 @@ $(function() {
 	</div>
 </div>
 
+<form><fieldset class="line"><legend>分享</legend></fieldset></form>
 
+
+<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+<a class="bds_qzone"></a>
+<a class="bds_tsina"></a>
+<a class="bds_tqq"></a>
+<a class="bds_renren"></a>
+<a class="bds_t163"></a>
+<span class="bds_more">更多</span>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=3012035" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+<form><fieldset class="line"><legend>本文标签</legend></fieldset></form>
+
+<div>
+<ul>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#linux">linux</a>
+	</li>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#网络">网络</a>
+	</li>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#延迟">延迟</a>
+	</li>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#丢包">丢包</a>
+	</li>
+</ul>
+</div>
 <form><fieldset class="line"><legend>友情链接</legend></fieldset></form>
 <ul>
 	<li><a href="http://www.wutianqi.com/" target="_blank">TankyWoo基神的博客</a></li>
     <li><a href="http://www.thislinux.com/" target="_blank">龙哥的博客</a></li>
 </ul>
-
-<form><fieldset class="line"><legend>最新评论</legend></fieldset></form>
-<ul class="ds-recent-comments" data-num-items="1" data-show-avatars="1" data-show-time="1" data-show-title="1" ></ul>
-
 
 <form><fieldset class="line"><legend>声明</legend></fieldset></form>
 本博客仅供自娱自乐，<br>不喜勿喷。<br>欢迎捐助！
@@ -270,6 +260,7 @@ $(function() {
 		</div>
 	</div>
 </div>
+
 
 
 <div class="container container-fluid">
