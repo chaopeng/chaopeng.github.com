@@ -176,6 +176,8 @@ cat uboot.bin bin/ar71xx/openwrt-ar71xx-generic-tw150v1-squashfs-sysupgrade.bin 
 <p>现在你可以在当前目录下看见一个recovery.bin。这个就是我们的rom了。把这个文件复制回windows，修改ip和子网掩码192.168.1.88 / 255.255.255.0，连接路由器的lan口，断开路由器电源。替换掉<a href="https://openwrt-hiwifi.googlecode.com/svn/downloads/tftpd64.400-original.zip">tftp工具</a>工具目录下的rom。捅着路由器菊花接通电源等tftp工具进度条没有了就可以松开菊花了。然后登上个几分钟。ip换回dhcp的就可以了。官方文档里面提到可以用<code>scripts/flashing/flash.sh</code>工具更新，但是我没有成功。</p>
 <p>现在openwrt就装好了，这里还有一个坑，opkg的update url不能用，换成这个就可以了 http://downloads.openwrt.org/attitude_adjustment/12.09-rc1/ 。后面goagent大家都会了吧，不会的可以参考<a href="http://www.openwrt.org.cn/bbs/forum.php?mod=viewthread&amp;tid=14193">这里</a>。unbound不会的，不知道是啥的看<a href="http://blog.csdn.net/conupefox/article/details/8557253">这里</a>。</p>
 <p>至此，大家就可以科学上网了。极路由得这样玩才是极路由。</p>
+<hr />
+<p>如果你觉得真心看不懂，又想刷的话，这里提供一个编译好的rom: <a href="https://s.yunio.com/YTZ7Lr">https://s.yunio.com/YTZ7Lr</a></p>
 
 <div style="background-color:#E0E0E0; border: 2px dashed #787878;padding: 5px 10px 5px 10px; margin-top:10px;">
 	<div style="text-align:center">
