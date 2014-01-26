@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>redis的分布式锁</title>
+<meta name="description" content="redis实现分布式锁">
+<meta name="author" content="巢鹏">
+<!-- Le styles -->
+<link href="/favicon.ico" rel="shortcut icon"> 
+<link href="http://cdn.staticfile.org/twitter-bootstrap/2.2.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/my.css" rel="stylesheet">
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/prettify/r298/prettify.css" />
+<link rel="stylesheet" type="text/css" href="/assets/prettify/sons-of-obsidian.css" />
+<link rel="stylesheet" type="text/css" href="/assets/chaoscodebox/chaoscodebox.css" />
+<script type="text/javascript" src="http://cdn.staticfile.org/prettify/r298/prettify.js"></script>
+<script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/chaoscodebox/chaoscodebox.js"></script>
+<script type="text/javascript" src="/assets/js/function.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.2/MathJax.js"></script>
+<script type="text/javascript">
+
+// ie真心难搞
+var userAgent = navigator.userAgent.toLowerCase();
+var is_ie = userAgent.indexOf('msie') != -1;
+if(is_ie){
+	alert("请你换个浏览器吧！！！");
+}
+
+// 引入多说
+var duoshuoQuery = {short_name:"chaopeng"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = 'http://static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	|| document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+// 我只是想高亮
+$(document).ready(function(){
+	prettify();
+	back_to_top();
+});
+
+// 侧边栏随动
+$(function() {
+	var $sidebar   = $("#sidebar"),   
+	$window    = $(window),   
+	offset     = $sidebar.offset(),   
+	topPadding = 50;   
+      
+	$window.scroll(function() {   
+		if ($window.scrollTop() > offset.top) {   
+			$sidebar.stop().animate({   
+				marginTop: $window.scrollTop() - offset.top + topPadding   
+			});   
+		} else {   
+			$sidebar.stop().animate({   
+				marginTop: 0   
+			});   
+		}   
+	});   
+});   
+
+</script>
+</head>
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+<div class="navbar navbar-inverse navbar-fixed-top ">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+			<a class="brand" href="/blog/index.html">巢鹏的Pensieve</a>
+			<div class="nav-collapse">
+				<ul class="nav">
+						<li class="">
+							<a href="/blog/aboutme.html">关于我</a>
+						</li>
+						<li class="">
+							<a href="/blog/categories.html">分类</a>
+						</li>
+						<li class="">
+							<a href="/blog/tags.html">标签</a>
+						</li>
+						<li class="">
+							<a href="/blog/archive.html">归档</a>
+						</li>
+				</ul>
+				
+				<ul class="nav pull-right">
+					<li>
+						<form class="navbar-search" name="searchform" action="javascript:search();">
+							<input class="search-query" type="text" placeholder="Search" id="search"/>
+							<a href="javascript:search();"><i class="icon-search icon-white"></i></a>
+						</form>
+					</li>
+					<li class="divider-vertical"></li>
+					<li>
+						<a id="rss" href="/blog/rss.xml">
+							<img alt="rss" src="/assets/img/rss.png"></img>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container container-fluid">
+	<div class="row-fluid window">
+		<div class="span9 window_c">
+			<div class="entry_title">
+				<h1>【<a href="/blog/categories.html#nosql">nosql</a>】 redis的分布式锁</h1>
+				<i class="icon-calendar"></i> 2014-01-26
+			</div>
+
+			<div class="entry_content" >
+				<h1 id="_1">引子</h1>
+<p>redis是一个很强大的数据结构存储的nosql数据库，很方便针对业务模型进行效率的优化。最近我的工作是负责对现有Java服务器框架进行整理，并将网络层与逻辑层脱离，以便于逻辑层和网络层的横向扩展。
+尽管我在逻辑层上使用了AKKA作为核心框架，尽可能lockfree，但是还是免不了需要跨jvm的锁。所以我需要实现一个分布式锁。</p>
+<h1 id="_2">官方的实现</h1>
+<p>官方在<a href="http://redis.io/commands/setnx">SETNX</a> 这一页给了一个实现。</p>
+<ul>
+<li>C4 sends SETNX lock.foo in order to acquire the lock</li>
+<li>The crashed client C3 still holds it, so Redis will reply with 0 to C4.</li>
+<li>C4 sends GET lock.foo to check if the lock expired. If it is not, it will sleep for some time and retry from the start.</li>
+<li>Instead, if the lock is expired because the Unix time at lock.foo is older than the current Unix time, C4 tries to perform: GETSET lock.foo (current Unix timestamp + lock timeout + 1)</li>
+<li>Because of the GETSET semantic, C4 can check if the old value stored at key is still an expired timestamp. If it is, the lock was acquired.</li>
+<li>If another client, for instance C5, was faster than C4 and acquired the lock with the GETSET operation, the C4 GETSET operation will return a non expired timestamp. C4 will simply restart from the first step. Note that even if C4 set the key a bit a few seconds in the future this is not a problem.</li>
+</ul>
+<p>但是使用官方推荐的getset实现的话，未竞争到锁的一方确实可以判断到自己未能竞争到锁，但却将持有锁一方的时间修改了，这样的直接后果就是，持有锁的一方无法解锁！！！</p>
+<h1 id="lua">基于lua的实现</h1>
+<p>其实官方实现出现的问题，是因为使用redis独立的命令不能将get-check-set这个过程进行原子化，所以我决定引入redis-lua，将get-check-set这个过程使用lua脚本来实现。</p>
+<p>加锁：</p>
+<ul>
+<li>script params: lock_key, current_timestamp, lock_timeout</li>
+<li>setnx lock_key (current_timestamp + lock_timeout). if not success, set lock_key (current_timestamp + lock_timeout) if current_timestamp &gt; value</li>
+<li>client save current_timestamp(lock_create_timestamp)</li>
+</ul>
+<p>解锁：</p>
+<ul>
+<li>script params: lock_key, lock_create_timestamp, lock_timeout</li>
+<li>delete if lock_create_timestamp + lock_timeout == value</li>
+</ul>
+<p>具体的实现:</p>
+<pre><code class="lua">---lock
+
+local now = tonumber(ARGV[1])
+local timeout = tonumber(ARGV[2])
+local to = now + timeout
+local locked = redis.call('SETNX', KEYS[1], to)
+if (locked == 1) then
+    return 0
+end
+local kt = redis.call('type', KEYS[1]);
+if (kt['ok'] ~= 'string') then
+    return 2
+end
+local keyValue = tonumber(redis.call('get', KEYS[1]))
+if (now &gt; keyValue) then
+    redis.call('set', KEYS[1], to)
+    return 0
+end
+return 1
+
+---unlock
+
+local begin = tonumber(ARGV[1])
+local timeout = tonumber(ARGV[2])
+local kt = redis.call('type', KEYS[1]);
+if (kt['ok'] == 'string') then
+    local keyValue = tonumber(redis.call('get', KEYS[1]))
+    if ((keyValue - begin) == timeout) then
+        redis.call('del', KEYS[1])
+        return 0
+    end
+end
+return 1
+</code></pre>
+
+<h1 id="_3">已知问题</h1>
+<p>redis的分布式锁会有单点的问题。当然我们的业务量也没有达到挂掉专门做锁的redis单点的水平。</p>
+
+<div style="background-color:#E0E0E0; border: 2px dashed #787878;padding: 5px 10px 5px 10px; margin-top:10px;">
+	<div style="text-align:center">
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+			<img alt="知识共享许可协议" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/cn/88x31.png">
+		</a>
+		<br>
+		本作品采用
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+			知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议
+		</a>
+		进行许可。
+	</div>
+	<div>
+		»<b>本文链接：</b>
+		<a rel="bookmark" title="redis的分布式锁" href="http://chaopeng.me/blog/2014/01/26/redis-lock.html">
+			http://chaopeng.me/blog/2014/01/26/redis-lock.html
+		</a>
+	</div>
+	<div>
+		»<b>订阅本站：</b>
+		<a title="巢鹏的Pensieve" href="http://chaopeng.me/blog">
+			http://chaopeng.me/blog
+		</a>
+	</div>
+</div><!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread" data-thread-key="/blog/2014/01/26/redis-lock.html title=redis的分布式锁"></div>
+<!-- Duoshuo Comment END -->			</div>
+		</div>
+		<div class="span3">
+			<div id="sidebar" class="window_r">
+<div class="namebox">
+	<div class="left">
+		<img alt="avatar" src="https://secure.gravatar.com/avatar/10c4fe4e35370eb0f447640d6cde844a?s=80">
+	</div>
+	<div class="right">
+		<a href="mailto:139025826@qq.com" target="_blank">联系我</a>
+		<br>
+		<a href="http://weibo.com/chaojianpeng" target="_blank">关注我的微博</a>
+		<br>
+		<a href="https://github.com/chaopeng" target="_blank">关注我的开源</a>
+		<br>
+	</div>
+</div>
+
+<form><fieldset class="line"><legend>分享</legend></fieldset></form>
+
+
+<!-- JiaThis Button BEGIN -->
+<div class="jiathis_style"><span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_tsina"></a>
+<a class="jiathis_button_weixin"></a>
+<a class="jiathis_button_copy"></a>
+<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+	summary:"",
+	ralateuid:{
+		"tsina":"巢鹏"
+	},
+	shortUrl:false,
+	hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+
+<form><fieldset class="line"><legend>本文标签</legend></fieldset></form>
+
+<div>
+<ul>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#分布式锁">分布式锁</a>
+	</li>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#nosql">nosql</a>
+	</li>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#redis">redis</a>
+	</li>
+</ul>
+</div>
+<form><fieldset class="line"><legend>友情链接</legend></fieldset></form>
+<ul>
+	<li><a href="http://www.wutianqi.com/" target="_blank">TankyWoo基神的博客</a></li>
+    <li><a href="http://www.thislinux.com/" target="_blank">龙哥的博客</a></li>
+</ul>
+
+<form><fieldset class="line"><legend>声明</legend></fieldset></form>
+本博客仅供自娱自乐，<br>不喜勿喷。<br>欢迎捐助！
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="container container-fluid">
+	<div class="row-fluid window">
+		<div class="span12 copyright">
+			&copy巢鹏的Pensieve-版权所有-转载请尊重文章许可
+			<br>
+			博客使用<a href="https://github.com/chaopeng/chaosblog" target="_blank">ChaosBlog</a>生成
+		</div>
+	</div>
+</div></body>
+</html>
