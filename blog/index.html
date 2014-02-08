@@ -121,6 +121,26 @@ $(function() {
 	<div class="window_c article_item">
 		<div class="entry_title">
 			<h1>
+				【<a href="/blog/categories.html#other">other</a>】 
+				<a href="/blog/2014/02/08/crontab-notify.html" class="title_link">定时打电话给老婆</a>
+			</h1>
+			<i class="icon-calendar"></i> 2014-02-08
+		</div>
+
+		<div class="entry_content" >
+			<h2 id="_1">楔子</h2>
+<p>作为一个已婚人士，每天定时打电话告诉老婆加不加班，要不要回家吃饭是很重要.老婆有一定的强迫症，规定一定要17:00，但是作为一个程序员很难保证能17点记得打电话，一不小心就晚了。该怎么办呢？我以前是设置闹钟做提示的，但是设置闹钟一闹起来，很容易吓到同事，这影响就非常不好了。所以我需要一个安静的提示方式，桌面弹窗是一个好办法。</p>
+		</div>
+			
+		<div class="entry_tags">
+			<i class="icon-tags"></i> 
+			<a href="/blog/tags.html#crontab">crontab</a> 
+			<a href="/blog/tags.html#linux">linux</a> 
+		</div>
+	</div>
+	<div class="window_c article_item">
+		<div class="entry_title">
+			<h1>
 				【<a href="/blog/categories.html#nosql">nosql</a>】 
 				<a href="/blog/2014/01/26/redis-lock.html" class="title_link">redis的分布式锁</a>
 			</h1>
@@ -199,39 +219,6 @@ $(function() {
 			<i class="icon-tags"></i> 
 			<a href="/blog/tags.html#java">java</a> 
 			<a href="/blog/tags.html#timer">timer</a> 
-		</div>
-	</div>
-	<div class="window_c article_item">
-		<div class="entry_title">
-			<h1>
-				【<a href="/blog/categories.html#运维心得">运维心得</a>】 
-				<a href="/blog/2013/08/02/mysqldump.html" class="title_link">mysqldump常用语句</a>
-			</h1>
-			<i class="icon-calendar"></i> 2013-08-02
-		</div>
-
-		<div class="entry_content" >
-			<h2 id="_1">导出全库/表</h2>
-<pre><code class="bash">mysqldump -h{host} -u{用户名} -p{密码} -P{端口} --default-character-set=utf8 --opt -e --triggers -R --hex-blob --single-transaction {库名} {表名} &gt; {文件名}
-</code></pre>
-
-<h2 id="_2">导出表结构</h2>
-<pre><code class="bash">mysqldump --opt -d -h{host} -u{用户名} -p{密码} -P{端口} {库名} {表名} &gt; {文件名}
-</code></pre>
-
-<h2 id="_3">按条件导出表数据(只有数据)</h2>
-<pre><code class="bash">mysqldump -e -t -c -h{host} -u{用户名} -p{密码} -P{端口} {库名} {表名} --where=&quot;{字段1}='' and {字段2}='' and {字段3}=''&quot; &gt; {文件名}
-</code></pre>
-
-<h2 id="_4">参数说明</h2>
-<p>使用--help看。</p>
-		</div>
-			
-		<div class="entry_tags">
-			<i class="icon-tags"></i> 
-			<a href="/blog/tags.html#mysqldump">mysqldump</a> 
-			<a href="/blog/tags.html#mysql">mysql</a> 
-			<a href="/blog/tags.html#schemasync">schemasync</a> 
 		</div>
 	</div>
 

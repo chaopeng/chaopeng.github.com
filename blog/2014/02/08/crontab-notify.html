@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>redis的分布式锁</title>
-<meta name="description" content="redis实现分布式锁">
+<title>定时打电话给老婆</title>
+<meta name="description" content="通过crontab设置定时弹窗提醒">
 <meta name="author" content="巢鹏">
 <!-- Le styles -->
 <link href="/favicon.ico" rel="shortcut icon"> 
@@ -117,78 +117,22 @@ $(function() {
 	<div class="row-fluid window">
 		<div class="span9 window_c">
 			<div class="entry_title">
-				<h1>【<a href="/blog/categories.html#nosql">nosql</a>】 redis的分布式锁</h1>
-				<i class="icon-calendar"></i> 2014-01-26
+				<h1>【<a href="/blog/categories.html#other">other</a>】 定时打电话给老婆</h1>
+				<i class="icon-calendar"></i> 2014-02-08
 			</div>
 
 			<div class="entry_content" >
-				<h1 id="_1">引子</h1>
-<p>redis是一个很强大的数据结构存储的nosql数据库，很方便针对业务模型进行效率的优化。最近我的工作是负责对现有Java服务器框架进行整理，并将网络层与逻辑层脱离，以便于逻辑层和网络层的横向扩展。
-尽管我在逻辑层上使用了AKKA作为核心框架，尽可能lockfree，但是还是免不了需要跨jvm的锁。所以我需要实现一个分布式锁。</p>
-<h1 id="_2">官方的实现</h1>
-<p>官方在<a href="http://redis.io/commands/setnx">SETNX</a> 这一页给了一个实现。</p>
-<ul>
-<li>C4 sends SETNX lock.foo in order to acquire the lock</li>
-<li>The crashed client C3 still holds it, so Redis will reply with 0 to C4.</li>
-<li>C4 sends GET lock.foo to check if the lock expired. If it is not, it will sleep for some time and retry from the start.</li>
-<li>Instead, if the lock is expired because the Unix time at lock.foo is older than the current Unix time, C4 tries to perform: GETSET lock.foo (current Unix timestamp + lock timeout + 1)</li>
-<li>Because of the GETSET semantic, C4 can check if the old value stored at key is still an expired timestamp. If it is, the lock was acquired.</li>
-<li>If another client, for instance C5, was faster than C4 and acquired the lock with the GETSET operation, the C4 GETSET operation will return a non expired timestamp. C4 will simply restart from the first step. Note that even if C4 set the key a bit a few seconds in the future this is not a problem.</li>
-</ul>
-<p>但是使用官方推荐的getset实现的话，未竞争到锁的一方确实可以判断到自己未能竞争到锁，但却将持有锁一方的时间修改了，这样的直接后果就是，持有锁的一方无法解锁！！！</p>
-<h1 id="lua">基于lua的实现</h1>
-<p>其实官方实现出现的问题，是因为使用redis独立的命令不能将get-check-set这个过程进行原子化，所以我决定引入redis-lua，将get-check-set这个过程使用lua脚本来实现。</p>
-<p>加锁：</p>
-<ul>
-<li>script params: lock_key, current_timestamp, lock_timeout</li>
-<li>setnx lock_key (current_timestamp + lock_timeout). if not success, set lock_key (current_timestamp + lock_timeout) if current_timestamp &gt; value</li>
-<li>client save current_timestamp(lock_create_timestamp)</li>
-</ul>
-<p>解锁：</p>
-<ul>
-<li>script params: lock_key, lock_create_timestamp, lock_timeout</li>
-<li>delete if lock_create_timestamp + lock_timeout == value</li>
-</ul>
-<p>具体的实现:</p>
-<pre><code class="lua">---lock
-
-local now = tonumber(ARGV[1])
-local timeout = tonumber(ARGV[2])
-local to = now + timeout
-local locked = redis.call('SETNX', KEYS[1], to)
-if (locked == 1) then
-    return 0
-end
-local kt = redis.call('type', KEYS[1]);
-if (kt['ok'] ~= 'string') then
-    return 2
-end
-local keyValue = tonumber(redis.call('get', KEYS[1]))
-if (now &gt; keyValue) then
-    redis.call('set', KEYS[1], to)
-    return 0
-end
-return 1
-
----unlock
-
-local begin = tonumber(ARGV[1])
-local timeout = tonumber(ARGV[2])
-local kt = redis.call('type', KEYS[1]);
-if (kt['ok'] == 'string') then
-    local keyValue = tonumber(redis.call('get', KEYS[1]))
-    if ((keyValue - begin) == timeout) then
-        redis.call('del', KEYS[1])
-        return 0
-    end
-end
-return 1
+				<h2 id="_1">楔子</h2>
+<p>作为一个已婚人士，每天定时打电话告诉老婆加不加班，要不要回家吃饭是很重要.老婆有一定的强迫症，规定一定要17:00，但是作为一个程序员很难保证能17点记得打电话，一不小心就晚了。该怎么办呢？我以前是设置闹钟做提示的，但是设置闹钟一闹起来，很容易吓到同事，这影响就非常不好了。所以我需要一个安静的提示方式，桌面弹窗是一个好办法。</p>
+<h2 id="crontab">使用crontab弹窗提示</h2>
+<p>我现在的DE是xfce，弹窗用zenity实现就可以了。然后就是设置crontab了。</p>
+<pre><code class="bash">crontab -e
+0 17 * * * export DISPLAY=:0.0;zenity --info --text &quot;打电话给老婆啦&quot;
 </code></pre>
 
-<h1 id="_3">已知问题</h1>
-<p>redis的分布式锁会有单点的问题。当然我们的业务量也没有达到挂掉专门做锁的redis单点的水平。</p>
-<h1 id="_4">新年快乐</h1>
-<p><strong>在文章的最后祝各位朋友新年快乐，身体健康，家庭幸福，工作顺利，心想事成，马上有钱！！！</strong></p>
+<p>很简单吧。</p>
+<h2 id="_2">缺点</h2>
+<p>弹窗毕竟是不那么强力的提示方法，我可能忙着就按掉了，先试个几天再说吧。</p>
 
 <div style="background-color:#E0E0E0; border: 2px dashed #787878;padding: 5px 10px 5px 10px; margin-top:10px;">
 	<div style="text-align:center">
@@ -204,8 +148,8 @@ return 1
 	</div>
 	<div>
 		»<b>本文链接：</b>
-		<a rel="bookmark" title="redis的分布式锁" href="http://chaopeng.me/blog/2014/01/26/redis-lock.html">
-			http://chaopeng.me/blog/2014/01/26/redis-lock.html
+		<a rel="bookmark" title="定时打电话给老婆" href="http://chaopeng.me/blog/2014/02/08/crontab-notify.html">
+			http://chaopeng.me/blog/2014/02/08/crontab-notify.html
 		</a>
 	</div>
 	<div>
@@ -215,7 +159,7 @@ return 1
 		</a>
 	</div>
 </div><!-- Duoshuo Comment BEGIN -->
-	<div class="ds-thread" data-thread-key="/blog/2014/01/26/redis-lock.html title=redis的分布式锁"></div>
+	<div class="ds-thread" data-thread-key="/blog/2014/02/08/crontab-notify.html title=定时打电话给老婆"></div>
 <!-- Duoshuo Comment END -->			</div>
 		</div>
 		<div class="span3">
@@ -266,13 +210,10 @@ with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createEle
 <div>
 <ul>
 	<li>
-		<i class="icon-tag"></i> <a href="/blog/tags.html#分布式锁">分布式锁</a>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#crontab">crontab</a>
 	</li>
 	<li>
-		<i class="icon-tag"></i> <a href="/blog/tags.html#nosql">nosql</a>
-	</li>
-	<li>
-		<i class="icon-tag"></i> <a href="/blog/tags.html#redis">redis</a>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#linux">linux</a>
 	</li>
 </ul>
 </div>

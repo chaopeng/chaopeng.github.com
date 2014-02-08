@@ -6,10 +6,20 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Sun, 26 Jan 2014 05:52:32 GMT</pubDate>
-    <dc:date>2014-01-26T05:52:32Z</dc:date>
+    <pubDate>Sat, 08 Feb 2014 09:55:16 GMT</pubDate>
+    <dc:date>2014-02-08T09:55:16Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
+    <item>
+      <title>定时打电话给老婆</title>
+      <link>http://chaopeng.me/blog/2014/02/08/crontab-notify.html</link>
+      <description>通过crontab设置定时弹窗提醒</description>
+      <category>other</category>
+      <pubDate>Tue, 07 Jan 2014 16:02:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2014/02/08/crontab-notify.html</guid>
+      <dc:creator>巢鹏</dc:creator>
+      <dc:date>2014-01-07T16:02:00Z</dc:date>
+    </item>
     <item>
       <title>redis的分布式锁</title>
       <link>http://chaopeng.me/blog/2014/01/26/redis-lock.html</link>
@@ -199,16 +209,6 @@
       <guid>http://chaopeng.me/blog/2013/01/13/erlang.html</guid>
       <dc:creator>巢鹏</dc:creator>
       <dc:date>2013-01-12T16:01:00Z</dc:date>
-    </item>
-    <item>
-      <title>Flash与JS交互笔记</title>
-      <link>http://chaopeng.me/blog/2013/01/10/flash-js.html</link>
-      <description>记录flash调用javascript以及javascript调用flash的方法</description>
-      <category>flash</category>
-      <pubDate>Wed, 09 Jan 2013 16:01:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2013/01/10/flash-js.html</guid>
-      <dc:creator>巢鹏</dc:creator>
-      <dc:date>2013-01-09T16:01:00Z</dc:date>
     </item>
   </channel>
 </rss>
