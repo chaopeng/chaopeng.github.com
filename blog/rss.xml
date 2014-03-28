@@ -6,10 +6,20 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Tue, 25 Mar 2014 06:47:53 GMT</pubDate>
-    <dc:date>2014-03-25T06:47:53Z</dc:date>
+    <pubDate>Fri, 28 Mar 2014 09:16:12 GMT</pubDate>
+    <dc:date>2014-03-28T09:16:12Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
+    <item>
+      <title>制作grub2 linux安装u盘</title>
+      <link>http://chaopeng.me/blog/2014/03/28/grub2-usb-linux-install.html</link>
+      <description>制作grub2 linux安装u盘</description>
+      <category>linux</category>
+      <pubDate>Mon, 27 Jan 2014 16:03:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2014/03/28/grub2-usb-linux-install.html</guid>
+      <dc:creator>巢鹏</dc:creator>
+      <dc:date>2014-01-27T16:03:00Z</dc:date>
+    </item>
     <item>
       <title>JVM常用参数</title>
       <link>http://chaopeng.me/blog/2014/03/12/jvm-args.html</link>
@@ -199,16 +209,6 @@
       <guid>http://chaopeng.me/blog/2013/01/25/markdown-npp.html</guid>
       <dc:creator>巢鹏</dc:creator>
       <dc:date>2013-01-24T16:01:00Z</dc:date>
-    </item>
-    <item>
-      <title>新域名</title>
-      <link>http://chaopeng.me/blog/2013/01/24/new-domain.html</link>
-      <description>换域名咯</description>
-      <category>杂谈</category>
-      <pubDate>Wed, 23 Jan 2013 16:01:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2013/01/24/new-domain.html</guid>
-      <dc:creator>巢鹏</dc:creator>
-      <dc:date>2013-01-23T16:01:00Z</dc:date>
     </item>
   </channel>
 </rss>
