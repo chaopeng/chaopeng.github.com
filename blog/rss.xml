@@ -6,10 +6,20 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Fri, 28 Mar 2014 09:17:21 GMT</pubDate>
-    <dc:date>2014-03-28T09:17:21Z</dc:date>
+    <pubDate>Wed, 02 Apr 2014 01:41:04 GMT</pubDate>
+    <dc:date>2014-04-02T01:41:04Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
+    <item>
+      <title>DIY Mac Mini</title>
+      <link>http://chaopeng.me/blog/2014/03/31/diy-mac-mini.html</link>
+      <description>记录我的diy mac mini过程</description>
+      <category>DIY</category>
+      <pubDate>Thu, 30 Jan 2014 16:03:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2014/03/31/diy-mac-mini.html</guid>
+      <dc:creator>巢鹏</dc:creator>
+      <dc:date>2014-01-30T16:03:00Z</dc:date>
+    </item>
     <item>
       <title>制作grub2 linux安装u盘</title>
       <link>http://chaopeng.me/blog/2014/03/28/grub2-usb-linux-install.html</link>
@@ -199,16 +209,6 @@
       <guid>http://chaopeng.me/blog/2013/03/08/markdown-chrome.html</guid>
       <dc:creator>巢鹏</dc:creator>
       <dc:date>2013-01-07T16:03:00Z</dc:date>
-    </item>
-    <item>
-      <title>notepad++上使用markdown</title>
-      <link>http://chaopeng.me/blog/2013/01/25/markdown-npp.html</link>
-      <description>在notepad++上的markdown高亮以及生成</description>
-      <category>chaosblog</category>
-      <pubDate>Thu, 24 Jan 2013 16:01:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2013/01/25/markdown-npp.html</guid>
-      <dc:creator>巢鹏</dc:creator>
-      <dc:date>2013-01-24T16:01:00Z</dc:date>
     </item>
   </channel>
 </rss>

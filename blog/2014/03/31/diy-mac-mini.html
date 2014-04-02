@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DIY Mac Mini</title>
+<meta name="description" content="记录我的diy mac mini过程">
+<meta name="author" content="巢鹏">
+<!-- Le styles -->
+<link href="/favicon.ico" rel="shortcut icon"> 
+<link href="http://cdn.staticfile.org/twitter-bootstrap/2.2.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/my.css" rel="stylesheet">
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/prettify/r298/prettify.css" />
+<link rel="stylesheet" type="text/css" href="/assets/prettify/sons-of-obsidian.css" />
+<link rel="stylesheet" type="text/css" href="/assets/chaoscodebox/chaoscodebox.css" />
+<script type="text/javascript" src="http://cdn.staticfile.org/prettify/r298/prettify.js"></script>
+<script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/chaoscodebox/chaoscodebox.js"></script>
+<script type="text/javascript" src="/assets/js/function.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.2/MathJax.js"></script>
+<script type="text/javascript">
+
+// ie真心难搞
+var userAgent = navigator.userAgent.toLowerCase();
+var is_ie = userAgent.indexOf('msie') != -1;
+if(is_ie){
+	alert("请你换个浏览器吧！！！");
+}
+
+// 引入多说
+var duoshuoQuery = {short_name:"chaopeng"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = 'http://static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	|| document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+// 我只是想高亮
+$(document).ready(function(){
+	prettify();
+	back_to_top();
+});
+
+// 侧边栏随动
+$(function() {
+	var $sidebar   = $("#sidebar"),   
+	$window    = $(window),   
+	offset     = $sidebar.offset(),   
+	topPadding = 50;   
+      
+	$window.scroll(function() {   
+		if ($window.scrollTop() > offset.top) {   
+			$sidebar.stop().animate({   
+				marginTop: $window.scrollTop() - offset.top + topPadding   
+			});   
+		} else {   
+			$sidebar.stop().animate({   
+				marginTop: 0   
+			});   
+		}   
+	});   
+});   
+
+</script>
+</head>
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+<div class="navbar navbar-inverse navbar-fixed-top ">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+			<a class="brand" href="/blog/index.html">巢鹏的Pensieve</a>
+			<div class="nav-collapse">
+				<ul class="nav">
+						<li class="">
+							<a href="/blog/aboutme.html">关于我</a>
+						</li>
+						<li class="">
+							<a href="/blog/categories.html">分类</a>
+						</li>
+						<li class="">
+							<a href="/blog/tags.html">标签</a>
+						</li>
+						<li class="">
+							<a href="/blog/archive.html">归档</a>
+						</li>
+				</ul>
+				
+				<ul class="nav pull-right">
+					<li>
+						<form class="navbar-search" name="searchform" action="javascript:search();">
+							<input class="search-query" type="text" placeholder="Search" id="search"/>
+							<a href="javascript:search();"><i class="icon-search icon-white"></i></a>
+						</form>
+					</li>
+					<li class="divider-vertical"></li>
+					<li>
+						<a id="rss" href="/blog/rss.xml">
+							<img alt="rss" src="/assets/img/rss.png"></img>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container container-fluid">
+	<div class="row-fluid window">
+		<div class="span9 window_c">
+			<div class="entry_title">
+				<h1>【<a href="/blog/categories.html#DIY">DIY</a>】 DIY Mac Mini</h1>
+				<i class="icon-calendar"></i> 2014-03-31
+			</div>
+
+			<div class="entry_content" >
+				<p>很多熟悉我的朋友都知道我从去年下半年就开始感觉公司配的ThinkPad E420不够用，所以一直想换一台电脑。但是纠结的是，换台笔记本吧，好不了多少(主要是能好很多的那些我都买不起)，换台台式吧，又不能在公司用，叫公司换吧最多也就给台i5。有一天帮朋友看RMBP的时候，偶尔发现了X宝上有一样东西叫<code>DIY Mac Mini</code>。可惜X宝上的<code>DIY Mac Mini</code>有很多槽点：</p>
+<ol>
+<li>很少见有4代的</li>
+<li>很少见有i7的</li>
+<li>很少见有正常品牌的主板</li>
+<li>没有看见有16G内存的(经过跟店家核实，店家用的微步主板需要用SO-DIMM 1.35V版内存)</li>
+</ol>
+<p>所以只能自己去DIY了。</p>
+<p>去<a href="http://www.chiphell.com/">权贵论坛</a> 翻一些旧帖子才知道，Mac Mini的箱子需要用<code>Thin Mini-ITX</code>主板，很好这个还是有标准的。权贵论坛有一位大神做过一套<a href="http://www.chiphell.com/thread-240768-1-1.html">改装套件</a>，目测X宝上的都是山寨这个大神或者找这个大神定制的。</p>
+<p>主板尽管有标准，但是8系主板，X宝上只有微步的H87。所以只能找美亚帮忙了，美亚上有技嘉的H87TN，精英的H87H3-Ti。散热那块基本是通用的最麻烦的是IO这块，但是大神说关系，可以订做。刚刚好那时候美亚在做银联信用卡9折的优惠，所以赶紧去办了张<a href="http://lol.qq.com/act/a20131027cmb/index.htm">LOL信用卡</a>。等LOL卡到手已经是一月份的事情了。本来是瞄准了H87TN去的，不过在买之前，技嘉的H81TN也在美亚开售了由于<code>Mac Mini</code>的机箱也就那么一点点，所以H87和H81基本是没有什么区别的。当时就准备上H81，坑爹的是H81TN被秒完了。完了想着没有H81TN就用回H87TN吧，才发现华硕的H81T也发布了而且IO跟大神之前做的DH61AG是一样的，又赶紧换成了H81T，当时没有想太多以为IO一样就没有问题了。等了一个月的海淘3月10号主板终于到手。中间又陆陆续续买了机箱，cpu，内存。机箱是找岗顶的X宝卖家，然后上门挑的，cpu用的是4770s本来也是准备日淘的，突然好友张记告诉我他在HK能拿到，内存也是叫张记帮我拿的，张记完全是没有赚我钱帮我的，非常感谢。这里卖个广告，张记在中六电脑城开了一家搞高端电脑定制的店，有需要的去帮衬一下。</p>
+<p>所有东西都到齐了，这里放一下配置吧。</p>
+<table>
+<thead>
+<tr>
+<th>配件</th>
+<th>价格</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Intel i7-4770S</td>
+<td>1860</td>
+</tr>
+<tr>
+<td>ASUS H81T</td>
+<td>540+150(运费)</td>
+</tr>
+<tr>
+<td>Kingston 8G SO-DIMM * 2</td>
+<td>980</td>
+</tr>
+<tr>
+<td>Crucial M4 msata 256G</td>
+<td>1290</td>
+</tr>
+<tr>
+<td>Mac Mini Case</td>
+<td>100</td>
+</tr>
+<tr>
+<td>Mac Mini改装套件</td>
+<td>500+150(改装)</td>
+</tr>
+<tr>
+<td>Intel 802.11AC Wireless</td>
+<td>100</td>
+</tr>
+<tr>
+<td>HP 120W AC Adapter</td>
+<td>60</td>
+</tr>
+<tr>
+<td>合计</td>
+<td>5730</td>
+</tr>
+</tbody>
+</table>
+<p>基本就是一台笔记本的价钱。</p>
+<p>到了安装的时候才发现坑无数，首先是H81T尽管目测跟DH61AG是一样的，其实在io上是向右偏了1mm，结果要去改定制好的io板。然后是主板的靠近音频出口附近本来定制设计是出风道，结果却发现这里多了一个电容不得不把风道剪掉了5片。张记的同事忙了2天才成功安装完成。</p>
+<p>最后上图了。</p>
+<p><img alt="" src="http://i1303.photobucket.com/albums/ag154/chaopeng/diy-mac-mini/IMG_7317_zpsace15d83.jpg" />
+<img alt="" src="http://i1303.photobucket.com/albums/ag154/chaopeng/diy-mac-mini/IMG_7311_zpsad06c6ab.jpg" />
+<img alt="" src="http://i1303.photobucket.com/albums/ag154/chaopeng/diy-mac-mini/IMG_7348_zps7fb3a094.jpg" />
+<img alt="" src="http://i1303.photobucket.com/albums/ag154/chaopeng/diy-mac-mini/IMG_7362_zps281ffa39.jpg" /></p>
+<p><a href="http://s1303.photobucket.com/user/chaopeng/library/diy-mac-mini">更多照片</a></p>
+
+<div style="background-color:#E0E0E0; border: 2px dashed #787878;padding: 5px 10px 5px 10px; margin-top:10px;">
+	<div style="text-align:center">
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+			<img alt="知识共享许可协议" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/cn/88x31.png">
+		</a>
+		<br>
+		本作品采用
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+			知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议
+		</a>
+		进行许可。
+	</div>
+	<div>
+		»<b>本文链接：</b>
+		<a rel="bookmark" title="DIY Mac Mini" href="http://chaopeng.me/blog/2014/03/31/diy-mac-mini.html">
+			http://chaopeng.me/blog/2014/03/31/diy-mac-mini.html
+		</a>
+	</div>
+	<div>
+		»<b>订阅本站：</b>
+		<a title="巢鹏的Pensieve" href="http://chaopeng.me/blog">
+			http://chaopeng.me/blog
+		</a>
+	</div>
+</div><!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread" data-thread-key="/blog/2014/03/31/diy-mac-mini.html title=DIY Mac Mini"></div>
+<!-- Duoshuo Comment END -->			</div>
+		</div>
+		<div class="span3">
+			<div id="sidebar" class="window_r">
+<div class="namebox">
+	<div class="left">
+		<img alt="avatar" src="https://secure.gravatar.com/avatar/10c4fe4e35370eb0f447640d6cde844a?s=80">
+	</div>
+	<div class="right">
+		<a href="mailto:chaopeng@chaopeng.me" target="_blank">联系我</a>
+		<br>
+		<a href="http://weibo.com/chaojianpeng" target="_blank">关注我的微博</a>
+		<br>
+		<a href="https://github.com/chaopeng" target="_blank">关注我的开源</a>
+		<br>
+	</div>
+</div>
+
+<form><fieldset class="line"><legend>分享</legend></fieldset></form>
+
+
+<!-- baidu Button BEGIN -->
+<div class="bdsharebuttonbox">
+	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="bds_more" data-cmd="more"></a>
+</div> 
+<script>
+window._bd_share_config = {
+    "common": {
+        "bdSnsKey": {},
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": "",
+        "bdStyle": "1",
+        "bdSize": "24"
+    },
+    "share": {},
+};
+with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~ ( - new Date() / 36e5)];
+</script>
+<!-- baidu Button END -->
+
+
+<form><fieldset class="line"><legend>本文标签</legend></fieldset></form>
+
+<div>
+<ul>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#diy">diy</a>
+	</li>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#mac mini">mac mini</a>
+	</li>
+</ul>
+</div>
+<form><fieldset class="line"><legend>友情链接</legend></fieldset></form>
+<ul>
+	<li><a href="http://www.wutianqi.com/" target="_blank">TankyWoo基神的博客</a></li>
+    <li><a href="http://www.thislinux.com/" target="_blank">龙哥的博客</a></li>
+</ul>
+
+<form><fieldset class="line"><legend>声明</legend></fieldset></form>
+本博客仅供自娱自乐，<br>不喜勿喷。<br>欢迎捐助！
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="container container-fluid">
+	<div class="row-fluid window">
+		<div class="span12 copyright">
+			&copy巢鹏的Pensieve-版权所有-转载请尊重文章许可
+			<br>
+			博客使用<a href="https://github.com/chaopeng/chaosblog" target="_blank">ChaosBlog</a>生成
+		</div>
+	</div>
+</div></body>
+</html>
