@@ -6,15 +6,25 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Tue, 14 Oct 2014 17:12:06 GMT</pubDate>
-    <dc:date>2014-10-14T17:12:06Z</dc:date>
+    <pubDate>Tue, 04 Nov 2014 21:30:07 GMT</pubDate>
+    <dc:date>2014-11-04T21:30:07Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
+    <item>
+      <title>怎样写加拿大简历</title>
+      <link>http://chaopeng.me/blog/2014/11/04/how-to-write-canadian-resume.html</link>
+      <description />
+      <category>Canada</category>
+      <pubDate>Sat, 04 Jan 2014 05:11:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2014/11/04/how-to-write-canadian-resume.html</guid>
+      <dc:creator>巢鹏</dc:creator>
+      <dc:date>2014-01-04T05:11:00Z</dc:date>
+    </item>
     <item>
       <title>移民</title>
       <link>http://chaopeng.me/blog/2014/10/09/life-in-canada.html</link>
       <description />
-      <category>canada</category>
+      <category>Canada</category>
       <pubDate>Thu, 09 Jan 2014 05:10:00 GMT</pubDate>
       <guid>http://chaopeng.me/blog/2014/10/09/life-in-canada.html</guid>
       <dc:creator>巢鹏</dc:creator>
@@ -199,16 +209,6 @@
       <guid>http://chaopeng.me/blog/2013/04/01/play-framework.html</guid>
       <dc:creator>巢鹏</dc:creator>
       <dc:date>2013-01-01T05:04:00Z</dc:date>
-    </item>
-    <item>
-      <title>redis整理</title>
-      <link>http://chaopeng.me/blog/2013/03/13/redis.html</link>
-      <description>redis资料、心得整理</description>
-      <category>nosql</category>
-      <pubDate>Sun, 13 Jan 2013 05:03:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2013/03/13/redis.html</guid>
-      <dc:creator>巢鹏</dc:creator>
-      <dc:date>2013-01-13T05:03:00Z</dc:date>
     </item>
   </channel>
 </rss>
