@@ -35,10 +35,10 @@ var duoshuoQuery = {short_name:"chaopeng"};
 (function() {
 	var ds = document.createElement('script');
 	ds.type = 'text/javascript';ds.async = true;
-	ds.src = 'http://static.duoshuo.com/embed.js';
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
 	ds.charset = 'UTF-8';
 	(document.getElementsByTagName('head')[0] 
-	|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
 })();
 
 // 我只是想高亮
@@ -121,6 +121,25 @@ $(function() {
 	<div class="window_c article_item">
 		<div class="entry_title">
 			<h1>
+				【<a href="/blog/categories.html#思考">思考</a>】 
+				<a href="/blog/2014/11/14/uid-design.html" class="title_link">UID设计</a>
+			</h1>
+			<i class="icon-calendar"></i> 2014-11-14
+		</div>
+
+		<div class="entry_content" >
+			<h1 id="_1">引子</h1>
+<p>前几天有个比较低端的群里有人问起</p>
+		</div>
+			
+		<div class="entry_tags">
+			<i class="icon-tags"></i> 
+			<a href="/blog/tags.html#uid">uid</a> 
+		</div>
+	</div>
+	<div class="window_c article_item">
+		<div class="entry_title">
+			<h1>
 				【<a href="/blog/categories.html#Canada">Canada</a>】 
 				<a href="/blog/2014/11/04/how-to-write-canadian-resume.html" class="title_link">怎样写加拿大简历</a>
 			</h1>
@@ -192,25 +211,6 @@ $(function() {
 			<a href="/blog/tags.html#grub2">grub2</a> 
 		</div>
 	</div>
-	<div class="window_c article_item">
-		<div class="entry_title">
-			<h1>
-				【<a href="/blog/categories.html#java">java</a>】 
-				<a href="/blog/2014/03/12/jvm-args.html" class="title_link">JVM常用参数</a>
-			</h1>
-			<i class="icon-calendar"></i> 2014-03-12
-		</div>
-
-		<div class="entry_content" >
-			<p>记录一下常用的jvm参数</p>
-		</div>
-			
-		<div class="entry_tags">
-			<i class="icon-tags"></i> 
-			<a href="/blog/tags.html#java">java</a> 
-			<a href="/blog/tags.html#jvm">jvm</a> 
-		</div>
-	</div>
 
 <div class="window_c" style="text-align: center;">
 <a href="/blog/archive.html">更多文章</a>
@@ -241,7 +241,7 @@ $(function() {
 </ul>
 
 <form><fieldset class="line"><legend>最新评论</legend></fieldset></form>
-<ul class="ds-recent-comments" data-num-items="1" data-show-avatars="1" data-show-time="1" data-show-title="1" ></ul>
+<div class="ds-recent-comments" data-num-items="2" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
 
 
 <form><fieldset class="line"><legend>声明</legend></fieldset></form>

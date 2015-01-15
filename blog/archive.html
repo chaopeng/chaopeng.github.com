@@ -35,10 +35,10 @@ var duoshuoQuery = {short_name:"chaopeng"};
 (function() {
 	var ds = document.createElement('script');
 	ds.type = 'text/javascript';ds.async = true;
-	ds.src = 'http://static.duoshuo.com/embed.js';
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
 	ds.charset = 'UTF-8';
 	(document.getElementsByTagName('head')[0] 
-	|| document.getElementsByTagName('body')[0]).appendChild(ds);
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
 })();
 
 // 我只是想高亮
@@ -126,6 +126,9 @@ $(function() {
 
 		<div class="entry_content" >
 			<ul>
+			<li>
+				<a href="/blog/2014/11/14/uid-design.html" class="title_link">UID设计</a>
+			</li>
 			<li>
 				<a href="/blog/2014/11/04/how-to-write-canadian-resume.html" class="title_link">怎样写加拿大简历</a>
 			</li>
@@ -512,7 +515,7 @@ $(function() {
 </ul>
 
 <form><fieldset class="line"><legend>最新评论</legend></fieldset></form>
-<ul class="ds-recent-comments" data-num-items="1" data-show-avatars="1" data-show-time="1" data-show-title="1" ></ul>
+<div class="ds-recent-comments" data-num-items="2" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
 
 
 <form><fieldset class="line"><legend>声明</legend></fieldset></form>
