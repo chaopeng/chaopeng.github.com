@@ -6,20 +6,10 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Thu, 15 Jan 2015 21:23:20 GMT</pubDate>
-    <dc:date>2015-01-15T21:23:20Z</dc:date>
+    <pubDate>Thu, 15 Jan 2015 21:24:07 GMT</pubDate>
+    <dc:date>2015-01-15T21:24:07Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
-    <item>
-      <title>UID设计</title>
-      <link>http://chaopeng.me/blog/2014/11/14/uid-design.html</link>
-      <description>记录一些UID的设计思路</description>
-      <category>思考</category>
-      <pubDate>Tue, 14 Jan 2014 05:11:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2014/11/14/uid-design.html</guid>
-      <dc:creator>巢鹏</dc:creator>
-      <dc:date>2014-01-14T05:11:00Z</dc:date>
-    </item>
     <item>
       <title>怎样写加拿大简历</title>
       <link>http://chaopeng.me/blog/2014/11/04/how-to-write-canadian-resume.html</link>
@@ -209,6 +199,16 @@
       <guid>http://chaopeng.me/blog/2013/04/13/eclipse-linuxmint.html</guid>
       <dc:creator>巢鹏</dc:creator>
       <dc:date>2013-01-13T05:04:00Z</dc:date>
+    </item>
+    <item>
+      <title>Play! Framework 的使用</title>
+      <link>http://chaopeng.me/blog/2013/04/01/play-framework.html</link>
+      <description>playframework的使用笔记</description>
+      <category>java</category>
+      <pubDate>Tue, 01 Jan 2013 05:04:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2013/04/01/play-framework.html</guid>
+      <dc:creator>巢鹏</dc:creator>
+      <dc:date>2013-01-01T05:04:00Z</dc:date>
     </item>
   </channel>
 </rss>
