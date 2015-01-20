@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Awesome Java</title>
+<meta name="description" content="记录我常用的java工具、框架、库">
+<meta name="author" content="巢鹏">
+<!-- Le styles -->
+<link href="/favicon.ico" rel="shortcut icon"> 
+<link href="http://cdn.staticfile.org/twitter-bootstrap/2.2.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/my.css" rel="stylesheet">
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/prettify/r298/prettify.css" />
+<link rel="stylesheet" type="text/css" href="/assets/prettify/sons-of-obsidian.css" />
+<link rel="stylesheet" type="text/css" href="/assets/chaoscodebox/chaoscodebox.css" />
+<script type="text/javascript" src="http://cdn.staticfile.org/prettify/r298/prettify.js"></script>
+<script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/chaoscodebox/chaoscodebox.js"></script>
+<script type="text/javascript" src="/assets/js/function.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.2/MathJax.js"></script>
+<script type="text/javascript">
+
+// ie真心难搞
+var userAgent = navigator.userAgent.toLowerCase();
+var is_ie = userAgent.indexOf('msie') != -1;
+if(is_ie){
+	alert("请你换个浏览器吧！！！");
+}
+
+// 引入多说
+var duoshuoQuery = {short_name:"chaopeng"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+// 我只是想高亮
+$(document).ready(function(){
+	prettify();
+	back_to_top();
+});
+
+// 侧边栏随动
+$(function() {
+	var $sidebar   = $("#sidebar"),   
+	$window    = $(window),   
+	offset     = $sidebar.offset(),   
+	topPadding = 50;   
+      
+	$window.scroll(function() {   
+		if ($window.scrollTop() > offset.top) {   
+			$sidebar.stop().animate({   
+				marginTop: $window.scrollTop() - offset.top + topPadding   
+			});   
+		} else {   
+			$sidebar.stop().animate({   
+				marginTop: 0   
+			});   
+		}   
+	});   
+});   
+
+</script>
+</head>
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+<div class="navbar navbar-inverse navbar-fixed-top ">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+			<a class="brand" href="/blog/index.html">巢鹏的Pensieve</a>
+			<div class="nav-collapse">
+				<ul class="nav">
+						<li class="">
+							<a href="/blog/aboutme.html">关于我</a>
+						</li>
+						<li class="">
+							<a href="/blog/categories.html">分类</a>
+						</li>
+						<li class="">
+							<a href="/blog/tags.html">标签</a>
+						</li>
+						<li class="">
+							<a href="/blog/archive.html">归档</a>
+						</li>
+				</ul>
+				
+				<ul class="nav pull-right">
+					<li>
+						<form class="navbar-search" name="searchform" action="javascript:search();">
+							<input class="search-query" type="text" placeholder="Search" id="search"/>
+							<a href="javascript:search();"><i class="icon-search icon-white"></i></a>
+						</form>
+					</li>
+					<li class="divider-vertical"></li>
+					<li>
+						<a id="rss" href="/blog/rss.xml">
+							<img alt="rss" src="/assets/img/rss.png"></img>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container container-fluid">
+	<div class="row-fluid window">
+		<div class="span9 window_c">
+			<div class="entry_title">
+				<h1>【<a href="/blog/categories.html#java">java</a>】 Awesome Java</h1>
+				<i class="icon-calendar"></i> 2015-01-20
+			</div>
+
+			<div class="entry_content" >
+				<p>Github 上其实有个类似的<a href="https://github.com/akullpp/awesome-java">文章</a>，我也整理一下我自己的列表吧，大部分都是我在用的或者曾经用过的。</p>
+<h2 id="jvm">JVM环境</h2>
+<ul>
+<li><a href="http://jenv.io/">jenv</a> 很方便安装 Java，JVM 语言，版本切换以及各类 Java 工具，无论开发环境还是生产环境都适合。<a href="http://weibo.com/u/1786665787">开发者的微博</a>。</li>
+</ul>
+<h2 id="jvm_1">JVM语言</h2>
+<ul>
+<li><a href="http://groovy.codehaus.org/">Groovy</a> 语法最接近 Java 的 JVM 语言，但是是动态语言，做 DSL 非常方便，GroovyClassLoader 也可以直接做 Java 的 HotSwapClassLoader。</li>
+<li><a href="http://www.scala-lang.org/">Scala</a> 可能是语法最复杂的语言，有 FP 有 OO，语法糖非常多，应该算现在最流行的 JVM 语言，也为 JVM 语言提供了很多很高质量的库。</li>
+<li><a href="http://clojure.org/">Clojure</a> JVM 上的 Lisp，老实说我没啥了解。</li>
+</ul>
+<h2 id="_1">打包工具</h2>
+<ul>
+<li><a href="http://maven.apache.org/">Apache Maven</a> 很成熟的打包、项目管理、依赖管理工具。</li>
+<li><a href="https://www.gradle.org/">Gradle</a> 基于Groovy的新一代的Maven，语法更简洁易懂，多项目管理，插件开发更加简单。</li>
+</ul>
+<h2 id="ide">IDE</h2>
+<ul>
+<li><a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a> 毫无疑问当前最好的 Java IDE。</li>
+</ul>
+<h2 id="_2">库</h2>
+<h3 id="bytecode">ByteCode</h3>
+<ul>
+<li><a href="http://asm.ow2.org/">ASM</a> Java ByteCode 底层库。</li>
+<li><a href="http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/javassist/">Javassist</a> ASM 的封装，写起来跟写 Java 一样简单。</li>
+<li><a href="https://github.com/raphw/byte-buddy">Byte Buddy</a> ASM 的封装，看起来跟 Javassist 差不多。</li>
+</ul>
+<h3 id="_3">序列化与反序列化</h3>
+<ul>
+<li><a href="http://wiki.fasterxml.com/JacksonHome">Jackson</a> 曾经性能最好的 json 序列化/反序列化库，现在还支持 Avro, CBOR, CSV, Smile, XML 和 YAML。</li>
+<li><a href="https://github.com/alibaba/fastjson">fastjson</a> 在去年我测试过是性能最好的 json 序列化/反序列化库。</li>
+<li><a href="https://github.com/google/protobuf">Protocol Buffer</a> Google 的跨平台二进制序列化协议，在游戏界广泛使用多年。</li>
+<li><a href="https://github.com/protostuff/protostuff">protostuff</a> 支持多种协议的序列化/反序列化，支持 runtime protobuf。</li>
+<li><a href="http://google.github.io/flatbuffers/">FlatBuffers</a> Google 新一代跨平台二进制序列化协议，时间效率上比 Protocol Buffer 要好。</li>
+<li><a href="http://avro.apache.org/">Avro</a> 一种二进制序列化协议，Hadoop 的子项目。</li>
+</ul>
+<h3 id="_4">集合</h3>
+<ul>
+<li><a href="http://sourceforge.net/projects/high-scale-lib/">Highly Scalable Java</a> 据说 Dr. Cliff Click 是首个 Lock-Free Wait-Free HashTable 的大神。2007年的<a href="http://web.stanford.edu/class/ee380/Abstracts/070221_LockFreeHash.pdf">Presentattion</a></li>
+</ul>
+<h3 id="_5">工具包</h3>
+<ul>
+<li><a href="https://github.com/google/guava">Guava</a> 简化集合操作，各种工具类。这个小项目几乎可顶一整个 Apache Commons。</li>
+<li><a href="http://commons.apache.org/">Apache Commons</a> Apache Commons 啥都有。</li>
+</ul>
+<h3 id="_6">日志</h3>
+<ul>
+<li><a href="https://github.com/qos-ch/slf4j">SLF4J</a> Logging Facade，Format 简直不能更爽。你可能还需要 <code>jcl-over-slf4j</code> 来让 Spring 依赖于 SLF4J。</li>
+<li><a href="https://github.com/qos-ch/logback">logback</a> 你还在用被作者 Ceki Gülcü 抛弃 <code>log4j</code>？</li>
+</ul>
+<h3 id="io">网络IO</h3>
+<ul>
+<li><a href="http://netty.io">Netty</a> Java 首选 NIO 服务端框架，用来做游戏服务器多年，用来做 WebServer 有奇效。</li>
+<li><a href="http://spray.io/">spray</a> Scala Http 框架，跟 Akka 完美整合。</li>
+<li><a href="http://square.github.io/okhttp/">OkHttp</a> 简单易用的 http client。</li>
+</ul>
+<h3 id="_7">分布式应用框架</h3>
+<ul>
+<li><a href="http://vertx.io/">vert.x</a> 分布式 JVM 语言应用框架。</li>
+<li><a href="http://akka.io/">akka</a> Scala 默认 Actor 实现，Actor 框架，支持分布式。我之前的游戏服务器就用这个。</li>
+<li><a href="http://storm.apache.org/">Apache Storm</a> 分布式流式计算框架。很适合做日志分析。</li>
+<li><a href="http://hadoop.apache.org/">Hadoop</a> 不解释。</li>
+<li><a href="https://spark.apache.org/">Spark</a> 并行计算框架。</li>
+</ul>
+<h3 id="_8">机器学习</h3>
+<ul>
+<li><a href="https://spark.apache.org/mllib/">Spark MLlib</a></li>
+<li><a href="https://github.com/datumbox/datumbox-framework">datumbox-framework</a></li>
+</ul>
+<h3 id="nlp">NLP</h3>
+<ul>
+<li><a href="https://uima.apache.org/">Apache UIMA</a> 非结构化数据分析框架，我们现在的产品有一个 DEMO 就用他来做 NLP，好重好重。</li>
+<li><a href="http://nlp.stanford.edu/software/corenlp.shtml">Stanford CoreNLP</a> 啥，你不知道 CoreNLP。</li>
+<li><a href="https://github.com/xpqiu/fnlp/">FNLP</a> 中文 NLP 库，据说是现在中文 NLP 最好的开源库。复旦<a href="http://weibo.com/u/1891924883">邱锡鹏</a>老师开发。</li>
+</ul>
+<h3 id="_9">搜索引擎</h3>
+<ul>
+<li><a href="http://lucene.apache.org/">lucene</a> Hadoop, Solr, Nutch 之前都是 lucene 的子项目。</li>
+<li><a href="http://www.elasticsearch.org/">elasticsearch</a> ES 是你另外一个选择。</li>
+</ul>
+<h3 id="_10">测试</h3>
+<ul>
+<li><a href="http://junit.org/">JUnit</a> 不解释。</li>
+<li><a href="https://github.com/mockito/mockito">mockito</a> Mock 的最佳选择。</li>
+</ul>
+<h3 id="_11">数据库</h3>
+<ul>
+<li><a href="https://github.com/alibaba/druid">druid</a> 为监控而生的数据库连接池！温少加油。</li>
+<li><a href="http://commons.apache.org/proper/commons-dbutils/">Commons DbUtils</a> 我就喜欢用这种轻量级的东西，错误不会爆得乱七八糟。</li>
+<li><a href="http://h2database.com/html/main.html">H2</a> Java 的嵌入式数据库。</li>
+</ul>
+<h3 id="j2ee">新一代 J2EE</h3>
+<ul>
+<li><a href="https://grails.org/">Grails</a> 看名字就知道是山寨谁的。</li>
+<li><a href="https://www.playframework.com/">Play Framework</a> Play1 出来的时候相当惊艳，Play2的步子迈得有点大，扯到蛋了。 </li>
+<li><a href="http://liftweb.net/">Lift</a> 没用过，不评价。</li>
+<li><a href="http://www.ninjaframework.org/">Ninja</a> 没用过，不评价。</li>
+<li><a href="http://www.jfinal.com/">JFinal</a> 试用过一下，不错。Route 那里的设计依旧不是很理想，可能是作者为了避免使用 Annotation。JFinal 的插件作者 Dreampie 的另外一个项目<a href="https://github.com/Dreampie/resty">resty</a>的 Route 的设计就好多了，不过 resty 把整个项目都搞复杂了。</li>
+</ul>
+<h3 id="_12">模板引擎</h3>
+<ul>
+<li><a href="http://www.oschina.net/p/beetl">Beetl</a> 国人出品的模板引擎，几年前我写 ChaosBlog 的时候就用了。</li>
+<li><a href="http://freemarker.org/">FreeMarker</a> </li>
+<li><a href="http://velocity.apache.org/">Velocity</a> </li>
+</ul>
+<h3 id="_13">同人逼死官方</h3>
+<ul>
+<li><a href="http://www.joda.org/joda-time/">Joda Time</a> Joda Time 还需多介绍吗？ Java8 之前的唯一选择。</li>
+<li><a href="https://github.com/jhalterman/lyra">lyra</a> 一个 recovery 做得更好的 RabbitMQ Client。</li>
+<li><a href="https://github.com/mrniko/redisson">redisson</a> 一个新的 Java Redis 客户端，值得 Star 观望。</li>
+</ul>
+<h3 id="_14">其他</h3>
+<ul>
+<li><a href="https://jersey.java.net/">jersey</a> RESTful Web Services 老实说我只用了他的 Annotation 定义。</li>
+<li><a href="http://spring.io/">Spring</a> 我不喜欢Spring。</li>
+<li><a href="https://github.com/google/guice">Guice</a> Google 的依赖注入。</li>
+<li><a href="https://github.com/spring-projects/spring-loaded">Spring Loaded</a> Spring 的 HotSwap Class Loader。</li>
+<li><a href="http://poi.apache.org/">Apache POI</a> 读写 MS Office 库。恩，我喜欢他的命名规则，Horrible XX Format。</li>
+<li><a href="http://eclipse.org/jetty/">Jetty</a> Web容器，可以做嵌入式 HttpServer。</li>
+</ul>
+
+<div style="background-color:#E0E0E0; border: 2px dashed #787878;padding: 5px 10px 5px 10px; margin-top:10px;">
+	<div style="text-align:center">
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+			<img alt="知识共享许可协议" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/cn/88x31.png">
+		</a>
+		<br>
+		本作品采用
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+			知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议
+		</a>
+		进行许可。
+	</div>
+	<div>
+		»<b>本文链接：</b>
+		<a rel="bookmark" title="Awesome Java" href="http://chaopeng.me/blog/2015/01/20/awesome-java.html">
+			http://chaopeng.me/blog/2015/01/20/awesome-java.html
+		</a>
+	</div>
+	<div>
+		»<b>订阅本站：</b>
+		<a title="巢鹏的Pensieve" href="http://chaopeng.me/blog">
+			http://chaopeng.me/blog
+		</a>
+	</div>
+</div><!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread" data-thread-key="/blog/2015/01/20/awesome-java.html title=Awesome Java" title="Awesome Java" data-url="http://chaopeng.me/blog/2015/01/20/awesome-java.html"></div>
+<!-- Duoshuo Comment END -->
+			</div>
+		</div>
+		<div class="span3">
+			<div id="sidebar" class="window_r">
+<div class="namebox">
+	<div class="left">
+		<img alt="avatar" src="https://secure.gravatar.com/avatar/10c4fe4e35370eb0f447640d6cde844a?s=80">
+	</div>
+	<div class="right">
+		<a href="mailto:chaopeng@chaopeng.me" target="_blank">联系我</a>
+		<br>
+		<a href="http://weibo.com/chaojianpeng" target="_blank">关注我的微博</a>
+		<br>
+		<a href="https://github.com/chaopeng" target="_blank">关注我的开源</a>
+		<br>
+	</div>
+</div>
+
+<form><fieldset class="line"><legend>分享</legend></fieldset></form>
+
+
+<!-- baidu Button BEGIN -->
+<div class="bdsharebuttonbox">
+	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="bds_more" data-cmd="more"></a>
+</div> 
+<script>
+window._bd_share_config = {
+    "common": {
+        "bdSnsKey": {},
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": "",
+        "bdStyle": "1",
+        "bdSize": "24"
+    },
+    "share": {},
+};
+with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~ ( - new Date() / 36e5)];
+</script>
+<!-- baidu Button END -->
+
+
+<form><fieldset class="line"><legend>本文标签</legend></fieldset></form>
+
+<div>
+<ul>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#java">java</a>
+	</li>
+</ul>
+</div>
+<form><fieldset class="line"><legend>友情链接</legend></fieldset></form>
+<ul>
+	<li><a href="http://www.wutianqi.com/" target="_blank">TankyWoo基神的博客</a></li>
+    <li><a href="http://www.thislinux.com/" target="_blank">龙哥的博客</a></li>
+</ul>
+
+<form><fieldset class="line"><legend>声明</legend></fieldset></form>
+本博客仅供自娱自乐，<br>不喜勿喷。<br>欢迎捐助！
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="container container-fluid">
+	<div class="row-fluid window">
+		<div class="span12 copyright">
+			&copy巢鹏的Pensieve-版权所有-转载请尊重文章许可
+			<br>
+			博客使用<a href="https://github.com/chaopeng/chaosblog" target="_blank">ChaosBlog</a>生成
+		</div>
+	</div>
+</div></body>
+</html>
