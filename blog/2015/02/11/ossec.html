@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>OSSEC笔记</title>
+<meta name="description" content="OSSEC安装、添加策略笔记">
+<meta name="author" content="巢鹏">
+<!-- Le styles -->
+<link href="/favicon.ico" rel="shortcut icon"> 
+<link href="http://cdn.staticfile.org/twitter-bootstrap/2.2.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/my.css" rel="stylesheet">
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/prettify/r298/prettify.css" />
+<link rel="stylesheet" type="text/css" href="/assets/prettify/sons-of-obsidian.css" />
+<link rel="stylesheet" type="text/css" href="/assets/chaoscodebox/chaoscodebox.css" />
+<script type="text/javascript" src="http://cdn.staticfile.org/prettify/r298/prettify.js"></script>
+<script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/chaoscodebox/chaoscodebox.js"></script>
+<script type="text/javascript" src="/assets/js/function.js" charset="utf-8"></script>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript">
+
+// ie真心难搞
+var userAgent = navigator.userAgent.toLowerCase();
+var is_ie = userAgent.indexOf('msie') != -1;
+if(is_ie){
+	alert("请你换个浏览器吧！！！");
+}
+
+// 引入多说
+var duoshuoQuery = {short_name:"chaopeng"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+// 我只是想高亮
+$(document).ready(function(){
+	prettify();
+	back_to_top();
+});
+
+// 侧边栏随动
+$(function() {
+	var $sidebar   = $("#sidebar"),   
+	$window    = $(window),   
+	offset     = $sidebar.offset(),   
+	topPadding = 50;   
+      
+	$window.scroll(function() {   
+		if ($window.scrollTop() > offset.top) {   
+			$sidebar.stop().animate({   
+				marginTop: $window.scrollTop() - offset.top + topPadding   
+			});   
+		} else {   
+			$sidebar.stop().animate({   
+				marginTop: 0   
+			});   
+		}   
+	});   
+});   
+
+</script>
+</head>
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+<div class="navbar navbar-inverse navbar-fixed-top ">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+			<a class="brand" href="/blog/index.html">巢鹏的Pensieve</a>
+			<div class="nav-collapse">
+				<ul class="nav">
+						<li class="">
+							<a href="/blog/aboutme.html">关于我</a>
+						</li>
+						<li class="">
+							<a href="/blog/categories.html">分类</a>
+						</li>
+						<li class="">
+							<a href="/blog/tags.html">标签</a>
+						</li>
+						<li class="">
+							<a href="/blog/archive.html">归档</a>
+						</li>
+				</ul>
+				
+				<ul class="nav pull-right">
+					<li>
+						<form class="navbar-search" name="searchform" action="javascript:search();">
+							<input class="search-query" type="text" placeholder="Search" id="search"/>
+							<a href="javascript:search();"><i class="icon-search icon-white"></i></a>
+						</form>
+					</li>
+					<li class="divider-vertical"></li>
+					<li>
+						<a id="rss" href="/blog/rss.xml">
+							<img alt="rss" src="/assets/img/rss.png"></img>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container container-fluid">
+	<div class="row-fluid window">
+		<div class="span9 window_c">
+			<div class="entry_title">
+				<h1>【<a href="/blog/categories.html#linux">linux</a>】 OSSEC笔记</h1>
+				<i class="icon-calendar"></i> 2015-02-11
+			</div>
+
+			<div class="entry_content" >
+				<p>在 In The Chat 这家公司，由于没有专业的运维，以前兼职运维的同事又走了，我又要兼职运维了（老板你应该给我两份薪水才对啊）。前几个星期，CTO 叫我用 OSSEC 把服务器报警做一下，翻一下之前的文档，发现以前只有一个重启的报警，这个重启报警是咋做的呢，挂一个发邮件的脚本到 <code>/etc/rc3.d/</code>。这也略山寨了。</p>
+<p>这个 OSSEC，看文档看上去不错，但是没搞过还是不敢用，赶紧问问专业人士肥龙哥，肥龙哥说，他们也用这个。好吧信肥龙哥就对了。</p>
+<h2 id="_1">安装</h2>
+<p>先装一台中心服务器，OSSEC 的安装还是很简单的，下载解压，然后 <code>sudo ./install.sh</code>，第一个类型选 <code>server</code>，然后配置 SMTP，这里 OSSEC 不支持需要登录的 SMTP，所以最好装一个 sendmail 然后 SMTP 指向本地的 sendmail，后面跟着一路默认就是了。安装完成以后要去 <code>ossec-path/bin/manage_agents</code> - <code>Add an agent</code> - <code>Extract key for an agent</code> 有多少台机子要监控的就做多少次。然后去到 <code>ossec-path/etc/ossec.conf</code> 将要监控的网段加进去:</p>
+<pre><code class="xml">&lt;remote&gt;
+  &lt;connection&gt;syslog&lt;/connection&gt;
++ &lt;allowed-ips&gt;192.168.0.0/16&lt;/allowed-ips&gt;
+&lt;/remote&gt;
+</code></pre>
+
+<p>这时候你就可以启动 OSSEC 了。</p>
+<p>然后到每一台要监控的装一次，这次类型选择 agent。完成以后到 <code>ossec-path/bin/manage_agents</code> - <code>Import key from the server</code>。然后启动就可以了。</p>
+<h2 id="_2">添加策略</h2>
+<p>具体自定义策略的教程在<a href="http://ossec-docs.readthedocs.org/en/latest/manual/rules-decoders/create-custom.html">这里</a>。</p>
+<h3 id="_3">重启报警</h3>
+<p>其实机子重启的时候，OSSEC 已经有一个 level-3 的 Ossec agent started 的报警。但是这个报警显然是不够明确的，所以我们需要加一条规则来做重启报警，</p>
+<p>现在我们先在所有的 ossec.conf 差不多最后添加：</p>
+<pre><code class="xml">&lt;localfile&gt;
+  &lt;log_format&gt;full_command&lt;/log_format&gt;
+  &lt;command&gt;who -b&lt;/command&gt;
+&lt;/localfile&gt;
+</code></pre>
+
+<p>然后在 server 的 <code>ossec-path/rules/ossec_rules.xml</code> 添加：</p>
+<pre><code class="xml">&lt;rule id=&quot;110002&quot; level=&quot;10&quot;&gt;
+  &lt;if_sid&gt;530&lt;/if_sid&gt;
+  &lt;match&gt;who -b&lt;/match&gt;
+  &lt;check_diff /&gt;
+  &lt;description&gt;Reboot Alert. &lt;/description&gt;
+&lt;/rule&gt;
+</code></pre>
+
+<p>然后重启所有 OSSEC 服务就可以了。</p>
+
+<div style="background-color:#E0E0E0; border: 2px dashed #787878;padding: 5px 10px 5px 10px; margin-top:10px;">
+	<div style="text-align:center">
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+			<img alt="知识共享许可协议" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/cn/88x31.png">
+		</a>
+		<br>
+		本作品采用
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+			知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议
+		</a>
+		进行许可。
+	</div>
+	<div>
+		»<b>本文链接：</b>
+		<a rel="bookmark" title="OSSEC笔记" href="http://chaopeng.me/blog/2015/02/11/ossec.html">
+			http://chaopeng.me/blog/2015/02/11/ossec.html
+		</a>
+	</div>
+	<div>
+		»<b>订阅本站：</b>
+		<a title="巢鹏的Pensieve" href="http://chaopeng.me/blog">
+			http://chaopeng.me/blog
+		</a>
+	</div>
+</div><!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread" data-thread-key="/blog/2015/02/11/ossec.html title=OSSEC笔记" title="OSSEC笔记" data-url="http://chaopeng.me/blog/2015/02/11/ossec.html"></div>
+<!-- Duoshuo Comment END -->
+			</div>
+		</div>
+		<div class="span3">
+			<div id="sidebar" class="window_r">
+<div class="namebox">
+	<div class="left">
+		<img alt="avatar" src="https://secure.gravatar.com/avatar/10c4fe4e35370eb0f447640d6cde844a?s=80">
+	</div>
+	<div class="right">
+		<a href="mailto:chaopeng@chaopeng.me" target="_blank">联系我</a>
+		<br>
+		<a href="http://weibo.com/chaojianpeng" target="_blank">关注我的微博</a>
+		<br>
+		<a href="https://github.com/chaopeng" target="_blank">关注我的开源</a>
+		<br>
+	</div>
+</div>
+
+<form><fieldset class="line"><legend>分享</legend></fieldset></form>
+
+
+<!-- baidu Button BEGIN -->
+<div class="bdsharebuttonbox">
+	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="bds_more" data-cmd="more"></a>
+</div> 
+<script>
+window._bd_share_config = {
+    "common": {
+        "bdSnsKey": {},
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": "",
+        "bdStyle": "1",
+        "bdSize": "24"
+    },
+    "share": {},
+};
+with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~ ( - new Date() / 36e5)];
+</script>
+<!-- baidu Button END -->
+
+
+<form><fieldset class="line"><legend>本文标签</legend></fieldset></form>
+
+<div>
+<ul>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#linux">linux</a>
+	</li>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#OSSEC">OSSEC</a>
+	</li>
+</ul>
+</div>
+<form><fieldset class="line"><legend>友情链接</legend></fieldset></form>
+<ul>
+	<li><a href="http://www.wutianqi.com/" target="_blank">TankyWoo基神的博客</a></li>
+    <li><a href="http://www.thislinux.com/" target="_blank">龙哥的博客</a></li>
+</ul>
+
+<form><fieldset class="line"><legend>声明</legend></fieldset></form>
+本博客仅供自娱自乐，<br>不喜勿喷。<br>欢迎捐助！
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="container container-fluid">
+	<div class="row-fluid window">
+		<div class="span12 copyright">
+			&copy巢鹏的Pensieve-版权所有-转载请尊重文章许可
+			<br>
+			博客使用<a href="https://github.com/chaopeng/chaosblog" target="_blank">ChaosBlog</a>生成
+		</div>
+	</div>
+</div></body>
+</html>

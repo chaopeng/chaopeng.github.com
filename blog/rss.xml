@@ -6,10 +6,20 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Fri, 30 Jan 2015 16:03:30 GMT</pubDate>
-    <dc:date>2015-01-30T16:03:30Z</dc:date>
+    <pubDate>Wed, 11 Feb 2015 17:54:53 GMT</pubDate>
+    <dc:date>2015-02-11T17:54:53Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
+    <item>
+      <title>OSSEC笔记</title>
+      <link>http://chaopeng.me/blog/2015/02/11/ossec.html</link>
+      <description>OSSEC安装、添加策略笔记</description>
+      <category>linux</category>
+      <pubDate>Sun, 11 Jan 2015 05:02:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2015/02/11/ossec.html</guid>
+      <dc:creator>巢鹏</dc:creator>
+      <dc:date>2015-01-11T05:02:00Z</dc:date>
+    </item>
     <item>
       <title>Awesome Java</title>
       <link>http://chaopeng.me/blog/2015/01/20/awesome-java.html</link>
@@ -199,16 +209,6 @@
       <guid>http://chaopeng.me/blog/2013/04/24/rabbitmq.html</guid>
       <dc:creator>巢鹏</dc:creator>
       <dc:date>2013-01-24T05:04:00Z</dc:date>
-    </item>
-    <item>
-      <title>eclipse在linux mint下的界面调整</title>
-      <link>http://chaopeng.me/blog/2013/04/13/eclipse-linuxmint.html</link>
-      <description>调整eclipse在linux mint的方式</description>
-      <category>java</category>
-      <pubDate>Sun, 13 Jan 2013 05:04:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2013/04/13/eclipse-linuxmint.html</guid>
-      <dc:creator>巢鹏</dc:creator>
-      <dc:date>2013-01-13T05:04:00Z</dc:date>
     </item>
   </channel>
 </rss>
