@@ -132,7 +132,7 @@ $(function() {
 <ul>
 <li>Scale<ul>
 <li>横向 Scale，只需要多开一个 Container，而多开一个 Container 与多开一个进程并无太大区别</li>
-<li>执行效率开销，由于是 Container 而不是 VM，虚拟胡这一层的性能几乎可以忽略</li>
+<li>执行效率开销，由于是 Container 而不是 VM，虚拟化这一层的性能几乎可以忽略</li>
 <li>秒级的开机速度</li>
 </ul>
 </li>
@@ -153,7 +153,7 @@ $(function() {
 <h3 id="docker-repo">使用可信的 Docker Repo</h3>
 <p>Docker 上我们尽可能使用了官方的 Repository，之前部分服务选用了 <a href="http://dockerfile.github.io/">Dockerfile Project</a> 的 Repository。不知道为啥被下架了，幸好除了 Java 以外其他服务都有官方的替代。Java 方面可能是协议的原因，官方的 Java Repository 没有 Oracle-JDK，所以 Java 方面我基于 <a href="http://jenv.io/">jenv</a> 写了一个 <a href="https://registry.hub.docker.com/u/chaopeng/jenv/">chaopeng/jenv</a>，有需要的朋友可以参考或者 pull 来用，另外也建议使用 <a href="https://registry.hub.docker.com/u/azul/zulu-openjdk/">azul/zulu-openjdk</a>。</p>
 <h3 id="_1">监控与部署</h3>
-<p>监控方面由于没有人力去开发，我们暂时使用了 <a href="http://shipyard-project.com/">shipyard</a>，暂时是只能监控进程生存和一些简单的部署的工作，另外用他提供的 API，我们做了一些简单的自动 Scale。有位巴西的同事在试用 <a href="http://www.ansible.com/home">ansible</a>，开上去功能更全，我们也用可能转过去。</p>
+<p>监控方面由于没有人力去开发，我们暂时使用了 <a href="http://shipyard-project.com/">shipyard</a>，暂时是只能监控进程生存和一些简单的部署的工作，另外用他提供的 API，我们做了一些简单的自动 Scale。有位巴西的同事在试用 <a href="http://www.ansible.com/home">ansible</a>，看上去功能更全，我们也用可能转过去。</p>
 
 <div style="background-color:#E0E0E0; border: 2px dashed #787878;padding: 5px 10px 5px 10px; margin-top:10px;">
 	<div style="text-align:center">
