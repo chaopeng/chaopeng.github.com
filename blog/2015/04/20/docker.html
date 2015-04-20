@@ -127,7 +127,7 @@ $(function() {
 <ul>
 <li><a href="http://www.infoq.com/cn/articles/large-scale-docker-cluster-practise-experience-share">微博红包：大规模Docker集群实践经验分享</a></li>
 </ul>
-<h2 id="docker_1">为什么 Docker</h2>
+<h3 id="docker_1">为什么 Docker</h3>
 <p>为什么大家都在往 Docker 迁移：</p>
 <ul>
 <li>Scale<ul>
@@ -142,12 +142,17 @@ $(function() {
 </ul>
 </li>
 </ul>
-<h2 id="docker_2">Docker 的缺点</h2>
+<h3 id="docker_2">Docker 的缺点</h3>
 <ul>
 <li>Root 权限，Docker 是基于 Root 权限运行的，如果某一天 Docker 被攻破，而你的系统又可以 getshell，意味着入侵者可以轻松进来随便玩，所以在 Docker 使用过程中尽可能不要挂载文件目录。</li>
 <li>AUFS，这玩意据说效率不好，具体多不好我们没有测试。由于我们一直在用 MongoDB 提供的 MongoDB 4000IOPS，所以我们不考虑将数据库服务迁移到 Docker 里面（最近这服务在 AWS 下架了，MongoDB你在玩我）。</li>
 </ul>
-<h2 id="docker_3">我们如何迁移到 Docker</h2>
+<h3 id="docker_3">为什么我们选择 Docker</h3>
+<ul>
+<li>我们有一些服务是单线程，多进程，由于 EC2 低配机器并不划算，我们是买了高配然后跑多个进程的。</li>
+<li>部分服务需要 auto-scale，特别是出现新闻热点的时候，NLP 就需要 scale。之前我们的 scale 是发个邮件给我或者CTO然后启动新的 VPS，再上去部署一遍 NLP。这怎么看都不靠谱，毕竟之前业务量小（恩，现在业务量也小）。</li>
+</ul>
+<h2 id="docker_4">我们如何迁移到 Docker</h2>
 <h3 id="docker-private-repositories">购买 Docker Private Repositories</h3>
 <p>有些内部的 Docker File 并不希望公开，而且也没有公开的意义，所以购买了最低的 20-Repositories 的套餐。</p>
 <h3 id="docker-repo">使用可信的 Docker Repo</h3>
