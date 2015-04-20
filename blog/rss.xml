@@ -6,10 +6,20 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Wed, 18 Feb 2015 17:17:11 GMT</pubDate>
-    <dc:date>2015-02-18T17:17:11Z</dc:date>
+    <pubDate>Mon, 20 Apr 2015 15:58:26 GMT</pubDate>
+    <dc:date>2015-04-20T15:58:26Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
+    <item>
+      <title>生产环境的 Docker 迁移</title>
+      <link>http://chaopeng.me/blog/2015/04/20/docker.html</link>
+      <description>Docker生产环境迁移的笔记</description>
+      <category>linux</category>
+      <pubDate>Tue, 20 Jan 2015 05:04:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2015/04/20/docker.html</guid>
+      <dc:creator>巢鹏</dc:creator>
+      <dc:date>2015-01-20T05:04:00Z</dc:date>
+    </item>
     <item>
       <title>OSSEC笔记</title>
       <link>http://chaopeng.me/blog/2015/02/11/ossec.html</link>
@@ -199,16 +209,6 @@
       <guid>http://chaopeng.me/blog/2013/05/15/zsh.html</guid>
       <dc:creator>巢鹏</dc:creator>
       <dc:date>2013-01-15T05:05:00Z</dc:date>
-    </item>
-    <item>
-      <title>rabbitmq的一些笔记</title>
-      <link>http://chaopeng.me/blog/2013/04/24/rabbitmq.html</link>
-      <description>rabbit的一些笔记，安装，配置，管理</description>
-      <category>rabbitmq</category>
-      <pubDate>Thu, 24 Jan 2013 05:04:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2013/04/24/rabbitmq.html</guid>
-      <dc:creator>巢鹏</dc:creator>
-      <dc:date>2013-01-24T05:04:00Z</dc:date>
     </item>
   </channel>
 </rss>

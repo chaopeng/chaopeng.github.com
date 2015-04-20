@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>生产环境的 Docker 迁移</title>
+<meta name="description" content="Docker生产环境迁移的笔记">
+<meta name="author" content="巢鹏">
+<!-- Le styles -->
+<link href="/favicon.ico" rel="shortcut icon"> 
+<link href="http://cdn.staticfile.org/twitter-bootstrap/2.2.2/css/bootstrap.min.css" rel="stylesheet">
+<link href="/assets/css/my.css" rel="stylesheet">
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="http://cdn.staticfile.org/prettify/r298/prettify.css" />
+<link rel="stylesheet" type="text/css" href="/assets/prettify/sons-of-obsidian.css" />
+<link rel="stylesheet" type="text/css" href="/assets/chaoscodebox/chaoscodebox.css" />
+<script type="text/javascript" src="http://cdn.staticfile.org/prettify/r298/prettify.js"></script>
+<script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/chaoscodebox/chaoscodebox.js"></script>
+<script type="text/javascript" src="/assets/js/function.js" charset="utf-8"></script>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript">
+
+// ie真心难搞
+var userAgent = navigator.userAgent.toLowerCase();
+var is_ie = userAgent.indexOf('msie') != -1;
+if(is_ie){
+	alert("请你换个浏览器吧！！！");
+}
+
+// 引入多说
+var duoshuoQuery = {short_name:"chaopeng"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+// 我只是想高亮
+$(document).ready(function(){
+	prettify();
+	back_to_top();
+});
+
+// 侧边栏随动
+$(function() {
+	var $sidebar   = $("#sidebar"),   
+	$window    = $(window),   
+	offset     = $sidebar.offset(),   
+	topPadding = 50;   
+      
+	$window.scroll(function() {   
+		if ($window.scrollTop() > offset.top) {   
+			$sidebar.stop().animate({   
+				marginTop: $window.scrollTop() - offset.top + topPadding   
+			});   
+		} else {   
+			$sidebar.stop().animate({   
+				marginTop: 0   
+			});   
+		}   
+	});   
+});   
+
+</script>
+</head>
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+<div class="navbar navbar-inverse navbar-fixed-top ">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</a>
+			<a class="brand" href="/blog/index.html">巢鹏的Pensieve</a>
+			<div class="nav-collapse">
+				<ul class="nav">
+						<li class="">
+							<a href="/blog/aboutme.html">关于我</a>
+						</li>
+						<li class="">
+							<a href="/blog/categories.html">分类</a>
+						</li>
+						<li class="">
+							<a href="/blog/tags.html">标签</a>
+						</li>
+						<li class="">
+							<a href="/blog/archive.html">归档</a>
+						</li>
+				</ul>
+				
+				<ul class="nav pull-right">
+					<li>
+						<form class="navbar-search" name="searchform" action="javascript:search();">
+							<input class="search-query" type="text" placeholder="Search" id="search"/>
+							<a href="javascript:search();"><i class="icon-search icon-white"></i></a>
+						</form>
+					</li>
+					<li class="divider-vertical"></li>
+					<li>
+						<a id="rss" href="/blog/rss.xml">
+							<img alt="rss" src="/assets/img/rss.png"></img>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container container-fluid">
+	<div class="row-fluid window">
+		<div class="span9 window_c">
+			<div class="entry_title">
+				<h1>【<a href="/blog/categories.html#linux">linux</a>】 生产环境的 Docker 迁移</h1>
+				<i class="icon-calendar"></i> 2015-04-20
+			</div>
+
+			<div class="entry_content" >
+				<h2 id="docker">关于 Docker</h2>
+<p>Docker 有多火，相信大家都很清楚，在一些互联网的大群一问基本上 60% 以上的人已经迁移到 Docker 或者正在往 Docker 迁移。类似这样的文章也是相当多：</p>
+<ul>
+<li><a href="http://www.infoq.com/cn/articles/large-scale-docker-cluster-practise-experience-share">微博红包：大规模Docker集群实践经验分享</a></li>
+</ul>
+<h2 id="docker_1">为什么 Docker</h2>
+<p>为什么大家都在往 Docker 迁移：</p>
+<ul>
+<li>Scale<ul>
+<li>横向 Scale，只需要多开一个 Container，而多开一个 Container 与多开一个进程并无太大区别</li>
+<li>执行效率开销，由于是 Container 而不是 VM，虚拟胡这一层的性能几乎可以忽略</li>
+<li>秒级的开机速度</li>
+</ul>
+</li>
+<li>安全性<ul>
+<li>每个服务独立在自己的 Container，起码在文件系统层面有一定的防护</li>
+<li>CPU 内存限制，不怕因为某个服务出现过载而影响到别的服务</li>
+</ul>
+</li>
+</ul>
+<h2 id="docker_2">Docker 的缺点</h2>
+<ul>
+<li>Root 权限，Docker 是基于 Root 权限运行的，如果某一天 Docker 被攻破，而你的系统又可以 getshell，意味着入侵者可以轻松进来随便玩，所以在 Docker 使用过程中尽可能不要挂载文件目录。</li>
+<li>AUFS，这玩意据说效率不好，具体多不好我们没有测试。由于我们一直在用 MongoDB 提供的 MongoDB 4000IOPS，所以我们不考虑将数据库服务迁移到 Docker 里面（最近这服务在 AWS 下架了，MongoDB你在玩我）。</li>
+</ul>
+<h2 id="docker_3">我们如何迁移到 Docker</h2>
+<h3 id="docker-private-repositories">购买 Docker Private Repositories</h3>
+<p>有些内部的 Docker File 并不希望公开，而且也没有公开的意义，所以购买了最低的 20-Repositories 的套餐。</p>
+<h3 id="docker-repo">使用可信的 Docker Repo</h3>
+<p>Docker 上我们尽可能使用了官方的 Repository，之前部分服务选用了 <a href="http://dockerfile.github.io/">Dockerfile Project</a> 的 Repository。不知道为啥被下架了，幸好除了 Java 以外其他服务都有官方的替代。Java 方面可能是协议的原因，官方的 Java Repository 没有 Oracle-JDK，所以 Java 方面我基于 <a href="http://jenv.io/">jenv</a> 写了一个 <a href="https://registry.hub.docker.com/u/chaopeng/jenv/">chaopeng/jenv</a>，有需要的朋友可以参考或者 pull 来用，另外也建议使用 <a href="https://registry.hub.docker.com/u/azul/zulu-openjdk/">azul/zulu-openjdk</a>。</p>
+<h3 id="_1">监控与部署</h3>
+<p>监控方面由于没有人力去开发，我们暂时使用了 <a href="http://shipyard-project.com/">shipyard</a>，暂时是只能监控进程生存和一些简单的部署的工作，另外用他提供的 API，我们做了一些简单的自动 Scale。有位巴西的同事在试用 <a href="http://www.ansible.com/home">ansible</a>，开上去功能更全，我们也用可能转过去。</p>
+
+<div style="background-color:#E0E0E0; border: 2px dashed #787878;padding: 5px 10px 5px 10px; margin-top:10px;">
+	<div style="text-align:center">
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+			<img alt="知识共享许可协议" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/cn/88x31.png">
+		</a>
+		<br>
+		本作品采用
+		<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+			知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议
+		</a>
+		进行许可。
+	</div>
+	<div>
+		»<b>本文链接：</b>
+		<a rel="bookmark" title="生产环境的 Docker 迁移" href="http://chaopeng.me/blog/2015/04/20/docker.html">
+			http://chaopeng.me/blog/2015/04/20/docker.html
+		</a>
+	</div>
+	<div>
+		»<b>订阅本站：</b>
+		<a title="巢鹏的Pensieve" href="http://chaopeng.me/blog">
+			http://chaopeng.me/blog
+		</a>
+	</div>
+</div><!-- Duoshuo Comment BEGIN -->
+	<div class="ds-thread" data-thread-key="/blog/2015/04/20/docker.html title=生产环境的 Docker 迁移" title="生产环境的 Docker 迁移" data-url="http://chaopeng.me/blog/2015/04/20/docker.html"></div>
+<!-- Duoshuo Comment END -->
+			</div>
+		</div>
+		<div class="span3">
+			<div id="sidebar" class="window_r">
+<div class="namebox">
+	<div class="left">
+		<img alt="avatar" src="https://secure.gravatar.com/avatar/10c4fe4e35370eb0f447640d6cde844a?s=80">
+	</div>
+	<div class="right">
+		<a href="mailto:chaopeng@chaopeng.me" target="_blank">联系我</a>
+		<br>
+		<a href="http://weibo.com/chaojianpeng" target="_blank">关注我的微博</a>
+		<br>
+		<a href="https://github.com/chaopeng" target="_blank">关注我的开源</a>
+		<br>
+	</div>
+</div>
+
+<form><fieldset class="line"><legend>分享</legend></fieldset></form>
+
+
+<!-- baidu Button BEGIN -->
+<div class="bdsharebuttonbox">
+	<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="bds_more" data-cmd="more"></a>
+</div> 
+<script>
+window._bd_share_config = {
+    "common": {
+        "bdSnsKey": {},
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": "",
+        "bdStyle": "1",
+        "bdSize": "24"
+    },
+    "share": {},
+};
+with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~ ( - new Date() / 36e5)];
+</script>
+<!-- baidu Button END -->
+
+
+<form><fieldset class="line"><legend>本文标签</legend></fieldset></form>
+
+<div>
+<ul>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#linux">linux</a>
+	</li>
+	<li>
+		<i class="icon-tag"></i> <a href="/blog/tags.html#docker">docker</a>
+	</li>
+</ul>
+</div>
+<form><fieldset class="line"><legend>友情链接</legend></fieldset></form>
+<ul>
+	<li><a href="http://www.wutianqi.com/" target="_blank">TankyWoo基神的博客</a></li>
+    <li><a href="http://www.thislinux.com/" target="_blank">龙哥的博客</a></li>
+</ul>
+
+<form><fieldset class="line"><legend>声明</legend></fieldset></form>
+本博客仅供自娱自乐，<br>不喜勿喷。<br>欢迎捐助！
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="container container-fluid">
+	<div class="row-fluid window">
+		<div class="span12 copyright">
+			&copy巢鹏的Pensieve-版权所有-转载请尊重文章许可
+			<br>
+			博客使用<a href="https://github.com/chaopeng/chaosblog" target="_blank">ChaosBlog</a>生成
+		</div>
+	</div>
+</div></body>
+</html>
