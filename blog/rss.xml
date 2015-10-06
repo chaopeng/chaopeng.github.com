@@ -6,15 +6,15 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Tue, 06 Oct 2015 20:55:17 GMT</pubDate>
-    <dc:date>2015-10-06T20:55:17Z</dc:date>
+    <pubDate>Tue, 06 Oct 2015 20:58:33 GMT</pubDate>
+    <dc:date>2015-10-06T20:58:33Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
     <item>
       <title>记一次集群故障</title>
       <link>http://chaopeng.me/blog/2015/10/06/server-down.html</link>
       <description>检讨一次服务器故障导致的集群雪崩</description>
-      <category>other</category>
+      <category>踩坑</category>
       <pubDate>Tue, 06 Jan 2015 05:10:00 GMT</pubDate>
       <guid>http://chaopeng.me/blog/2015/10/06/server-down.html</guid>
       <dc:creator>巢鹏</dc:creator>
