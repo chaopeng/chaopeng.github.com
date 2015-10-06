@@ -6,10 +6,20 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Tue, 18 Aug 2015 19:21:45 GMT</pubDate>
-    <dc:date>2015-08-18T19:21:45Z</dc:date>
+    <pubDate>Tue, 06 Oct 2015 20:55:17 GMT</pubDate>
+    <dc:date>2015-10-06T20:55:17Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
+    <item>
+      <title>记一次集群故障</title>
+      <link>http://chaopeng.me/blog/2015/10/06/server-down.html</link>
+      <description>检讨一次服务器故障导致的集群雪崩</description>
+      <category>other</category>
+      <pubDate>Tue, 06 Jan 2015 05:10:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2015/10/06/server-down.html</guid>
+      <dc:creator>巢鹏</dc:creator>
+      <dc:date>2015-01-06T05:10:00Z</dc:date>
+    </item>
     <item>
       <title>加拿大生活——零售商篇</title>
       <link>http://chaopeng.me/blog/2015/08/18/life-in-canada3.html</link>
@@ -199,16 +209,6 @@
       <guid>http://chaopeng.me/blog/2013/06/28/sogou-input.html</guid>
       <dc:creator>巢鹏</dc:creator>
       <dc:date>2013-01-28T05:06:00Z</dc:date>
-    </item>
-    <item>
-      <title>通过eclipse.ini加速eclipse</title>
-      <link>http://chaopeng.me/blog/2013/06/20/eclipse-ini.html</link>
-      <description>通过调整jvm参数加速eclipse启动</description>
-      <category>java</category>
-      <pubDate>Sun, 20 Jan 2013 05:06:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2013/06/20/eclipse-ini.html</guid>
-      <dc:creator>巢鹏</dc:creator>
-      <dc:date>2013-01-20T05:06:00Z</dc:date>
     </item>
   </channel>
 </rss>
