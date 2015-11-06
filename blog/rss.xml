@@ -6,10 +6,20 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Wed, 28 Oct 2015 13:37:43 GMT</pubDate>
-    <dc:date>2015-10-28T13:37:43Z</dc:date>
+    <pubDate>Fri, 06 Nov 2015 19:51:22 GMT</pubDate>
+    <dc:date>2015-11-06T19:51:22Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
+    <item>
+      <title>ChaosBlog重构计划</title>
+      <link>http://chaopeng.me/blog/2015/11/06/refactor-chaosblog.html</link>
+      <description>经过3年时间的使用，是时候重构ChaosBlog了</description>
+      <category>ChaosBlog</category>
+      <pubDate>Tue, 06 Jan 2015 05:11:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2015/11/06/refactor-chaosblog.html</guid>
+      <dc:creator>巢鹏</dc:creator>
+      <dc:date>2015-01-06T05:11:00Z</dc:date>
+    </item>
     <item>
       <title>记一次集群故障</title>
       <link>http://chaopeng.me/blog/2015/10/06/server-down.html</link>
@@ -199,16 +209,6 @@
       <guid>http://chaopeng.me/blog/2013/07/04/open-source-book.html</guid>
       <dc:creator>巢鹏</dc:creator>
       <dc:date>2013-01-04T05:07:00Z</dc:date>
-    </item>
-    <item>
-      <title>ubuntu安装搜狗输入法</title>
-      <link>http://chaopeng.me/blog/2013/06/28/sogou-input.html</link>
-      <description>ubuntu安装sogou for linux</description>
-      <category>linux</category>
-      <pubDate>Mon, 28 Jan 2013 05:06:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2013/06/28/sogou-input.html</guid>
-      <dc:creator>巢鹏</dc:creator>
-      <dc:date>2013-01-28T05:06:00Z</dc:date>
     </item>
   </channel>
 </rss>
