@@ -20,8 +20,9 @@ pre > code {
   margin: 0;
   -webkit-border-radius: 0;
   border-radius: 0;
-  word-wrap: normal;
   white-space: pre;
+  word-break: normal;
+  word-wrap: normal;
   background-color: #E7E7E7;
   color: #000000;
 }
