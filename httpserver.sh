@@ -1,2 +1,2 @@
 #!/bin/bash
-python -m SimpleHTTPServer 2333
+python2 -m SimpleHTTPServer 2333
