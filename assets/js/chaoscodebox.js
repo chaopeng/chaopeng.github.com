@@ -1,11 +1,13 @@
 function prettify() {
   $('pre>code').each(function(index) {
     var lang = $(this).attr('class');
-    if (lang == null) return;
+    if (lang == null) lang = "";
     lang = lang.replace('{', '').replace('}', '');
     var preNode = $(this.parentNode);
 
-    preNode.addClass('prettyprint linenums');
+    if (lang != "") {
+      preNode.addClass('prettyprint linenums');
+    }
     preNode.attr('id', 'code' + index);
     preNode.wrap('<div class="codebox"></div>');
 
