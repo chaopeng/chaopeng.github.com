@@ -1,7 +1,7 @@
 function prettify() {
   $('pre>code').each(function(index) {
     var lang = $(this).attr('class');
-    if (lang == null) lang = "";
+    if (lang == null) return;
     lang = lang.replace('{', '').replace('}', '');
     var preNode = $(this.parentNode);
 
