@@ -6,10 +6,20 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Thu, 26 Nov 2015 19:11:31 GMT</pubDate>
-    <dc:date>2015-11-26T19:11:31Z</dc:date>
+    <pubDate>Tue, 01 Dec 2015 21:34:25 GMT</pubDate>
+    <dc:date>2015-12-01T21:34:25Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
+    <item>
+      <title>给docker镜像减肥</title>
+      <link>http://chaopeng.me/blog/2015/12/01/docker-jenv.html</link>
+      <description>定制docker镜像，如何减少其体积</description>
+      <category>linux</category>
+      <pubDate>Thu, 01 Jan 2015 05:12:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2015/12/01/docker-jenv.html</guid>
+      <dc:creator>ChaoPeng</dc:creator>
+      <dc:date>2015-01-01T05:12:00Z</dc:date>
+    </item>
     <item>
       <title>ChaosBlog重构计划</title>
       <link>http://chaopeng.me/blog/2015/11/06/refactor-chaosblog.html</link>
@@ -199,16 +209,6 @@
       <guid>http://chaopeng.me/blog/2013/08/02/mysqldump.html</guid>
       <dc:creator>ChaoPeng</dc:creator>
       <dc:date>2013-01-02T05:08:00Z</dc:date>
-    </item>
-    <item>
-      <title>在线书单</title>
-      <link>http://chaopeng.me/blog/2013/07/04/open-source-book.html</link>
-      <description>一些在线图书整理</description>
-      <category>book</category>
-      <pubDate>Fri, 04 Jan 2013 05:07:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2013/07/04/open-source-book.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
-      <dc:date>2013-01-04T05:07:00Z</dc:date>
     </item>
   </channel>
 </rss>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>给docker镜像减肥</title>
+<meta name="description" content="定制docker镜像，如何减少其体积">
+<meta name="author" content="ChaoPeng">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.1/jquery.qtip.min.css">
+<link rel="stylesheet" href="/assets/css/chaoscodebox.css">
+<link rel="stylesheet" href="/assets/css/github.css">
+<link rel="stylesheet" href="/assets/css/blog.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.0/clipboard.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.1/jquery.qtip.min.js"></script>
+<script src="/assets/js/jq-sticky-anything.min.js"></script>
+<script src="/assets/js/chaoscodebox.js"></script>
+<script src="/assets/js/blog.js"></script>
+<script src="/assets/js/load.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="row">
+      <!-- mobile -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/blog/index.html">巢鹏的Pensieve</a>
+      </div>
+
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="">
+            <a href="/blog/aboutme/aboutme.html">关于我</a>
+          </li>
+          <li class="">
+            <a href="/blog/categories/categories.html">分类</a>
+          </li>
+          <li class="">
+            <a href="/blog/tags/tags.html">标签</a>
+          </li>
+          <li class="">
+            <a href="/blog/archive/archive.html">归档</a>
+          </li>
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="navbar-form navbar-search">
+            <form role="search" action="javascript:search();">
+              <div class="form-group input-group">
+                <input id="search-input" type="text" class="form-control" placeholder="Search">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                </span>
+              </div>
+            </form>
+          </li>
+          <li>
+            <a class="f2x" href="/blog/rss.xml"><i class="fa fa-rss fa-2x"></i></a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-md-9 post">
+			<!-- post -->
+        <div class="post-title">
+					<h1>【<a href="/blog/categories.html#linux">linux</a>】 给docker镜像减肥</h1>
+          <div><i class="fa fa-calendar"></i> 2015-12-01</div>
+        </div>
+
+        <div class="post-content">
+					<h2 id="_1">引子</h2>
+<p>这星期有位前端同事需要做一些简单的后端工作，所以就使用了我在docker-hub上的后端镜像，镜像是私有的当然是不方便透露了，但是是基于<a href="https://hub.docker.com/r/chaopeng/jenv/">chaopeng/jenv</a>制作的。然后那天办公室的网速又不好，足足下了2分钟才下完。然后我那位同事就向我投诉了我做的镜像太大了。所以我就开始给镜像做减肥。</p>
+<h2 id="800m-565m">忘记清理缓存（800M -&gt; 565M）</h2>
+<p>看了下镜像的大小</p>
+<pre><code>➜  ~  sudo docker images
+REPOSITORY           TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+chaopeng/jenv        latest              5b752e05eee4        3 weeks ago         801.2 MB
+centos               latest              e9fa5d3a0d0e        6 weeks ago         172.3 MB
+</code></pre>
+
+<p><code>chaopeng/jenv</code>果然很大了，赶紧进去看看，原来jenv的下载缓存忘记清理，赶紧跑一下<code>jenv clean</code>。立马减肥176M。顺手跑一下<code>yum clean all</code>，再省60M。成功减肥到565M，其中355M属于java，210M属于centos及其依赖。由于暂时不考虑减肥到只有jre没有jdk，所以java这块就不继续删了。</p>
+<h2 id="os">更换依赖os</h2>
+<p>既然不考虑优化java，下面能减肥的就只有os这块了，在docker里，其实系统镜像承担的就仅仅是系统目录以及软件包管理的作用。所以我pull了下传统的系统镜像来比对。</p>
+<pre><code>➜  ~  sudo docker images       
+REPOSITORY           TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+debian               latest              a604b236bcde        11 days ago         125.1 MB
+opensuse             latest              1f5ee29cd30e        3 weeks ago         96.14 MB
+centos               latest              e9fa5d3a0d0e        6 weeks ago         172.3 MB
+base/archlinux       latest              a6e872e6025d        5 months ago        278.7 MB
+ubuntu               latest              e9ae3c220b23        3 weeks ago         187.9 MB
+</code></pre>
+
+<p>体积都不小，而且像centos连curl都还没装，究竟为啥这么大，进去看看centos这个镜像其实还挺奇葩的。curl都不装，倒是默认装了个python，可以猜想大多数传统镜像都做了类似的事情。刚好前天在<a href="http://weibo.com/1609119537/D51JkrqYQ?from=page_1005051609119537_profile&amp;wvr=6&amp;mod=weibotime&amp;type=comment">瓜总的微博下看到有人安利alpine</a>，顺手试试吧。</p>
+<pre><code>➜  ~  sudo docker images       
+REPOSITORY           TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+alpine               latest              8a648f689ddb        11 weeks ago        5.244 MB
+</code></pre>
+
+<p>这玩意这够小啊，当然也就是什么都没有的状态了，不过有包管理器，自己写个Dockerfile试试build安装jenv的依赖看看。</p>
+<pre><code class="Dockerfile">FROM alpine:latest
+
+RUN apk add --update bash curl zip &amp;&amp; \
+    rm -rf /var/cache/apk/*
+</code></pre>
+
+<p>build出来的结果是</p>
+<pre><code>➜  ~  sudo docker images       
+REPOSITORY           TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+alpine               latest              8a648f689ddb        11 weeks ago        5.244 MB
+chaopeng/alpine      latest              8998bdbddf9a        About an hour ago   9.813 MB
+</code></pre>
+
+<p>所以说使用alpine将近可以又节省190M。</p>
+<p>当然这样的东西必然有些不足的地方，比如说源里面的东西比较少，第三方支持几乎没有，这样就导致很多软件并不适合使用alpine来做os包。但是我的这个jenv就很合适了，软件上的依赖很简单。</p>
+<h2 id="_2">总结</h2>
+<ol>
+<li>docker镜像不是自己用的os，有缓存用完就清理掉</li>
+<li>选择合适的系统镜像</li>
+</ol>
+<hr />
+<p>减肥结果，jenv从800M减肥到565M(centos)或者375M(alpine)。因为jenv.io挂了，等大大修复好，我再更新dockerfile吧。</p>
+
+<div class="cc">
+  <div class="cc-icon">
+    <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank">
+      <img src="http://i.creativecommons.org/l/by-nc-sa/3.0/cn/88x31.png">
+    </a>
+    <br> 本作品采用
+    <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+          			知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议
+          		</a> 进行许可。
+  </div>
+  <div>
+    »<b>本文链接：</b>
+    <a rel="bookmark" title="给docker镜像减肥" href="http://chaopeng.me/blog/2015/12/01/docker-jenv.html">
+          			http://chaopeng.me/blog/2015/12/01/docker-jenv.html
+          		</a>
+  </div>
+  <div>
+    »<b>订阅本站：</b>
+    <a title="巢鹏的Pensieve" href="http://chaopeng.me/blog">
+          			http://chaopeng.me/blog
+          		</a>
+  </div>
+</div>
+<!-- Duoshuo Comment BEGIN -->
+<div class="ds-thread" data-thread-key="/blog/2015/12/01/docker-jenv.html" title="给docker镜像减肥" data-url="chaopeng.me/blog/2015/12/01/docker-jenv.html"></div>
+<!-- Duoshuo Comment END -->
+				</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="sidebar">
+<div>
+	<div class="left">
+		<img alt="avatar" src="https://secure.gravatar.com/avatar/e7d750ba39dbeadc35f75ed33a9b42ff&s=80">
+	</div>
+	<ul class="right">
+		<li><a href="mailto:chaojianpeng@gmail.com"><i class="fa fa-envelope-o"></i> E-Mail</a></li>
+		<li><a href="http://weibo.com/chaojianpeng" target="_blank"><i class="fa fa-weibo"></i> Weibo</a></li>
+		<li><a onclick="javascript:openMyWechat('Xszl-ULEKx9UrQae95lM');" href="javascript:void(0);"><i class="fa fa-wechat"></i>Wechat</a></li>
+		<li><a href="https://github.com/chaopeng" target="_blank"><i class="fa fa-github"></i> Github</a></li>
+	</ul>
+</div>
+
+<div>
+	<h2>分享</h2>
+	<a class="share wb" onclick="javascript:shareToWeibo();" href="javascript:void(0);"><i class="fa fa-weibo fa-2x"></i></a>
+	<a class="share wc" href="javascript:shareToWechat();" target="_blank"><i class="fa fa-wechat fa-2x"></i></a>
+</div>
+
+<div>
+	<h2>标签</h2>
+	<ul>
+		<li>
+			<i class="fa fa-tag"></i> <a href="/blog/tags.html#linux">linux</a>
+		</li>
+		<li>
+			<i class="fa fa-tag"></i> <a href="/blog/tags.html#docker">docker</a>
+		</li>
+		<li>
+			<i class="fa fa-tag"></i> <a href="/blog/tags.html#java">java</a>
+		</li>
+	</ul>
+</div>
+
+<div>
+	<h2>友情链接</h2>
+	<ul>
+		<li><a href="http://www.wutianqi.com/" target="_blank">TankyWoo基神的博客</a></li>
+		<li><a href="http://www.thislinux.com/" target="_blank">龙哥的博客</a></li>
+	</ul>
+</div>
+
+<div>
+	<h2>声明</h2>
+	本博客仅供自娱自乐。
+	<br>欢迎捐助！
+</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="copyright">
+      &copy巢鹏的Pensieve-版权所有-转载请尊重文章许可
+      <br> 博客使用
+      <a href="https://github.com/chaopeng/chaosblog" target="_blank">ChaosBlog</a>生成
+    </div>
+  </div>
+</div>
+
+<!--back to top-->
+<a href="#" id="back-to-top"><i class="fa fa-angle-up fa-4x"></i></a>
+
+</body>
+</html>
