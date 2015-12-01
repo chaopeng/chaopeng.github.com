@@ -8,6 +8,7 @@ function prettify() {
     if (lang != "") {
       preNode.addClass('prettyprint linenums');
     }
+    preNode.addClass('linenums');
     preNode.attr('id', 'code' + index);
     preNode.wrap('<div class="codebox"></div>');
 
