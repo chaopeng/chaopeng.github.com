@@ -226,17 +226,24 @@
 		<div class="post-title">
 			<h1>
 				【<a href="/blog/categories.html#java">java</a>】
-				<a href="/blog/2015/01/20/awesome-java.html" class="title-link">Awesome Java</a>
+				<a href="/blog/2015/01/25/gradle-tricks.html" class="title-link">Gradle小技巧</a>
 			</h1>
 		</div>
 
 		<div class="post-content" >
-			<p>Github 上其实有个类似的<a href="https://github.com/akullpp/awesome-java">文章</a>，我也整理一下我自己的列表吧，大部分都是我在用的或者曾经用过的。</p>
+			<ul>
+<li><a href="https://github.com/ben-manes/gradle-versions-plugin">gradle-versions-plugin</a>可以很方便检查依赖库的版本更新情况，至于更不更新是你的问题了。定期检查一下总是没有错的。</li>
+<li><a href="https://github.com/ajoberstar/gradle-git">gradle-git</a>可以在gradle中调用git，比如release时候自动打tag，build的时候将commit-id打进去，build的时候警告git还没有commit。</li>
+<li>idea插件: idea.module.excludeDirs可以设置不包含的文件夹</li>
+<li>apply from 可以包含其他gradle文件</li>
+<li>
+<p>settings.gradle 自动包含子项目（子项目需要有build.gradle文件）:</p>
 		</div>
 
 		<div class="post-tags">
 			<i class="fa fa-tags"></i>
 			<a href="/blog/tags.html#java">java</a>
+			<a href="/blog/tags.html#gradle">gradle</a>
 		</div>
 	</div>
 
