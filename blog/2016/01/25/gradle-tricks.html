@@ -102,23 +102,21 @@
 <p>settings.gradle 自动包含子项目（子项目需要有build.gradle文件）:</p>
 <p>```{gradle}
 def path = [] as LinkedList</p>
-</li>
-</ul>
 <p>rootDir.traverse(
     type: groovy.io.FileType.FILES,
     nameFilter: ~/.+.gradle/,
     maxDepth: 3,
     preDir: { path &lt;&lt; it.name },
     postDir: { path.removeLast() }) { if (path) include path.join(":") }
-    ```</p>
-<ul>
+```</p>
+</li>
 <li>
 <p>build时忽略某些文件:</p>
 <p><code>sourceSets {
   main {
-java {
-  exclude 'file...'
-}
+    java {
+      exclude 'file...'
+    }
   }
 }</code></p>
 </li>
