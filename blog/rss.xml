@@ -6,10 +6,20 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Mon, 25 Jan 2016 15:26:39 GMT</pubDate>
-    <dc:date>2016-01-25T15:26:39Z</dc:date>
+    <pubDate>Mon, 25 Jan 2016 15:28:20 GMT</pubDate>
+    <dc:date>2016-01-25T15:28:20Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
+    <item>
+      <title>Gradle小技巧</title>
+      <link>http://chaopeng.me/blog/2016/01/25/gradle-tricks.html</link>
+      <description>记录一些Gradle使用小技巧</description>
+      <category>java</category>
+      <pubDate>Mon, 25 Jan 2016 05:01:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2016/01/25/gradle-tricks.html</guid>
+      <dc:creator>ChaoPeng</dc:creator>
+      <dc:date>2016-01-25T05:01:00Z</dc:date>
+    </item>
     <item>
       <title>给docker镜像减肥</title>
       <link>http://chaopeng.me/blog/2015/12/01/docker-jenv.html</link>
@@ -79,16 +89,6 @@
       <guid>http://chaopeng.me/blog/2015/02/11/ossec.html</guid>
       <dc:creator>ChaoPeng</dc:creator>
       <dc:date>2015-01-11T05:02:00Z</dc:date>
-    </item>
-    <item>
-      <title>Gradle小技巧</title>
-      <link>http://chaopeng.me/blog/2015/01/25/gradle-tricks.html</link>
-      <description>记录一些Gradle使用小技巧</description>
-      <category>java</category>
-      <pubDate>Sun, 25 Jan 2015 05:01:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2015/01/25/gradle-tricks.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
-      <dc:date>2015-01-25T05:01:00Z</dc:date>
     </item>
     <item>
       <title>Awesome Java</title>
