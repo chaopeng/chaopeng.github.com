@@ -100,25 +100,25 @@
 <li>apply from 可以包含其他gradle文件</li>
 <li>
 <p>settings.gradle 自动包含子项目（子项目需要有build.gradle文件）:</p>
-<p>```{gradle}
-def path = [] as LinkedList</p>
-<p>rootDir.traverse(
+<pre><code>def path = [] as LinkedList
+rootDir.traverse(
     type: groovy.io.FileType.FILES,
-    nameFilter: ~/.+.gradle/,
+    nameFilter: ~/.+\.gradle/,
     maxDepth: 3,
     preDir: { path &lt;&lt; it.name },
     postDir: { path.removeLast() }) { if (path) include path.join(":") }
-```</p>
+</code></pre>
 </li>
 <li>
 <p>build时忽略某些文件:</p>
-<p><code>sourceSets {
+<pre><code>sourceSets {
   main {
     java {
       exclude 'file...'
     }
   }
-}</code></p>
+}
+</code></pre>
 </li>
 </ul>
 
