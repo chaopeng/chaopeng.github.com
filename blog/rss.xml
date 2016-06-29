@@ -6,10 +6,20 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Mon, 25 Jan 2016 15:47:22 GMT</pubDate>
-    <dc:date>2016-01-25T15:47:22Z</dc:date>
+    <pubDate>Wed, 29 Jun 2016 19:50:10 GMT</pubDate>
+    <dc:date>2016-06-29T19:50:10Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
+    <item>
+      <title>新工作</title>
+      <link>http://chaopeng.me/blog/2016/06/29/new-job.html</link>
+      <description>这段时间找工作的经历</description>
+      <category>Canada</category>
+      <pubDate>Fri, 29 Jan 2016 05:06:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2016/06/29/new-job.html</guid>
+      <dc:creator>ChaoPeng</dc:creator>
+      <dc:date>2016-01-29T05:06:00Z</dc:date>
+    </item>
     <item>
       <title>Gradle小技巧</title>
       <link>http://chaopeng.me/blog/2016/01/25/gradle-tricks.html</link>
@@ -199,16 +209,6 @@
       <guid>http://chaopeng.me/blog/2013/10/25/network-delay-loss.html</guid>
       <dc:creator>ChaoPeng</dc:creator>
       <dc:date>2013-01-25T05:10:00Z</dc:date>
-    </item>
-    <item>
-      <title>java timer是个坑</title>
-      <link>http://chaopeng.me/blog/2013/09/15/java-timer.html</link>
-      <description>how to solve java timer timer already cancel</description>
-      <category>java</category>
-      <pubDate>Tue, 15 Jan 2013 05:09:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2013/09/15/java-timer.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
-      <dc:date>2013-01-15T05:09:00Z</dc:date>
     </item>
   </channel>
 </rss>
