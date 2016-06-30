@@ -10,7 +10,7 @@ function search() {
 }
 
 function shareToWeibo() {
-  var site = window.location.host;
+  var site = window.location.href;
   var title = document.title;
   window.open('http://service.weibo.com/share/share.php?url=' + site + '&title=' + title);
 }
