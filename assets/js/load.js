@@ -1,11 +1,4 @@
-var duoshuoQuery = {short_name:"chaopeng"};
-(function() {
-  var ds = document.createElement('script');
-  ds.type = 'text/javascript';ds.async = true;
-  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-  ds.charset = 'UTF-8';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
+
 
 $(document).ready(function() {
   // code highlight
@@ -16,7 +9,20 @@ $(document).ready(function() {
   pinSidebar();
   // back to top
   backToTop();
+  // duoshuo
+  duoshuo();
 });
+
+function duoshuo(){
+  var duoshuoQuery = {short_name:"chaopeng"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+}
 
 function backToTop() {
   if ($('#back-to-top').length) {
