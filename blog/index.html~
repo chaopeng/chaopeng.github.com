@@ -292,7 +292,7 @@
 	     d.type = "text/javascript"; 
 	     d.async = true;
 	     d.defer = true;
-	     e.parentNode.insertBefore(d,e);
+	     e.insertBefore(d,e);
 	 })();
 	</script>
 
