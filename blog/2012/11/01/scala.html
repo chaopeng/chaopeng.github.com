@@ -93,11 +93,8 @@
         </div>
 
         <div class="post-content">
-					<h2 id="scala">Scala 的变量、不变量</h2>
-<p>Scala没有constant这种常量的概念，只有变量、不变量，而数据结构比较抽象。
-var定义的是变量，val对应的是不变量(对应的是Java的final，类似C++的常引用)。
-容器：
-ArrayBuffer对应Java的Arraylist</p>
+					<h2 id="scala的变量不变量">Scala 的变量、不变量</h2>
+<p>Scala没有constant这种常量的概念，只有变量、不变量，而数据结构比较抽象。 var定义的是变量，val对应的是不变量(对应的是Java的final，类似C++的常引用)。 容器： ArrayBuffer对应Java的Arraylist</p>
 <p>Array其内容可以改变但是长度不能变，对应Java的数组</p>
 <pre><code class="scala">// 定义方式
 val array:Array[String] = new Array[String](3);
@@ -106,14 +103,12 @@ val array = new Array[String](3);
 // 下标访问
 array(0);
 </code></pre>
-
 <p>List内容与长度都不可变</p>
 <pre><code class="scala">// 定义方式
 val list:List[String] = List(1,2,3);
 // 下标访问
 list(0);
 </code></pre>
-
 <p>List必须在定义的时候就初始化内容。</p>
 <p>Tuple这个其实很接近List[Any]，内容和长度都不可变</p>
 <pre><code class="scala">// 定义方式，这里就不建议使用静态定义的方式去定义了，因为实在是太长了
@@ -121,8 +116,7 @@ val tuple = Tuple(1,&quot;ashfghjgdf&quot;,new MyClass(111));
 // 下标访问，是从1开始的
 tuple._1;
 </code></pre>
-
-<h2 id="scala_1">Scala 的::与:::</h2>
+<h2 id="scala的与">Scala 的::与:::</h2>
 <p>我觉得这是个坑，很坑的坑。但是用起来倒也方便。</p>
 <p>::是把前操作数放到后操作数的头，如:</p>
 <pre><code class="scala">scala&gt; 1 :: List(2,3,4)
@@ -131,7 +125,6 @@ res0: List[Int] = List(1, 2, 3, 4)
 scala&gt; List(1,2) :: List(2,3,4)
 res1: List[Any] = List(List(1, 2), 2, 3, 4)
 </code></pre>
-
 <p>:::是将前操作数跟后操作数连起来，如：</p>
 <pre><code class="scala">scala&gt; 1:::List(2,3,4)
 &lt;console&gt;:8: error: type mismatch;
@@ -143,7 +136,6 @@ res1: List[Any] = List(List(1, 2), 2, 3, 4)
 scala&gt; List(2,3,4):::List(2,3,4)
 res1: List[Int] = List(2, 3, 4, 2, 3, 4)
 </code></pre>
-
 <p>:::前后操作数都必须是List[?]。::和:::都有一个共同点就是实际操作者是后操作数。即a::b 事实上是b.::(a)。</p>
 
 <div class="cc">

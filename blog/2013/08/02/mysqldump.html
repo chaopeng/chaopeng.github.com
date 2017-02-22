@@ -93,27 +93,23 @@
         </div>
 
         <div class="post-content">
-					<h2 id="_1">导出全库/表</h2>
+					<h2 id="导出全库表">导出全库/表</h2>
 <pre><code class="bash">mysqldump -h{host} -u{用户名} -p{密码} -P{端口} --default-character-set=utf8 --opt -e --triggers -R --hex-blob --single-transaction {库名} {表名} &gt; {文件名}
 </code></pre>
-
-<h2 id="_2">导出表结构</h2>
+<h2 id="导出表结构">导出表结构</h2>
 <pre><code class="bash">mysqldump --opt -d -h{host} -u{用户名} -p{密码} -P{端口} {库名} {表名} &gt; {文件名}
 </code></pre>
-
-<h2 id="_3">按条件导出表数据(只有数据)</h2>
+<h2 id="按条件导出表数据只有数据">按条件导出表数据(只有数据)</h2>
 <pre><code class="bash">mysqldump -e -t -c -h{host} -u{用户名} -p{密码} -P{端口} {库名} {表名} --where=&quot;{字段1}='' and {字段2}='' and {字段3}=''&quot; &gt; {文件名}
 </code></pre>
-
-<h2 id="_4">参数说明</h2>
+<h2 id="参数说明">参数说明</h2>
 <p>使用--help看。</p>
 <p>个人喜欢加的参数：</p>
 <pre><code>--compact 减少注释
 -c 完整insert 
 -e 使用批量插入
 </code></pre>
-
-<h2 id="_5">数据库表结构同步工具</h2>
+<h2 id="数据库表结构同步工具">数据库表结构同步工具</h2>
 <pre><code class="bash">schemasync mysql://{用户名}:{密码}@{ip}/{库名} mysql://{用户名}:{密码}@{ip}/{库名} # 前为源 后为目标
 </code></pre>
 

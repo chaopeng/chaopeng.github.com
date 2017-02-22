@@ -94,16 +94,15 @@
 
         <div class="post-content">
 					<p>由于本人已经没有光驱多年，所以安装系统全靠u盘。之前我一直用UltraIso这款工具制作安装u盘，但是经常会遇到某个发行版莫名其妙就不能安装的情况，一天与<a href="http://weibo.com/prinseer">王sir</a> 喝咖啡，被王sir发现我还用这么落后的方法，被鄙视了一顿，再王sir的提示下我也开始制作我的grub2 u盘了。</p>
-<h2 id="_1">设备准备</h2>
+<p>##设备准备</p>
 <ol>
 <li>将u盘分区成一只fat32 bootable u盘，简答不表。</li>
 <li><code>sudo blkid</code> 查看分区UUID记下了，有用。</li>
 </ol>
-<h2 id="grub2">安装grub2</h2>
+<p>##安装grub2</p>
 <pre><code>grub-install --force --no-floppy --root-directory=u盘的挂载目录 /dev/sd?(u盘)
 </code></pre>
-
-<h2 id="_2">配置</h2>
+<p>##配置</p>
 <ol>
 <li>将你要安装的iso文件放到u盘的目录</li>
 <li>在<code>u盘/boot/grub/</code>下编写grub.cfg</li>
@@ -113,15 +112,14 @@ set UUID=DDFB-35D7
 
 # Arch Linux
 menuentry &quot;Arch Setup&quot; {
-    set isofile=&quot;/archlinux-2014.03.01-dual.iso&quot;
-    set label=ARCH_201403
+	set isofile=&quot;/archlinux-2014.03.01-dual.iso&quot;
+	set label=ARCH_201403
 
-    loopback loop $isofile
-    linux (loop)/arch/boot/x86_64/vmlinuz  archisolabel=$label img_dev=/dev/disk/by-uuid/$UUID img_loop=$isofile earlymodules=loop
-    initrd (loop)/arch/boot/x86_64/archiso.img
+	loopback loop $isofile
+	linux (loop)/arch/boot/x86_64/vmlinuz  archisolabel=$label img_dev=/dev/disk/by-uuid/$UUID img_loop=$isofile earlymodules=loop
+	initrd (loop)/arch/boot/x86_64/archiso.img
 }
 </code></pre>
-
 <p><strong>这里注意一下很多发行版都需要特殊的配置，不清楚的话最好去google一下</strong></p>
 
 <div class="cc">

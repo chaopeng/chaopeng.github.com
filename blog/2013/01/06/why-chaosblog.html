@@ -93,10 +93,7 @@
         </div>
 
         <div class="post-content">
-					<p>博客换了很多次了，这是我第二个技术博客，之前一个是比较长时间使用的sina sae的wordpress。
-用wordpress不爽的地方在于，我知道这个东西扩展性很好，但是自己做一些扩展总是很麻烦，太臃肿了。
-高亮插件用了好多个也始终没有找到一个很舒服的。
-后来看了一些用github page写blog大牛，才发现这个才是我想要的写作环境。</p>
+					<p>博客换了很多次了，这是我第二个技术博客，之前一个是比较长时间使用的sina sae的wordpress。 用wordpress不爽的地方在于，我知道这个东西扩展性很好，但是自己做一些扩展总是很麻烦，太臃肿了。 高亮插件用了好多个也始终没有找到一个很舒服的。 后来看了一些用github page写blog大牛，才发现这个才是我想要的写作环境。</p>
 <ul>
 <li>没有坑爹的富文本编辑器，可以用任意的文本编辑器写作</li>
 <li>支持版本管理</li>
@@ -104,9 +101,8 @@
 <li>生成静态页面，免除安全隐患</li>
 <li>github page 免费</li>
 </ul>
-<p>这一切看上去都相当美妙。
-可惜<a href="http://jekyllrb.com/" title="Jekyll">Jekyll</a>不是很符合我的哲学。</p>
-<h2 id="jekyll">为什么不用Jekyll</h2>
+<p>这一切看上去都相当美妙。 可惜<a href="http://jekyllrb.com/" title="Jekyll">Jekyll</a>不是很符合我的哲学。</p>
+<h2 id="为什么不用jekyll">为什么不用Jekyll</h2>
 <p>看过了大牛的用Jekyll写的博客，其实一开始也想用Jekyll的，为了测试一下这个环境我安装了很多东西，试玩了一下发现这个东西不是很适合我。</p>
 <ul>
 <li>markdown的方言很多，Jekyll在用的引擎支持的语法刚好我不是很喜欢</li>
@@ -114,23 +110,22 @@
 <li>windows部署相当麻烦</li>
 <li>本地的Jekyll和github的Jekyll有差异</li>
 </ul>
-<h2 id="_1">重写</h2>
+<h2 id="重写">重写</h2>
 <p>所以我也不将就了，重写吧，我的目标是：</p>
 <ul>
 <li>文章内容版本管理与生成页面分开管理</li>
 <li>markdown引擎可更换，只需要在命令行调用你喜欢的引擎</li>
 <li>布局不要太复杂，尽可能把网页不同位置的部件分开</li>
 </ul>
-<p>由于我自己是做后端的，前端的东西也是慢慢摸索的，从元旦开始做了一个星期才算是完成了这个chaosblog。
-由于前端的东西确实接触不多，所以模板引擎我就挑了一个国人的开源<a href="http://www.oschina.net/p/beetl" title="beetl">Beetl</a>。</p>
+<p>由于我自己是做后端的，前端的东西也是慢慢摸索的，从元旦开始做了一个星期才算是完成了这个chaosblog。 由于前端的东西确实接触不多，所以模板引擎我就挑了一个国人的开源<a href="http://www.oschina.net/p/beetl" title="beetl">Beetl</a>。</p>
 <p>暂时看上去也就这样子了，先用用看吧。</p>
-<h2 id="_2">现在在使用的一些服务</h2>
+<h2 id="现在在使用的一些服务">现在在使用的一些服务</h2>
 <ul>
 <li>默认的社交化评论系统用的是多说的</li>
 <li>百度分享</li>
 </ul>
 <p>使用上面的这些服务主要是比较符合我们天朝的国情吧，你懂的。</p>
-<h2 id="chaosblog">ChaosBlog的使用说明</h2>
+<h2 id="chaosblog的使用说明">ChaosBlog的使用说明</h2>
 <ul>
 <li>把文章以md或者html后缀存放在<code>/to-be-publish/post/</code>下任意子目录，命名规则为<code>yyyy-mm-dd-题目(英文).后缀</code></li>
 <li>文章开头需要写一段json，这个内容跟Jekyll是一样的</li>

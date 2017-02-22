@@ -95,11 +95,10 @@
         <div class="post-content">
 					<h2 id="bookmarks">bookmarks</h2>
 <p>快速登录你的ftp，为你的ftp起别名，这样就可以少记帐号密码了。在<code>~/.lftp/bookmarks</code>添加</p>
-<pre><code class="text">别名 ftp://user:pwd@host:port 
+<pre><code class="bash">别名 ftp://user:pwd@host:port 
 </code></pre>
-
 <p>如此便可以使用lftp 别名快速登录你的ftp。</p>
-<h2 id="_1">快速同步文件夹的脚本</h2>
+<h2 id="快速同步文件夹的脚本">快速同步文件夹的脚本</h2>
 <pre><code class="bash">#!/bin/bash
 HOST=&quot;myftp&quot;
 LCD=&quot;LocalePath&quot;
@@ -109,7 +108,6 @@ open $HOST
 mirror $RCD $LCD
 EOF
 </code></pre>
-
 <p>这样就可以快速把整个文件夹都下载下来了。把这个放在cron里面一切都很方便了。</p>
 
 <div class="cc">

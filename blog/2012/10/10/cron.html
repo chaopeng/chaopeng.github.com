@@ -94,25 +94,23 @@
 
         <div class="post-content">
 					<p>cron是一个linux下的定时执行工具，可以在无需人工干预的情况下运行作业。我准备用cron来实现游戏排行榜定时更新，每日任务更新等等。</p>
-<h2 id="cron">启动cron</h2>
+<h2 id="启动cron">启动cron</h2>
 <p>ubuntu下是这样启动</p>
 <pre><code class="bash">/etc/init.d/cron start
 </code></pre>
-
 <p>顺便用<code>sysv-rc-conf</code>设置开机启动</a>吧。</p>
-<h2 id="etccrontab-cron">编辑/etc/crontab 文件配置cron</h2>
+<h2 id="编辑etccrontab文件配置cron">编辑/etc/crontab 文件配置cron</h2>
 <pre><code class="bash"># 命令格式是：分钟(0~59) 小时(0~23) 日期(1~31) 月份(1~12) 星期(0~6，6是星期天) 执行用户 要执行的命令
 * * * * * root /home/chao/script/hello.sh
 </code></pre>
-
-<p>好了现在重启cron就可以看效果了：
+<p>好了现在重启cron就可以看效果了：</p>
 <pre>
 hello cron : 2012年 10月 10日 星期三 22:53:01 CST
 hello cron : 2012年 10月 10日 星期三 22:54:01 CST
 hello cron : 2012年 10月 10日 星期三 22:55:01 CST
 hello cron : 2012年 10月 10日 星期三 22:56:01 CST
 hello cron : 2012年 10月 10日 星期三 22:57:01 CST
-</pre></p>
+</pre>
 <p>附测试脚本：</p>
 <pre><code class="bash">#!/bin/sh
 echo &quot;hello cron : $(date)&quot; &gt;&gt; /tmp/cron

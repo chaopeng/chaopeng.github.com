@@ -95,10 +95,10 @@
         <div class="post-content">
 					<p>在主函数加上这个static块就可以了。</p>
 <pre><code class="bash">static {
-    PropertyConfigurator.configure(
-        System.getProperty(&quot;user.dir&quot;) 
-        + File.separator + &quot;conf&quot;
-        + File.separator + &quot;log4j.properties&quot;);
+	PropertyConfigurator.configure(
+		System.getProperty(&quot;user.dir&quot;) 
+		+ File.separator + &quot;conf&quot;
+		+ File.separator + &quot;log4j.properties&quot;);
 }
 </code></pre>
 

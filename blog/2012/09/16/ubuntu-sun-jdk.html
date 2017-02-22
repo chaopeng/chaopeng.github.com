@@ -100,25 +100,22 @@
 <li>解压到/opt/java</li>
 <li>添加环境变量，在<code>/etc/profile</code>末尾添加</li>
 </ol>
-<pre><code class="text">export JAVA_HOME=/opt/jdk1.7
+<pre><code class="bash">export JAVA_HOME=/opt/jdk1.7
 export JRE_HOME=/opt/jdk1.7/jre
 export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH
 export PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH
 </code></pre>
-
 <p>现在用命令行查看java版本。对了。好吧这看上去成功了。教程到此结束。</p>
 <p>小白的我一开始以为这真的就对了。后来部署flash的安全沙箱监听843端口，需要sudo，然后就找不到主函数了。</p>
 <p>怎么检查都是正常的，后来突发奇想，<code>sudo java -version</code>尼玛gij1.5这也太坑了。</p>
 <p>查了一下英文才知道ubuntu是用update-alternatives管理软件版本的。</p>
 <pre><code class="bash">update-alternatives --display java
 </code></pre>
-
 <p>查看现在的java的链接指向，并查看优先级的值。建议顺便把这个降低。然后设置新装的这个jdk。</p>
 <pre><code class="bash">update-alternatives --install /usr/bin/java java /opt/jdk1.7/bin/java 300
 </code></pre>
-
 <p>现在装sun-jdk终于不用改<code>profile</code>，原来世界是这么美好的。</p>
-<h2 id="2014">2014年更新</h2>
+<h2 id="2014年更新">2014年更新</h2>
 <p>如果你找到了这篇文章，请允许我推荐你使用 <a href="http://jenv.io">jevn</a>去安装 JDK，适用于所有的 Linux 发行版。版本切换很方便，其他 Java 的工具安装很方便。</p>
 
 <div class="cc">

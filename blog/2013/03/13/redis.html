@@ -93,14 +93,12 @@
         </div>
 
         <div class="post-content">
-					<div class="toc">
-<ul>
-<li><a href="#_1">参考资料</a></li>
-<li><a href="#redis">redis适合怎么用</a></li>
-<li><a href="#redis_1">redis使用需要注意的地方</a></li>
+					<ul>
+<li><a href="#参考资料">参考资料</a></li>
+<li><a href="#redis适合怎么用">redis适合怎么用</a></li>
+<li><a href="#redis使用需要注意的地方">redis使用需要注意的地方</a></li>
 </ul>
-</div>
-<h2 id="_1">参考资料</h2>
+<h2 id="参考资料">参考资料</h2>
 <ul>
 <li><a href="redis.io">redis官网</a></li>
 <li><a href="redis.cn">redis中文网</a></li>
@@ -108,7 +106,7 @@
 <li><a href="github.com/redisbook/book">redis-book</a></li>
 <li><a href="https://github.com/chaopeng/redis-conf">我翻译的redis配置文件</a></li>
 </ul>
-<h2 id="redis">redis适合怎么用</h2>
+<h2 id="redis适合怎么用">redis适合怎么用</h2>
 <ul>
 <li>
 <p>排行榜</p>
@@ -128,7 +126,7 @@
 <p>redis的list是链表的实现，而且还有pubsub的功能，十分适合用来充当一个轻量级消息队列。</p>
 </li>
 </ul>
-<h2 id="redis_1">redis使用需要注意的地方</h2>
+<h2 id="redis使用需要注意的地方">redis使用需要注意的地方</h2>
 <p>这里不完全是我遇到过的情况，有些是群(46859267)里面的朋友遇到的:</p>
 <ul>
 <li>主从redis必须同样的版本</li>
@@ -139,9 +137,7 @@
 <li>aof的文件会增长很快，必须定期rewrite，文件达到硬盘大小的时候会各种杯具</li>
 </ul>
 </li>
-<li>
-<p>时刻注意redis的持久化是非常不可靠的，请尽可能保证重要数据不仅仅存在于redis，除非你在数据量规划的时候能确保redis的数据小于可用内存。</p>
-</li>
+<li>时刻注意redis的持久化是非常不可靠的，请尽可能保证重要数据不仅仅存在于redis，除非你在数据量规划的时候能确保redis的数据小于可用内存。</li>
 </ul>
 
 <div class="cc">

@@ -93,12 +93,10 @@
         </div>
 
         <div class="post-content">
-					<p>最近公司需要把一些项目服务器的开发转到c++，所以原有的服务器间的交互的rmi改成适合跨语言交互的通信中间件。
-我考虑用各种mq，鉴于实在不想去搞zeromq的jni编译，所以就提出了使用rabbitmq。
-一早就听说过rabbitmq的大名了，只是一直无缘使用，不过工业化程度这么高的rabbitmq，相信能满足我们的需求。</p>
-<h2 id="rabbitmq">rabbitmq的安装</h2>
+					<p>最近公司需要把一些项目服务器的开发转到c++，所以原有的服务器间的交互的rmi改成适合跨语言交互的通信中间件。 我考虑用各种mq，鉴于实在不想去搞zeromq的jni编译，所以就提出了使用rabbitmq。 一早就听说过rabbitmq的大名了，只是一直无缘使用，不过工业化程度这么高的rabbitmq，相信能满足我们的需求。</p>
+<h2 id="rabbitmq的安装">rabbitmq的安装</h2>
 <p>rabbitmq的安装是很简单的，看官网的帮助吧。</p>
-<h2 id="rabbitmq_1">rabbitmq的配置</h2>
+<h2 id="rabbitmq的配置">rabbitmq的配置</h2>
 <p>我只是稍微翻译一下官方文档，英文不好，看得不爽的自己看<a href="http://www.rabbitmq.com/configure.html">原文</a>去。</p>
 <p>rabbitmq的默认内置的设置，足够有效地运行rabbitmq服务器。 如果它运行良好，那么你可以不进行任何配置。</p>
 <p>如果需要配置rabbitmq，有三种方法：</p>
@@ -116,13 +114,13 @@
 <p>集群定义等</p>
 </li>
 </ul>
-<h3 id="environment-variables">environment variables</h3>
+<h3 id="environmentvariables">environment variables</h3>
 <p>文件位于<code>/etc/rabbitmq/rabbitmq-env.conf</code>，且不可变更。</p>
 <p>配置优先级：<code>系统环境变量&gt;rabbitmq-env.conf&gt;默认</code></p>
 <p>具体可以设置的参数，官方文档也说得很清楚了。</p>
-<h3 id="a-configuration-file">a configuration file</h3>
+<h3 id="aconfigurationfile">a configuration file</h3>
 <p>文件默认位于<code>/etc/rabbitmq/rabbitmq.conf</code>，可以在environment variables修改。</p>
-<h2 id="rabbitmq_2">rabbitmq的监控</h2>
+<h2 id="rabbitmq的监控">rabbitmq的监控</h2>
 <p>rabbitmq的监控有2种方式：</p>
 <ul>
 <li>

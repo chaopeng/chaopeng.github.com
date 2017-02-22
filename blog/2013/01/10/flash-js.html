@@ -93,24 +93,20 @@
         </div>
 
         <div class="post-content">
-					<p>之前其实也写过一篇类似的博文，但是后来，时间长了，flash更新了，安全策略也不一样了。
-结果我上个月调试这个又花了好长时间，所以还是重写一下吧。以下代码的安全规则是对应flash player 11.5。</p>
-<h2 id="flashjavascript">flash调用javascript的函数</h2>
+					<p>之前其实也写过一篇类似的博文，但是后来，时间长了，flash更新了，安全策略也不一样了。 结果我上个月调试这个又花了好长时间，所以还是重写一下吧。以下代码的安全规则是对应flash player 11.5。</p>
+<h2 id="flash调用javascript的函数">flash调用javascript的函数</h2>
 <p>flash调用javascript的函数是不需要设置安全参数的。调用的方法是：</p>
 <pre><code class="actionscript3">ExternalInterface.call(&quot;functionname&quot;, ...args);
 </code></pre>
-
 <p>可以返回任意值，尽量对返回值进行校验吧，或者这个值只是弹个提示框然后不要跟服务器交互。</p>
-<h2 id="javascriptflash">javascript调用flash的函数</h2>
+<h2 id="javascript调用flash的函数">javascript调用flash的函数</h2>
 <p>可以通过这样的方法注册允许被javascript调用的函数：</p>
-<pre><code class="actionscropt3">ExternalInterface.addCallback(&quot;functionname&quot;, function():returnType{
-    do something...
-    return ret;
+<pre><code class="actionscript3">ExternalInterface.addCallback(&quot;functionname&quot;, function():returnType{
+	do something...
+	return ret;
 });
 </code></pre>
-
-<p>这个是非常复杂的事情，首先需要在嵌入flash的html标签加入：<code>&lt;param name="allowScriptAccess" value="always" /&gt;</code>，
-然后在程序第一次注册之前(建议在程序入口处添加)：<code>flash.system.Security.allowDomain(sourceDomain)</code>。</p>
+<p>这个是非常复杂的事情，首先需要在嵌入flash的html标签加入：<code>&lt;param name=&quot;allowScriptAccess&quot; value=&quot;always&quot; /&gt;</code>， 然后在程序第一次注册之前(建议在程序入口处添加)：<code>flash.system.Security.allowDomain(sourceDomain)</code>。</p>
 <p>或许你现在想测试一下这个调用是否成功，那么请在httpserver的目录测试，本地目录是死都不行的。</p>
 <p>好了记录下来了，以后不用到处找了。</p>
 

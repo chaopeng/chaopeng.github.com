@@ -93,22 +93,20 @@
         </div>
 
         <div class="post-content">
-					<p><strong> 本文无法解决mate13桌面瞎狗眼的亮度，mate之后的版本我都没有试过。 </strong></p>
+					<p>** 本文无法解决mate13桌面瞎狗眼的亮度，mate之后的版本我都没有试过。 **</p>
 <p>用了Linux Mint这个半月最不爽的就是每次开机都是最高亮度，那一瞬间我的狗眼都要瞎了。所以必须找个办法让开机就是最低亮度。</p>
 <p>打开/etc/default/acpi-support ，发现最后有这么一段注释：</p>
-<pre><code class="text"># Note: to enable &quot;laptop mode&quot; (to spin down your hard drive for longer
+<pre><code class="bash"># Note: to enable &quot;laptop mode&quot; (to spin down your hard drive for longer
 # periods of time), install the laptop-mode-tools package and configure
 # it in /etc/laptop-mode/laptop-mode.conf.
 </code></pre>
-
 <p>1 所以开始安装吧：<code>apt-get install laptop-mode-tools</code></p>
 <p>2 然后就开始配置了，打开<code>/etc/laptop-mode/laptop-mode.conf</code>修改：</p>
-<pre><code class="text"># 在交流电下也使用笔记本配置
+<pre><code class="bash"># 在交流电下也使用笔记本配置
 ENABLE_LAPTOP_MODE_ON_AC=1
 </code></pre>
-
 <p>3 最后打开<code>/etc/laptop-mode/conf.d/lcd-brightness.conf</code>修改：</p>
-<pre><code class="text">#
+<pre><code class="bash">#
 # 启动亮度控制
 CONTROL_BRIGHTNESS=1
 #
@@ -118,7 +116,6 @@ LM_AC_BRIGHTNESS_COMMAND=&quot;echo 0&quot;
 NOLM_AC_BRIGHTNESS_COMMAND=&quot;echo 0&quot;
 BRIGHTNESS_OUTPUT=&quot;/sys/class/backlight/acpi_video0/brightness&quot;
 </code></pre>
-
 <p>重启完成设置。</p>
 
 <div class="cc">

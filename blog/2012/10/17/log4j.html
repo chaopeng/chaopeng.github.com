@@ -93,18 +93,15 @@
         </div>
 
         <div class="post-content">
-					<div class="toc">
-<ul>
-<li><a href="#_1">引言</a></li>
-<li><a href="#log4j">log4j的配置文件</a></li>
-<li><a href="#log">第三方库的log</a></li>
-<li><a href="#_2">怎样把配置文件放在包的外面</a></li>
+					<ul>
+<li><a href="#引言">引言</a></li>
+<li><a href="#log4j的配置文件">log4j的配置文件</a></li>
+<li><a href="#第三方库的log">第三方库的log</a></li>
+<li><a href="#怎样把配置文件放在包的外面">怎样把配置文件放在包的外面</a></li>
 </ul>
-</div>
 <p>这篇文章写了好久了，扔在yunio的盘子里面忘记了。。。</p>
-<h2 id="_1">引言</h2>
-<p>之前一直不重视的log文件现在终于让人受不了了，debug一堆的遗留的stdout，郁闷啊。好不容易清理完了自己写的sysout，引入了commons.httpclient之后我彻底崩溃了。反正正要做商城的log，还是好好研究一下吧。
-看了一下项目引用的库。好多个log的库。google一下还有个叫logback的。</p>
+<h2 id="引言">引言</h2>
+<p>之前一直不重视的log文件现在终于让人受不了了，debug一堆的遗留的stdout，郁闷啊。好不容易清理完了自己写的sysout，引入了commons.httpclient之后我彻底崩溃了。反正正要做商城的log，还是好好研究一下吧。 看了一下项目引用的库。好多个log的库。google一下还有个叫logback的。</p>
 <ul>
 <li>java.util.logging</li>
 <li>org.apache.log4j</li>
@@ -112,22 +109,17 @@
 <li>org.slf4j</li>
 <li>logback</li>
 </ul>
-<p><strong> 这个咋办呢？？？ </strong></p>
+<p>** 这个咋办呢？？？ **</p>
 <p>这些都是啥：</p>
 <ul>
 <li><a href="http://docs.oracle.com/javase/1.4.2/docs/api/java/util/logging/package-summary.html" title="java.util.logging" target="_blank">java.util.logging</a></li>
-
 <li><a href="http://logging.apache.org/log4j/1.2/" title="org.apache.log4j" target="_blank">org.apache.log4j</a></li>
-
 <li><a href="http://commons.apache.org/logging/" title="org.apache.commons.logging" target="_blank">org.apache.commons.logging</a></li>
-
 <li><a href="http://www.slf4j.org/" title="org.slf4j" target="_blank">org.slf4j</a></li>
-
 <li><a href="http://logback.qos.ch/" title="logback" target="_blank">logback</a></li>
 </ul>
-
 <p>算了我用的库里面用得最多的就是log4j了，就用这个吧。</p>
-<h2 id="log4j">log4j的配置文件</h2>
+<h2 id="log4j的配置文件">log4j的配置文件</h2>
 <p>先贴一下我现在的配置文件吧。</p>
 <pre><code class="properties"># Set log levels # 这里设置rootlogger的level和appender
 log4j.rootLogger = DEBUG, Console, LogFile, ErrorFile
@@ -170,27 +162,23 @@ log4j.appender.test.Threshold = INFO
 log4j.appender.test.layout = org.apache.log4j.PatternLayout
 log4j.appender.test.layout.ConversionPattern = &lt;%-d{yyyy-MM-dd HH:mm:ss}&gt; &lt;%t&gt; %l &lt;%p&gt; %m%n
 </code></pre>
-
-<h2 id="log">第三方库的log</h2>
+<h2 id="第三方库的log">第三方库的log</h2>
 <p>第三方库的log是一件比较麻烦的事情，作者都是大牛啊。总是有与众不同的想法，像spymemcached就自己做了一个log，幸好这位大牛还是对我们这些码农比较友好的。可以改为自己想用的log。具体如下：</p>
 <pre><code class="java">Properties systemProperties = System.getProperties();
 systemProperties.put(&quot;net.spy.log.LoggerImpl&quot;, &quot;net.spy.memcached.compat.log.Log4JLogger&quot;);
 //systemProperties.put(&quot;net.spy.log.LoggerImpl&quot;, &quot;net.spy.memcached.compat.log.SunLogger&quot;);
 System.setProperties(systemProperties);
 </code></pre>
-
 <p>如果你跟我一样还用couchbase的话，在log4j的配置文件的最后加上：</p>
 <pre><code class="properties">log4j.looger.com.couchbase.client = ERROR
 log4j.additivity.com.couchbase.client = false
 </code></pre>
-
 <p>httpclient这个库的log，分了3个，而且不是继承的，所以要分开关：</p>
 <pre><code class="properties">log4j.logger.httpclient.wire.header=INFO
 log4j.logger.httpclient.wire.content=INFO
 log4j.logger.org.apache.commons.httpclient = INFO
 </code></pre>
-
-<h2 id="_2">怎样把配置文件放在包的外面</h2>
+<h2 id="怎样把配置文件放在包的外面">怎样把配置文件放在包的外面</h2>
 <p>请看我另外一篇文章<a href="/blog/2012/11/07/log4j-properties-out-of-jar.html" title="log4j怎样把配置文件放在包外">《log4j怎样把配置文件放在包外》</a></p>
 
 <div class="cc">

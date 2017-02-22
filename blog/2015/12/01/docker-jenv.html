@@ -93,18 +93,17 @@
         </div>
 
         <div class="post-content">
-					<h2 id="_1">引子</h2>
+					<h2 id="引子">引子</h2>
 <p>这星期有位前端同事需要做一些简单的后端工作，所以就使用了我在docker-hub上的后端镜像，镜像是私有的当然是不方便透露了，但是是基于<a href="https://hub.docker.com/r/chaopeng/jenv/">chaopeng/jenv</a>制作的。然后那天办公室的网速又不好，足足下了2分钟才下完。然后我那位同事就向我投诉了我做的镜像太大了。所以我就开始给镜像做减肥。</p>
-<h2 id="800m-565m">忘记清理缓存（800M -&gt; 565M）</h2>
+<h2 id="忘记清理缓存800m565m">忘记清理缓存（800M -&gt; 565M）</h2>
 <p>看了下镜像的大小</p>
 <pre><code>➜  ~  sudo docker images
 REPOSITORY           TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 chaopeng/jenv        latest              5b752e05eee4        3 weeks ago         801.2 MB
 centos               latest              e9fa5d3a0d0e        6 weeks ago         172.3 MB
 </code></pre>
-
 <p><code>chaopeng/jenv</code>果然很大了，赶紧进去看看，原来jenv的下载缓存忘记清理，赶紧跑一下<code>jenv clean</code>。立马减肥176M。顺手跑一下<code>yum clean all</code>，再省60M。成功减肥到565M，其中355M属于java，210M属于centos及其依赖。如果再想优化还能删什么呢？可以删java下面的jre、src、man这些文件。</p>
-<h2 id="os">更换依赖os</h2>
+<h2 id="更换依赖os">更换依赖os</h2>
 <p>既然不考虑优化java，下面能减肥的就只有os这块了，在docker里，其实系统镜像承担的就仅仅是系统目录以及软件包管理的作用。所以我pull了下传统的系统镜像来比对。</p>
 <pre><code>➜  ~  sudo docker images       
 REPOSITORY           TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
@@ -114,30 +113,26 @@ centos               latest              e9fa5d3a0d0e        6 weeks ago        
 base/archlinux       latest              a6e872e6025d        5 months ago        278.7 MB
 ubuntu               latest              e9ae3c220b23        3 weeks ago         187.9 MB
 </code></pre>
-
 <p>体积都不小，而且像centos连curl都还没装，究竟为啥这么大，进去看看centos这个镜像其实还挺奇葩的。curl都不装，倒是默认装了个python，可以猜想大多数传统镜像都做了类似的事情。刚好前天在<a href="http://weibo.com/1609119537/D51JkrqYQ?from=page_1005051609119537_profile&amp;wvr=6&amp;mod=weibotime&amp;type=comment">瓜总的微博下看到有人安利alpine</a>，顺手试试吧。</p>
 <pre><code>➜  ~  sudo docker images       
 REPOSITORY           TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 alpine               latest              8a648f689ddb        11 weeks ago        5.244 MB
 </code></pre>
-
 <p>这玩意这够小啊，当然也就是什么都没有的状态了，不过有包管理器，自己写个Dockerfile试试build安装jenv的依赖看看。</p>
 <pre><code class="Dockerfile">FROM alpine:latest
 
 RUN apk add --update bash curl zip &amp;&amp; \
     rm -rf /var/cache/apk/*
 </code></pre>
-
 <p>build出来的结果是</p>
 <pre><code>➜  ~  sudo docker images       
 REPOSITORY           TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 alpine               latest              8a648f689ddb        11 weeks ago        5.244 MB
 chaopeng/alpine      latest              8998bdbddf9a        About an hour ago   9.813 MB
 </code></pre>
-
 <p>所以说使用alpine将近可以又节省190M。</p>
 <p>当然这样的东西必然有些不足的地方，比如说源里面的东西比较少，第三方支持几乎没有，这样就导致很多软件并不适合使用alpine来做os包。但是我的这个jenv就很合适了，软件上的依赖很简单。注意oracle-jdk对glibc有依赖，需要找个alpine的glibc包安装。</p>
-<h2 id="_2">总结</h2>
+<h2 id="总结">总结</h2>
 <ol>
 <li>docker镜像不是自己用的os，有缓存用完就清理掉</li>
 <li>选择合适的系统镜像</li>

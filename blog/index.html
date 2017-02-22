@@ -97,24 +97,19 @@
 		</div>
 
 		<div class="post-content" >
-			<div class="toc">
+			<ul>
+<li><a href="#引子">引子</a></li>
+<li><a href="#环境部署">环境部署</a></li>
+<li><a href="#链接">链接</a></li>
+<li><a href="#代码片段">代码片段</a>
 <ul>
-<li><a href="#_1">引子</a></li>
-<li><a href="#_2">环境部署</a></li>
-<li><a href="#_3">链接</a></li>
-<li><a href="#_4">代码片段</a><ul>
-<li><a href="#call-stack">怎样获得call stack</a></li>
+<li><a href="#怎样获得callstack">怎样获得call stack</a></li>
 </ul>
 </li>
-<li><a href="#_5">测试</a></li>
+<li><a href="#测试">测试</a></li>
 </ul>
-</div>
-<h2 id="_1">引子</h2>
-<p>关注我<a href="http://weibo.com/chaojianpeng">微博</a>的朋友都知道我最近去了Google的Chrome组。
-具体我所在的组是在做Chromium的输入相关的工作，比如鼠标事件，键盘事件，手势事件之类的东西，
-所以大家有相关的bug也可以报给我。
-因为工作不涉及闭源部分，基本上我算是一个开源软件工作者。
-本文也会只涉及Chromium的开发，下面我统一叫Chrome。</p>
+<h2 id="引子">引子</h2>
+<p>关注我<a href="http://weibo.com/chaojianpeng">微博</a>的朋友都知道我最近去了Google的Chrome组。 具体我所在的组是在做Chromium的输入相关的工作，比如鼠标事件，键盘事件，手势事件之类的东西， 所以大家有相关的bug也可以报给我。 因为工作不涉及闭源部分，基本上我算是一个开源软件工作者。 本文也会只涉及Chromium的开发，下面我统一叫Chrome。</p>
 		</div>
 
 		<div class="post-tags">
@@ -152,12 +147,8 @@
 
 		<div class="post-content" >
 			<ul>
-<li><a href="https://github.com/ben-manes/gradle-versions-plugin">gradle-versions-plugin</a>可以很方便检查依赖库的版本更新情况，至于更不更新是你的问题了。定期检查一下总是没有错的。</li>
-<li><a href="https://github.com/ajoberstar/gradle-git">gradle-git</a>可以在gradle中调用git，比如release时候自动打tag，build的时候将commit-id打进去，build的时候警告git还没有commit。</li>
-<li>idea插件: idea.module.excludeDirs可以设置不包含的文件夹</li>
-<li>apply from 可以包含其他gradle文件</li>
 <li>
-<p>settings.gradle 自动包含子项目（子项目需要有build.gradle文件）:</p>
+<p><a href="https://github.com/ben-manes/gradle-versions-plugin">gradle-versions-plugin</a>可以很方便检查依赖库的版本更新情况，至于更不更新是你的问题了。定期检查一下总是没有错的。</p>
 		</div>
 
 		<div class="post-tags">
@@ -176,7 +167,7 @@
 		</div>
 
 		<div class="post-content" >
-			<h2 id="_1">引子</h2>
+			<h2 id="引子">引子</h2>
 <p>这星期有位前端同事需要做一些简单的后端工作，所以就使用了我在docker-hub上的后端镜像，镜像是私有的当然是不方便透露了，但是是基于<a href="https://hub.docker.com/r/chaopeng/jenv/">chaopeng/jenv</a>制作的。然后那天办公室的网速又不好，足足下了2分钟才下完。然后我那位同事就向我投诉了我做的镜像太大了。所以我就开始给镜像做减肥。</p>
 		</div>
 
@@ -197,7 +188,7 @@
 		</div>
 
 		<div class="post-content" >
-			<h2 id="_1">缘起</h2>
+			<h2 id="缘起">缘起</h2>
 <p>ChaosBlog 自从 2013-01-06 完成以后就一直没有什么大的变动。做得最多就是换换 CDN。当然这3年了 ChaosBlog 也一直用的好好的。早一段时间，我看到一个新的库 <a href="http://clipboardjs.com/">clipboardjs</a> 的出现，很适合用于替换我以前用 flash 实现的剪贴板功能，所以上个月有空，我就给 <a href="https://github.com/chaopeng/chaoscodebox">ChaosCodebox</a> 换上了，换上的过程也是十分轻松。但是想了想经过了3年是时候去以前的代码，鄙视一下以前的自己。所以就有了这个重构的计划。</p>
 		</div>
 
@@ -216,7 +207,7 @@
 		</div>
 
 		<div class="post-content" >
-			<h2 id="2015-10-06-0811-est">2015-10-06 08:11 EST</h2>
+			<h2 id="201510060811est">2015-10-06 08:11 EST</h2>
 <p>早上我被CTO的Slack信息吵醒，CTO说AWS给我们发了一封邮件说我们的一台服务器由于硬件故障down掉了。CTO查了一下那是我们的数据仓库，用于几乎无用数据存储。由于这个数据仓库数据多，增长速度也快，基于成本的考虑这是一个集群的单点。尽管有服务往那个数据仓库写入，但是也都catch掉异常。所以当时CTO测试了一下认为没有问题，所以也就说了暂时不需要处理。我继续睡觉。</p>
 		</div>
 

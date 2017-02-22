@@ -95,19 +95,18 @@
         <div class="post-content">
 					<p>在 In The Chat 这家公司，由于没有专业的运维，以前兼职运维的同事又走了，我又要兼职运维了（老板你应该给我两份薪水才对啊）。前几个星期，CTO 叫我用 OSSEC 把服务器报警做一下，翻一下之前的文档，发现以前只有一个重启的报警，这个重启报警是咋做的呢，挂一个发邮件的脚本到 <code>/etc/rc3.d/</code>。这也略山寨了。</p>
 <p>这个 OSSEC，看文档看上去不错，但是没搞过还是不敢用，赶紧问问专业人士肥龙哥，肥龙哥说，他们也用这个。好吧信肥龙哥就对了。</p>
-<h2 id="_1">安装</h2>
+<h2 id="安装">安装</h2>
 <p>先装一台中心服务器，OSSEC 的安装还是很简单的，下载解压，然后 <code>sudo ./install.sh</code>，第一个类型选 <code>server</code>，然后配置 SMTP，这里 OSSEC 不支持需要登录的 SMTP，所以最好装一个 sendmail 然后 SMTP 指向本地的 sendmail，后面跟着一路默认就是了。安装完成以后要去 <code>ossec-path/bin/manage_agents</code> - <code>Add an agent</code> - <code>Extract key for an agent</code> 有多少台机子要监控的就做多少次。然后去到 <code>ossec-path/etc/ossec.conf</code> 将要监控的网段加进去:</p>
 <pre><code class="xml">&lt;remote&gt;
   &lt;connection&gt;syslog&lt;/connection&gt;
 + &lt;allowed-ips&gt;192.168.0.0/16&lt;/allowed-ips&gt;
 &lt;/remote&gt;
 </code></pre>
-
 <p>这时候你就可以启动 OSSEC 了。</p>
 <p>然后到每一台要监控的装一次，这次类型选择 agent。完成以后到 <code>ossec-path/bin/manage_agents</code> - <code>Import key from the server</code>。然后启动就可以了。</p>
-<h2 id="_2">添加策略</h2>
+<h2 id="添加策略">添加策略</h2>
 <p>具体自定义策略的教程在<a href="http://ossec-docs.readthedocs.org/en/latest/manual/rules-decoders/create-custom.html">这里</a>。</p>
-<h3 id="_3">重启报警</h3>
+<h3 id="重启报警">重启报警</h3>
 <p>其实机子重启的时候，OSSEC 已经有一个 level-3 的 Ossec agent started 的报警。但是这个报警显然是不够明确的，所以我们需要加一条规则来做重启报警，</p>
 <p>现在我们先在所有的 ossec.conf 差不多最后添加：</p>
 <pre><code class="xml">&lt;localfile&gt;
@@ -115,7 +114,6 @@
   &lt;command&gt;who -b&lt;/command&gt;
 &lt;/localfile&gt;
 </code></pre>
-
 <p>然后在 server 的 <code>ossec-path/rules/ossec_rules.xml</code> 添加：</p>
 <pre><code class="xml">&lt;rule id=&quot;110002&quot; level=&quot;10&quot;&gt;
   &lt;if_sid&gt;530&lt;/if_sid&gt;
@@ -124,9 +122,8 @@
   &lt;description&gt;Reboot Alert. &lt;/description&gt;
 &lt;/rule&gt;
 </code></pre>
-
 <p>然后重启所有 OSSEC 服务就可以了。</p>
-<h2 id="_4">使用注意</h2>
+<h2 id="使用注意">使用注意</h2>
 <p>今天，我们的一台测试服务器突然 ssh 登录不了，错误有提示 <code>connection reset</code> 也有提示 <code>connection closed</code>，收到 email 日志提示是这个 <code>POSSIBLE BREAK-IN ATTEMPT!</code>，确实由于我们的 hostname 是不对应的，所以需要手动关掉 OSSEC 的一条规则防止以外发生。规则在 <code>rules/sshd_rules.xml</code> id 为 5703。</p>
 
 <div class="cc">

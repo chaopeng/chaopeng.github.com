@@ -93,24 +93,20 @@
         </div>
 
         <div class="post-content">
-					<div class="toc">
-<ul>
-<li><a href="#home">home目录切换回英文</a></li>
-<li><a href="#windows">安装windows字体</a></li>
-<li><a href="#texlive">安装texlive</a></li>
-<li><a href="#_1">开机自启</a></li>
+					<ul>
+<li><a href="#home目录切换回英文">home目录切换回英文</a></li>
+<li><a href="#安装windows字体">安装windows字体</a></li>
+<li><a href="#安装texlive">安装texlive</a></li>
+<li><a href="#开机自启">开机自启</a></li>
 </ul>
-</div>
-<h2 id="home">home目录切换回英文</h2>
+<h2 id="home目录切换回英文">home目录切换回英文</h2>
 <pre><code class="bash">export LANG=en_US
 xdg-user-dirs-gtk-update
 </code></pre>
-
 <p>选上不再提示，点继续。然后换回中文：</p>
 <pre><code class="bash">export LANG=zh_CN
 </code></pre>
-
-<h2 id="windows">安装windows字体</h2>
+<h2 id="安装windows字体">安装windows字体</h2>
 <ol>
 <li>把需要的字体ttf文件放到一个文件夹并复制到<code>/usr/share/fonts</code></li>
 <li>修改权限<code>sudo chmod 644 /usr/share/fonts/winfonts/*</code></li>
@@ -120,21 +116,18 @@ xdg-user-dirs-gtk-update
 sudo mkfontdir
 sudo fc-cache -fsv
 </code></pre>
-
-<h2 id="texlive">安装texlive</h2>
-<p>1 安装perl-tk </p>
-<p>2 挂载texlive镜像 </p>
+<h2 id="安装texlive">安装texlive</h2>
+<p>1 安装perl-tk</p>
+<p>2 挂载texlive镜像</p>
 <pre><code class="bash">sudo mkdir /mnt/iso
 sudo mount -o loop texlive2010.iso /mnt/iso
 </code></pre>
-
 <p>3 安装</p>
 <pre><code class="bash">sudo /mnt/iso/install-tl --gui
 </code></pre>
-
 <p>最后那里有项“自动创建链接”选上。生活就会很简单了。</p>
-<h2 id="_1">开机自启</h2>
-<p>安装这个<code>sysv-rc-conf</code>。告别手动改rc。 </p>
+<h2 id="开机自启">开机自启</h2>
+<p>安装这个<code>sysv-rc-conf</code>。告别手动改rc。</p>
 
 <div class="cc">
   <div class="cc-icon">

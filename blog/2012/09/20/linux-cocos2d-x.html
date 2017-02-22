@@ -93,21 +93,19 @@
         </div>
 
         <div class="post-content">
-					<div class="toc">
-<ul>
-<li><a href="#android-sdk">安装Android SDK</a></li>
-<li><a href="#android-ndk">安装Android NDK</a></li>
-<li><a href="#cocos2d-x">安装cocos2d-x的依赖程序</a></li>
-<li><a href="#cocos2d-x_1">编译cocos2d-x</a></li>
-<li><a href="#cocosdenshion">编译CocosDenshion</a></li>
+					<ul>
+<li><a href="#安装androidsdk">安装Android SDK</a></li>
+<li><a href="#安装androidndk">安装Android NDK</a></li>
+<li><a href="#安装cocos2dx的依赖程序">安装cocos2d-x的依赖程序</a></li>
+<li><a href="#编译cocos2dx">编译cocos2d-x</a></li>
+<li><a href="#编译cocosdenshion">编译CocosDenshion</a></li>
 </ul>
-</div>
 <p>网上配置cocos2d-x的windows开发部署有不少，可惜很多都不能真正完成安装。linux的配置文章只有聊聊数篇。前天，<a href="http://weibo.com/gvgarven" title="GV">GV</a>就搞了一天都没有好。看了一下因为要g++做交叉编译，要装cywin。想想windows做这种东西还是各种坑。算了，还是在linux下开发好了。本文分上下两篇，上篇是linux下Android开发环境配置，下篇是cocos2d-x的配置。本文默认你已经知道：</p>
 <ul>
 <li>linux下怎么装Java的。不会的话，看<a href="/blog/2012/09/16/ubuntu-sun-jdk.html">这篇</a>。</li>
 <li>怎么翻X，由于需要翻X的步骤比较多，大家就一直翻着搞吧。</li>
 </ul>
-<h2 id="android-sdk">安装Android SDK</h2>
+<h2 id="安装androidsdk">安装Android SDK</h2>
 <ul>
 <li>下载<a href="https://developer.android.com/sdk/index.html">Android SDK</a>。解压到<code>/opt</code>。</li>
 <li>打开GUI安装</li>
@@ -116,15 +114,13 @@
 chmod +x android
 ./android update sdk
 </code></pre>
-
 <ul>
 <li>配置SDK的环境变量</li>
 </ul>
 <p>在<code>/etc/profile</code>末尾添加：</p>
-<pre><code class="text">export ANDROID_HOME=/opt/android-sdk-linux
+<pre><code class="bash">export ANDROID_HOME=/opt/android-sdk-linux
 </code></pre>
-
-<h2 id="android-ndk">安装Android NDK</h2>
+<h2 id="安装androidndk">安装Android NDK</h2>
 <ul>
 <li>
 <p>下载<a href="https://developer.android.com/sdk/index.html">Android NDK</a>。解压到<code>/opt/android-sdk-linux</code>。</p>
@@ -134,26 +130,23 @@ chmod +x android
 </li>
 </ul>
 <p>在<code>/etc/profile</code>末尾添加：</p>
-<pre><code class="text">export NDK_ROOT=/opt/android-sdk-linux/android-ndk
+<pre><code class="bash">export NDK_ROOT=/opt/android-sdk-linux/android-ndk
 export COCOS2DX_ROOT=/home/chao/cworkspace/cocos2d-x
 export PATH=$NDK_ROOT:$ANDROID_HOME/platform-tools:$PATH
 </code></pre>
-
 <ul>
 <li>解决x64下ndk-build报错</li>
 </ul>
-<pre><code class="text">sudo apt-get install libc6-dev-i386 ia32-libs
+<pre><code class="bash">sudo apt-get install libc6-dev-i386 ia32-libs
 </code></pre>
-
-<p>安装Eclipse开发插件ADT
-Eclipse最好下载C/C++版本，或者下Classic装CDT插件。</p>
+<p>安装Eclipse开发插件ADT Eclipse最好下载C/C++版本，或者下Classic装CDT插件。</p>
 <ul>
 <li>Eclipse &gt; Help &gt; Install New Software，插件安装路径是<code>https://dl-ssl.google.com/android/eclipse/</code> 。</li>
 <li>Eclipse &gt; Windows &gt; Preferences &gt; Android 填入Android SDK路径。</li>
 <li>Eclipse &gt; Windows &gt; Preferences &gt; Android &gt; NDK 填入Android NDK路径。</li>
 </ul>
 <p>至此linux下Android开发环境以及配置好了，想测试一下可以跑一下ndk下面的示例。附<a href="http://blog.csdn.net/chenghai2011/article/details/7270664">linux下如何用小米手机Debug</a>。</p>
-<p><strong> 参考文献：</strong></p>
+<p>** 参考文献：**</p>
 <ul>
 <li><a href="http://www.linuxsight.com/blog/1808">Android开发环境搭建(Linux篇)</a></li>
 <li><a href="http://blog.csdn.net/yxz329130952/article/details/7429124">Linux下NDK的安装配置</a></li>
@@ -161,34 +154,28 @@ Eclipse最好下载C/C++版本，或者下Classic装CDT插件。</p>
 </ul>
 <hr />
 <p>下面是cocos2d-x的部署，如果你并不需要支持cocos2d-x可以忽略。</p>
-<h2 id="cocos2d-x">安装cocos2d-x的依赖程序</h2>
+<h2 id="安装cocos2dx的依赖程序">安装cocos2d-x的依赖程序</h2>
 <p>安装glfw和zlib</p>
 <pre><code class="bash">sudo apt-get install libglfw-dev zlib
 </code></pre>
-
-<h2 id="cocos2d-x_1">编译cocos2d-x</h2>
+<h2 id="编译cocos2dx">编译cocos2d-x</h2>
 <p>在cocos2d-x目录下</p>
 <pre><code class="bash">cd cocos2dx／proj.linux
 make
 sudo cp libcocos2d.so /usr/lib
 sudo ldconfig
 </code></pre>
-
-<p><strong> 以下是一些我遇到的猥琐的地方：</strong>
-cocos2d-x依赖于libcurl。在ubuntu的源下，这个包的名字叫<code>libcurl4-gnutls-dev</code>，而不是curl官网写的<code>libcurl3</code>。</p>
-<h2 id="cocosdenshion">编译CocosDenshion</h2>
+<p>** 以下是一些我遇到的猥琐的地方：** cocos2d-x依赖于libcurl。在ubuntu的源下，这个包的名字叫<code>libcurl4-gnutls-dev</code>，而不是curl官网写的<code>libcurl3</code>。</p>
+<h2 id="编译cocosdenshion">编译CocosDenshion</h2>
 <p>在cocos2d-x目录下</p>
 <pre><code class="bash">cd CocosDenshion／proj.linux
 make
 sudo cp libcocosdenshion.so /usr/lib
 sudo ldconfig
 </code></pre>
-
-<p><strong> 以下是一些我遇到的猥琐的地方：</strong>
-到<code>CocosDenshion/third_party/fmod/lib64/api/lib find libfmodex64.so</code>的时候都会出错。
-由于ubuntu的源没有这个库，只能自己编译了。在<a href="http://www.fmod.org/">fmod.org</a>下载<code>fomdex</code>，回来<code>make install</code>。再复制一份到<code>CocosDenshion/third_party/fmod/lib64/api/lib</code>如此便可解决问题。</p>
+<p>** 以下是一些我遇到的猥琐的地方：** 到<code>CocosDenshion/third_party/fmod/lib64/api/lib find libfmodex64.so</code>的时候都会出错。 由于ubuntu的源没有这个库，只能自己编译了。在<a href="http://www.fmod.org/">fmod.org</a>下载<code>fomdex</code>，回来<code>make install</code>。再复制一份到<code>CocosDenshion/third_party/fmod/lib64/api/lib</code>如此便可解决问题。</p>
 <p>现在试试跑Sample的HelloCpp吧。</p>
-<p><strong> 参考文献：</strong></p>
+<p>** 参考文献：**</p>
 <ul>
 <li><a href="http://blog.csdn.net/laschweinski/article/details/6726311">cocos2d-x for linux的编译和运行</a></li>
 <li><a href="http://leenjewel.blog.163.com/blog/static/60193792201222863531203/">Archlinux 64 位环境下编译 cocos2d-x 出错的解决办法</a></li>

@@ -97,9 +97,8 @@
 <pre><code class="java">String s = &quot;1&amp;2&amp;3&quot;;
 String[] substrs = s.split(&quot;&amp;&quot;);
 </code></pre>
-
 <p>但是这个常用的函数是有不少坑的。</p>
-<h2 id="_1">对特殊串的分割处理</h2>
+<h2 id="对特殊串的分割处理">对特殊串的分割处理</h2>
 <p>比如这样的例子</p>
 <pre><code class="java">//--------1---------
 String[] substrs = &quot;&quot;.split(&quot;&amp;&quot;); 
@@ -114,17 +113,13 @@ String[] substrs = &quot;&amp;&amp;&quot;.split(&quot;&amp;&quot;);
 String[] substrs = &quot;1&amp;&amp;&quot;.split(&quot;&amp;&quot;); 
 // 这样会substrs 的长度是1, 这个按照上面的逻辑稍微又好理解了一些
 </code></pre>
-
-<h2 id="_2">出现错误不抛出</h2>
+<h2 id="出现错误不抛出">出现错误不抛出</h2>
 <p>上面的问题通过尝试还是可以有所了解的。问题出现在一次我对uri的处理上面，如这样的串: <code>http://www.baidu.com/s?wd=av</code>，ok现在我要分割这个问号了：</p>
 <pre><code class="java">String[] substr = &quot;http://www.baidu.com/s?wd=av&quot;.split(&quot;?&quot;);
 </code></pre>
-
 <p>好了，线程直接就断掉了，tmd这什么回事？会想一下才记起来split是支持正则表达式的，这个?确实会引发问题，但是尼玛的给个异常不行吗？这绝对是坑新人啊。</p>
 <hr />
-<p>基于以上问题，我还是建议大家在分割字符串的时候使用StringTokenizer这个类。这个类尽管比较旧，但是能解决上面几个问题。
-特殊串处理的结果</p>
-<hr />
+<h2 id="基于以上问题我还是建议大家在分割字符串的时候使用stringtokenizer这个类这个类尽管比较旧但是能解决上面几个问题特殊串处理的结果">基于以上问题，我还是建议大家在分割字符串的时候使用StringTokenizer这个类。这个类尽管比较旧，但是能解决上面几个问题。 特殊串处理的结果</h2>
 <pre><code class="java">//--------1---------
 StringTokenizer st = new StringTokenizer(&quot;&quot;, &quot;&amp;&quot;);
 int n = st.countTokens(); // 结果是0
@@ -135,9 +130,8 @@ int n = st.countTokens(); // 结果是0
 StringTokenizer st = new StringTokenizer(&quot;1&amp;&quot;, &quot;&amp;&quot;);
 int n = st.countTokens(); // 结果是1
 </code></pre>
-
 <p>这样的结果比起split好处理多了</p>
-<h2 id="_3">不支持正则表达式</h2>
+<h2 id="不支持正则表达式">不支持正则表达式</h2>
 <p>StringTokenizer不支持正则表达式，但是支持一种很奇怪的方法delim的每一个字符都会视作分割符。当然如果有这样的需求的话，还是用split的正则表达式比较划算。</p>
 
 <div class="cc">

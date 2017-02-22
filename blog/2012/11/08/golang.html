@@ -94,43 +94,40 @@
 
         <div class="post-content">
 					<p>scala看到一半，还是觉得命令式比较适合我，这几天开始看golang。习惯了看语言先看坑，下面记录一下坑。有些可能不算是坑，反正不是我习惯的我记录一下而已。这里有一个不错的学习golang的入门教程--<a href="http://tour.golang.tc">golang指南</a>。</p>
-<h2 id="function-ends-without-a-return-statement">函数的function ends without a return statement</h2>
+<h2 id="函数的functionendswithoutareturnstatement">函数的function ends without a return statement</h2>
 <p>这是个很奇葩的bug，据<a href="http://code.google.com/p/go/issues/detail?id=65" title="define when return is necessary" target="_blank">golang-Issue65</a>这是个编译器的bug，唯一不懂的是，这个bug是09年提出的，干嘛还不修复呢？先演示一下：</p>
 <pre><code class="golang">func example(x int) int {
-    if x == 0 {
-        return 5
-    } else {
-        return x
-    }
+	if x == 0 {
+		return 5
+	} else {
+		return x
+	}
 }
 </code></pre>
-
 <p>就是一个这样的函数居然会报错。。。埋坑的办法还是有的。。。</p>
 <pre><code class="golang">func example(x int) int {
-    if x == 0 {
-        return 5
-    } else {
-        return x
-    }
-    return 0
+	if x == 0 {
+		return 5
+	} else {
+		return x
+	}
+	return 0
 }
 </code></pre>
-
 <p>这个真心奇葩啊，在java这样弄会报dead code的。。。</p>
-<h2 id="_1">真正的强类型</h2>
+<h2 id="真正的强类型">真正的强类型</h2>
 <p>golang是真正的强类型啊，强到，我早已经习惯的String + int也是不行了。注意这个坑了，这样连接字符串的方法是：</p>
 <pre><code class="golang">s := fmt.Sprint(&quot;aaa&quot;, 0)
 // 或者
 s := fmt.Sprintf(&quot;aaa%v&quot;, 0)
 </code></pre>
-
 <p>唯一值得庆幸的是String + String还是存在的。</p>
-<h2 id="array">array的定义</h2>
+<h2 id="array的定义">array的定义</h2>
 <ul>
 <li>array暂时我是没有找到有办法可以定义为const的&lt;</li>
 <li>array不可以用变量来定义长度</li>
 </ul>
-<h2 id="slice">小心slice</h2>
+<h2 id="小心slice">小心slice</h2>
 <p>golang有引用类型的，必须小心，该复制的时候千万不要吝啬。内建函数有copy()。slice定义可以使用变量定义长度，需要用make()来申请空间。</p>
 <pre><code class="golang">l := 2
 sli1 := make([]int, l)
@@ -150,10 +147,9 @@ sli1 = append(sli1, 1, 2, 3, 4, 5, 6, 7, 8)
 sli1[2] = 10
 fmt.Println(&quot;sli2=&quot;, sli2)
 </code></pre>
-
-<p>上面代码运行的结果是:
+<p>上面代码运行的结果是:</p>
 <pre>
-sli1容量= 2</p>
+sli1容量= 2
 
 <div class="cc">
   <div class="cc-icon">
