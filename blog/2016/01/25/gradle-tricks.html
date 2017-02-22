@@ -94,12 +94,20 @@
 
         <div class="post-content">
 					<ul>
-<li><a href="https://github.com/ben-manes/gradle-versions-plugin">gradle-versions-plugin</a>可以很方便检查依赖库的版本更新情况，至于更不更新是你的问题了。定期检查一下总是没有错的。</li>
-<li><a href="https://github.com/ajoberstar/gradle-git">gradle-git</a>可以在gradle中调用git，比如release时候自动打tag，build的时候将commit-id打进去，build的时候警告git还没有commit。</li>
-<li>idea插件: idea.module.excludeDirs可以设置不包含的文件夹</li>
-<li>apply from 可以包含其他gradle文件</li>
-<li>settings.gradle 自动包含子项目（子项目需要有build.gradle文件）:</li>
-</ul>
+<li>
+<p><a href="https://github.com/ben-manes/gradle-versions-plugin">gradle-versions-plugin</a>可以很方便检查依赖库的版本更新情况，至于更不更新是你的问题了。定期检查一下总是没有错的。</p>
+</li>
+<li>
+<p><a href="https://github.com/ajoberstar/gradle-git">gradle-git</a>可以在gradle中调用git，比如release时候自动打tag，build的时候将commit-id打进去，build的时候警告git还没有commit。</p>
+</li>
+<li>
+<p>idea插件: idea.module.excludeDirs可以设置不包含的文件夹</p>
+</li>
+<li>
+<p>apply from 可以包含其他gradle文件</p>
+</li>
+<li>
+<p>settings.gradle 自动包含子项目（子项目需要有build.gradle文件）:</p>
 <pre><code class="gradle">def path = [] as LinkedList
 rootDir.traverse(
   type: groovy.io.FileType.FILES,
@@ -108,9 +116,9 @@ rootDir.traverse(
   preDir: { path &lt;&lt; it.name },
   postDir: { path.removeLast() }) { if (path) include path.join(&quot;:&quot;) }
 </code></pre>
-<ul>
-<li>build时忽略某些文件:</li>
-</ul>
+</li>
+<li>
+<p>build时忽略某些文件:</p>
 <pre><code class="gradle">sourceSets {
   main {
     java {
@@ -119,6 +127,8 @@ rootDir.traverse(
   }
 }
 </code></pre>
+</li>
+</ul>
 
 <div class="cc">
   <div class="cc-icon">
