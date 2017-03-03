@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Chrome开发笔记</title>
-<meta name="description" content="Chrome的开发笔记整理">
+<title>开发Chrome的工具-1</title>
+<meta name="description" content="开发Chrome的工具整理">
 <meta name="author" content="ChaoPeng">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -88,48 +88,53 @@
 		<div class="col-md-9 post">
 			<!-- post -->
         <div class="post-title">
-					<h1>【<a href="/blog/categories.html#Chromium">Chromium</a>】 Chrome开发笔记</h1>
-          <div><i class="fa fa-calendar"></i> 2016-09-14</div>
+					<h1>【<a href="/blog/categories.html#Chromium">Chromium</a>】 开发Chrome的工具-1</h1>
+          <div><i class="fa fa-calendar"></i> 2017-03-02</div>
         </div>
 
         <div class="post-content">
 					<ul>
-<li><a href="#引子">引子</a></li>
-<li><a href="#环境部署">环境部署</a></li>
-<li><a href="#链接">链接</a></li>
-<li><a href="#代码片段">代码片段</a>
+<li><a href="#ideeditor">IDE/Editor</a></li>
+<li><a href="#debugger">Debugger</a></li>
+<li><a href="#配合codesearch的工具">配合Code Search的工具</a>
 <ul>
-<li><a href="#怎样获得callstack">怎样获得call stack</a></li>
+<li><a href="#todo">TODO</a></li>
 </ul>
 </li>
-<li><a href="#测试">测试</a></li>
+<li><a href="#下载chromiumarchive版本">下载Chromium Archive版本</a></li>
+<li><a href="#复制trybot的编译参数">复制trybot的编译参数</a></li>
+<li><a href="#给trybot提交perftest">给trybot提交perf test</a></li>
 </ul>
-<h2 id="引子">引子</h2>
-<p>关注我<a href="http://weibo.com/chaojianpeng">微博</a>的朋友都知道我最近去了Google的Chrome组。 具体我所在的组是在做Chromium的输入相关的工作，比如鼠标事件，键盘事件，手势事件之类的东西， 所以大家有相关的bug也可以报给我。 因为工作不涉及闭源部分，基本上我算是一个开源软件工作者。 本文也会只涉及Chromium的开发，下面我统一叫Chrome。</p>
-<h2 id="环境部署">环境部署</h2>
-<p>我部署的环境在Linux上的，基本上我们组的同事也是主要在Linux工作站（24核48线程，编译一遍只需要10分钟）上开发， 需要远程开发的时候就用笔记本的Chrome Remote Desktop，完全用SSH会导致Layout Test无法运行。</p>
-<p>部署步骤可以看这篇<a href="https://www.chromium.org/developers/how-tos/get-the-code">文章</a>， Android的话可以看这篇<a href="https://chromium.googlesource.com/chromium/src/+/master/docs/android_build_instructions.md">文章</a>。 Chrome的构建系统以前用的是GYP，现在用的是ninja，都是为Chrome写的，所以基本也就只有Chrome在用-_-|||。</p>
-<p>由于构建系统不是主流的玩意，基本上不需要考虑有很好的IDE支持。对于IDE支持我暂时尝试过Clion和Eclipse， 结果是Clion基本不需要考虑了，读入项目等待了1个小时都还没有反应；Eclipse的话相对好一些，大概2分钟就开始有反应， 然后后台index，index大概花了2个半小时，写代码的时候的提示还可以，只是不可以关，Eclipse没有对index的结果缓存。</p>
-<p>IDE行不通之后我试了VIM，VIM的配置文档在<a href="https://chromium.googlesource.com/chromium/src.git/+/master/tools/vim/chromium.ycm_extra_conf.py">这里</a>。 注意要先配好Clang，而去将Build改成用Clang，文档在<a href="https://chromium.googlesource.com/chromium/src/+/master/docs/clang.md">这里</a>。 我配完玩了有点鸡肋，补全找到的东西不是很好，跳转会显示找不到文件，会报一堆错。我本来以为只有我自己是这样，问了一下其他同事，他们也是这样，我可受不了这样的渣渣。</p>
-<p>暂时我找到最好的编辑器是Sublime Text，文档在<a href="https://chromium.googlesource.com/chromium/src/+/master/docs/linux_sublime_dev.md">这里</a>， 我昨天配了半个小时，暂时只有Lint工作得不正常（每行都报错）。代码补全还不错，不过只能在Linux下工作，而且件作者已弃坑-_-|||。</p>
-<h2 id="链接">链接</h2>
-<ul>
-<li><a href="https://cs.chromium.org/">Code Search</a></li>
-<li><a href="https://bugs.chromium.org/p/chromium/issues/list">Issue</a></li>
-<li><a href="https://www.chromium.org/developers">文档</a></li>
-<li><a href="https://chromium.googlesource.com/chromium/src/+/master/docs">比较新一点的文档</a></li>
-<li><a href="http://testthewebforward.org/docs/testharness-tutorial.html">Testharness.js</a></li>
-</ul>
-<p>吐槽一下吧，很多东西都是没有文档的，特别有些Feature是其他公司写的，连设计文档都没有-_-|||。</p>
-<h2 id="代码片段">代码片段</h2>
-<h3 id="怎样获得callstack">怎样获得call stack</h3>
-<pre><code class="c++">#include &quot;base/debug/stack_trace.h&quot;
-
-base::debug::StackTrace st; st.Print();
+<p>在Chrome也做了半年了，稍微自己做了一些工具，也用了一些别人的、第三方的工具，也做了一些文档。 在这里稍做一下整理。</p>
+<h2 id="ideeditor">IDE/Editor</h2>
+<p><a href="https://www.chromium.org/developers/">这里</a>有好几个IDE/Editor可以选，其中<code>atom</code>那个 文档我改过，<code>qtcreator</code>和<code>vscode</code>的文档是我写的。我从一开始用<code>sublime</code>折腾到<code>atom</code>再折腾 到<code>qtcreator</code>和<code>vscode</code>。现在我倾向于在workstation用<code>qtcreator</code>，在workstation里面 index整个chromium只需要3分钟，太神了，秒杀VS、Eclipse、Clion、Xcode（这些我都试了）。 然后在笔记本里面就用<code>vscode</code>，尽管没有了refactor的功能，但起码代码跳转，补全都是可以的。</p>
+<p>这是一篇我 <a href="https://www.zhihu.com/question/41857899/answer/129138208">对<code>sublime</code>,<code>atom</code>和<code>vscode</code>在Chromium下使用的体验文章</a>。</p>
+<h2 id="debugger">Debugger</h2>
+<p>尽管在大部分情况下打Log都是Chromium最常用的调试手段，但是有些时候Debuggger确实更加实用。 调试上面，可以选择的有Linux下<code>GDB</code>，Mac下<code>LLDB</code>和Windows下<code>VS</code>，Linux下的<code>LLDB</code>停不了断 点。图形化前端在Linux下可以选择<code>qtcreator</code>，Mac下可以选择<code>xcode</code>，我猜<code>vscode</code>也可以，不 过现在<code>vscode</code>的debug配置有点麻烦，我放弃了。另外在Linux下<code>GDB</code>启动很慢，我找到了个 <code>gn args</code>可以加速一点，但还是很慢在workstation上比我在rmbp上用<code>xcode</code>还慢，所以如果要用 debugger我还是推荐用<code>xcode</code>。</p>
+<h2 id="配合codesearch的工具">配合Code Search的工具</h2>
+<p>Chromium Code Search是非常强大的工具，特别是像Chromium那么庞大的代码， 但是当需要编辑就要复制文件名，然后跳转到对应行号或者函数名，太麻烦了，所以我开发了一个 <a href="https://chrome.google.com/webstore/detail/ome/ddmghiaepldohkneojcfejekplkakgjg">chrome扩展</a> ，在Chromium Code Search右键就可以在你的Editor上打开相应地文件和位置。不过需要做些 <a href="https://chromium.googlesource.com/chromium/src.git/+/master/tools/chrome_extensions/open_my_editor/README.md">配置</a>。</p>
+<ol>
+<li>安装Chrome Extension</li>
+<li>安装依赖<code>pip install bottle sh</code></li>
+<li>启动<code>omed.py</code>，<code>python ${CHROMIUM_SRC}/tools/chrome_extensions/open_my_editor/omed.py</code></li>
+<li>编写你的<code>myeditor</code>，参考<a href="https://chromium.googlesource.com/chromium/src.git/+/master/tools/chrome_extensions/open_my_editor/myeditor-example/"><code>myeditor-example/</code></a></li>
+</ol>
+<p>我另外还做了个小脚本用来从Editor跳转到Chromium Code Search。</p>
+<pre><code>chrome https://cs.chromium.org/chromium/src/${path}?l=${line}
 </code></pre>
-<h2 id="测试">测试</h2>
-<p>我做的这块有两种测试一个叫<a href="https://www.chromium.org/developers/testing/webkit-layout-tests">Layout Test</a>， 一块叫Blind Unit Test。其实二者没有很严格分开使用范围，很多不是Unit Test的也写在Blind Unit Test。 Layout Test是用HTML写的，原理是build一个开放了浏览器内部API的浏览器。这样什么东西都能测。 Blind Unit Test是Unit Test，Mock了很多东西，所以有时候逻辑不能完整跑，好处是可以拿到很多浏览器内部状态去检查。</p>
-<p>Blind Unit Test没有文档，代码在<code>third_party/WebKit/Source/web/tests</code>，然后执行<code>ninja -C out/Default webkit_unit_tests</code>运行。</p>
+<h3 id="todo">TODO</h3>
+<p>有位同事做了一个<code>sublime</code>的<a href="https://github.com/karlinjf/ChromiumXRefs">插件</a>可以使用 Code Search的index来查define，override，调用和跳转。看上去是相当的方便，我准备port到 <code>vscode</code>上，当然了<code>qtcreator</code>已经有这样的功能了。</p>
+<h2 id="下载chromiumarchive版本">下载Chromium Archive版本</h2>
+<p>Chromium的buildbot会将所有build好的二进制放到 <a href="https://commondatastorage.googleapis.com/chromium-browser-snapshots/index.html">这里</a> ，所以你可以在这里下载到最新最新的build或者你给定任意版本的build。对于我来说，有时候快速定位一 个bug在新版本能不能复现，很有用，所以我做了一个脚本专门下载最新的或者给定版本的build，代码在 <a href="https://github.com/chaopeng/chromium-downloader">这里</a>。</p>
+<h2 id="复制trybot的编译参数">复制trybot的编译参数</h2>
+<p>有些时候，trybot会返回一些在本地难以复现的错误。有些时候确实跟trybot的编译参数有关，这时候可以 试试用这个<a href="https://cs.chromium.org/chromium/src/tools/mb/mb.py">工具</a>。一个例子：</p>
+<pre><code>${CHROMIUM_SRC}/tools/mb/mb.py gen -m chromium.fyi -b &quot;Site Isolation Android&quot; &lt;output directory&gt;
+</code></pre>
+<h2 id="给trybot提交perftest">给trybot提交perf test</h2>
+<p>如果你收到一个perf regression该怎么办，很可能这个并不关你事，要证明你可以先创建一个revert patch，然后在trybot上跑一次这个test。</p>
+<pre><code>${CHROMIUM_SRC}/tools/perf/run_benchmark try $trybot $task
+</code></pre>
+<p><em>暂时就这么多了，等我有新的再开新的文章吧。</em></p>
 
 <div class="cc">
   <div class="cc-icon">
@@ -143,8 +148,8 @@ base::debug::StackTrace st; st.Print();
   </div>
   <div>
     »<b>本文链接：</b>
-    <a rel="bookmark" title="Chrome开发笔记" href="http://chaopeng.me/blog/2016/09/14/Chrome-Dev-Resources.html">
-          			http://chaopeng.me/blog/2016/09/14/Chrome-Dev-Resources.html
+    <a rel="bookmark" title="开发Chrome的工具-1" href="http://chaopeng.me/blog/2017/03/02/Chrome-Dev-Tools.html">
+          			http://chaopeng.me/blog/2017/03/02/Chrome-Dev-Tools.html
           		</a>
   </div>
   <div>
@@ -159,9 +164,9 @@ base::debug::StackTrace st; st.Print();
 <script>
 
 var disqus_config = function () {
-  this.page.url = "http://chaopeng.me/blog/2016/09/14/Chrome-Dev-Resources.html";
-  this.page.identifier = "/blog/2016/09/14/Chrome-Dev-Resources.html";
-  this.page.title = "Chrome开发笔记";
+  this.page.url = "http://chaopeng.me/blog/2017/03/02/Chrome-Dev-Tools.html";
+  this.page.identifier = "/blog/2017/03/02/Chrome-Dev-Tools.html";
+  this.page.title = "开发Chrome的工具-1";
 };
 (function() {
     var d = document, s = d.createElement('script');
