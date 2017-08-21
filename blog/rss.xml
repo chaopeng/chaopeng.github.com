@@ -6,10 +6,20 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Tue, 01 Aug 2017 01:22:25 GMT</pubDate>
-    <dc:date>2017-08-01T01:22:25Z</dc:date>
+    <pubDate>Mon, 21 Aug 2017 16:13:46 GMT</pubDate>
+    <dc:date>2017-08-21T16:13:46Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
+    <item>
+      <title>如何提交Chrome的bug</title>
+      <link>http://chaopeng.me/blog/2017/08/21/how-to-report-chromium-issue.html</link>
+      <description>如何提交Chrome的bug</description>
+      <category>Chromium</category>
+      <pubDate>Sat, 21 Jan 2017 05:08:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2017/08/21/how-to-report-chromium-issue.html</guid>
+      <dc:creator>ChaoPeng</dc:creator>
+      <dc:date>2017-01-21T05:08:00Z</dc:date>
+    </item>
     <item>
       <title>翻译：用vscode开发Chromium</title>
       <link>http://chaopeng.me/blog/2017/03/03/use-vscode-on-chromium.html</link>
@@ -199,16 +209,6 @@
       <guid>http://chaopeng.me/blog/2014/03/11/java-actor-thread.html</guid>
       <dc:creator>ChaoPeng</dc:creator>
       <dc:date>2014-01-11T05:03:00Z</dc:date>
-    </item>
-    <item>
-      <title>定时打电话给老婆</title>
-      <link>http://chaopeng.me/blog/2014/02/08/crontab-notify.html</link>
-      <description>通过crontab设置定时弹窗提醒</description>
-      <category>other</category>
-      <pubDate>Wed, 08 Jan 2014 05:02:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2014/02/08/crontab-notify.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
-      <dc:date>2014-01-08T05:02:00Z</dc:date>
     </item>
   </channel>
 </rss>
