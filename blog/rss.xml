@@ -6,10 +6,20 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Mon, 21 Aug 2017 16:13:46 GMT</pubDate>
-    <dc:date>2017-08-21T16:13:46Z</dc:date>
+    <pubDate>Wed, 25 Apr 2018 20:17:03 GMT</pubDate>
+    <dc:date>2018-04-25T20:17:03Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
+    <item>
+      <title>如果我发现了Chromium的性能问题</title>
+      <link>http://chaopeng.me/blog/2018/04/25/when-I-found-a-chromium-performance-issue.html</link>
+      <description>如果我发现了Chromium的性能问题</description>
+      <category>Chromium</category>
+      <pubDate>Thu, 25 Jan 2018 05:04:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2018/04/25/when-I-found-a-chromium-performance-issue.html</guid>
+      <dc:creator>ChaoPeng</dc:creator>
+      <dc:date>2018-01-25T05:04:00Z</dc:date>
+    </item>
     <item>
       <title>如何提交Chrome的bug</title>
       <link>http://chaopeng.me/blog/2017/08/21/how-to-report-chromium-issue.html</link>
@@ -199,16 +209,6 @@
       <guid>http://chaopeng.me/blog/2014/03/12/jvm-args.html</guid>
       <dc:creator>ChaoPeng</dc:creator>
       <dc:date>2014-01-12T05:03:00Z</dc:date>
-    </item>
-    <item>
-      <title>Java 的Actor模型——线程模型的实现</title>
-      <link>http://chaopeng.me/blog/2014/03/11/java-actor-thread.html</link>
-      <description>分析在Java实现Actor模型中的线程模型</description>
-      <category>java</category>
-      <pubDate>Sat, 11 Jan 2014 05:03:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2014/03/11/java-actor-thread.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
-      <dc:date>2014-01-11T05:03:00Z</dc:date>
     </item>
   </channel>
 </rss>
