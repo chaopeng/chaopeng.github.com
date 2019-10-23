@@ -6,10 +6,20 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Sat, 15 Jun 2019 14:51:10 GMT</pubDate>
-    <dc:date>2019-06-15T14:51:10Z</dc:date>
+    <pubDate>Wed, 23 Oct 2019 19:31:38 GMT</pubDate>
+    <dc:date>2019-10-23T19:31:38Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
+    <item>
+      <title>Nas折腾记</title>
+      <link>http://chaopeng.me/blog/2019/10/23/nas.html</link>
+      <description>记录我怎么折腾自己的Nas</description>
+      <category>linux</category>
+      <pubDate>Wed, 23 Jan 2019 05:10:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2019/10/23/nas.html</guid>
+      <dc:creator>ChaoPeng</dc:creator>
+      <dc:date>2019-01-23T05:10:00Z</dc:date>
+    </item>
     <item>
       <title>一个价值2.5亿的教程：如何开发一款自主知识产权的浏览器</title>
       <link>http://chaopeng.me/blog/2018/08/17/how-to-develop-full-homebrew-browser.html</link>
@@ -199,16 +209,6 @@
       <guid>http://chaopeng.me/blog/2014/03/31/diy-mac-mini.html</guid>
       <dc:creator>ChaoPeng</dc:creator>
       <dc:date>2014-01-31T05:03:00Z</dc:date>
-    </item>
-    <item>
-      <title>制作grub2 linux安装u盘</title>
-      <link>http://chaopeng.me/blog/2014/03/28/grub2-usb-linux-install.html</link>
-      <description>制作grub2 linux安装u盘</description>
-      <category>linux</category>
-      <pubDate>Tue, 28 Jan 2014 05:03:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2014/03/28/grub2-usb-linux-install.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
-      <dc:date>2014-01-28T05:03:00Z</dc:date>
     </item>
   </channel>
 </rss>
