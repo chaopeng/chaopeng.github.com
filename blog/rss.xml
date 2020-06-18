@@ -6,10 +6,30 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Thu, 24 Oct 2019 00:37:26 GMT</pubDate>
-    <dc:date>2019-10-24T00:37:26Z</dc:date>
+    <pubDate>Thu, 18 Jun 2020 14:15:44 GMT</pubDate>
+    <dc:date>2020-06-18T14:15:44Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
+    <item>
+      <title>Home Office升级记 - 1</title>
+      <link>http://chaopeng.me/blog/2020/06/17/home-office-setup.html</link>
+      <description>记录我第一阶段的home office布置</description>
+      <category>homeoffice</category>
+      <pubDate>Fri, 17 Jan 2020 05:06:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2020/06/17/home-office-setup.html</guid>
+      <dc:creator>ChaoPeng</dc:creator>
+      <dc:date>2020-01-17T05:06:00Z</dc:date>
+    </item>
+    <item>
+      <title>码农保健品 - Ergodox EZ键盘</title>
+      <link>http://chaopeng.me/blog/2020/06/16/ergo-keyboard.html</link>
+      <description>我买ergo键盘的经验，提供了一些比较</description>
+      <category>keyboard</category>
+      <pubDate>Thu, 16 Jan 2020 05:06:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2020/06/16/ergo-keyboard.html</guid>
+      <dc:creator>ChaoPeng</dc:creator>
+      <dc:date>2020-01-16T05:06:00Z</dc:date>
+    </item>
     <item>
       <title>Nas折腾记</title>
       <link>http://chaopeng.me/blog/2019/10/23/nas.html</link>
@@ -189,26 +209,6 @@
       <guid>http://chaopeng.me/blog/2014/11/04/how-to-write-canadian-resume.html</guid>
       <dc:creator>ChaoPeng</dc:creator>
       <dc:date>2014-01-04T05:11:00Z</dc:date>
-    </item>
-    <item>
-      <title>移民</title>
-      <link>http://chaopeng.me/blog/2014/10/09/life-in-canada.html</link>
-      <description />
-      <category>Canada</category>
-      <pubDate>Thu, 09 Jan 2014 05:10:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2014/10/09/life-in-canada.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
-      <dc:date>2014-01-09T05:10:00Z</dc:date>
-    </item>
-    <item>
-      <title>DIY Mac Mini</title>
-      <link>http://chaopeng.me/blog/2014/03/31/diy-mac-mini.html</link>
-      <description>记录我的diy mac mini过程</description>
-      <category>DIY</category>
-      <pubDate>Fri, 31 Jan 2014 05:03:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2014/03/31/diy-mac-mini.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
-      <dc:date>2014-01-31T05:03:00Z</dc:date>
     </item>
   </channel>
 </rss>
