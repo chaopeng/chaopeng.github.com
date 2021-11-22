@@ -6,10 +6,20 @@
     <description>巢鹏，专注程序、算法，爱折腾，好读书。</description>
     <language>zh-cn</language>
     <copyright>Copyright 巢鹏的Pensieve</copyright>
-    <pubDate>Thu, 18 Jun 2020 19:28:52 GMT</pubDate>
-    <dc:date>2020-06-18T19:28:52Z</dc:date>
+    <pubDate>Mon, 22 Nov 2021 05:16:17 GMT</pubDate>
+    <dc:date>2021-11-22T05:16:17Z</dc:date>
     <dc:language>zh-cn</dc:language>
     <dc:rights>Copyright 巢鹏的Pensieve</dc:rights>
+    <item>
+      <title>我的家用WiFi</title>
+      <link>http://chaopeng.me/blog/2021/11/21/home-wifi.html</link>
+      <description>记录我的家用wifi配置</description>
+      <category>homelab</category>
+      <pubDate>Thu, 21 Jan 2021 05:11:00 GMT</pubDate>
+      <guid>http://chaopeng.me/blog/2021/11/21/home-wifi.html</guid>
+      <dc:creator>ChaoPeng</dc:creator>
+      <dc:date>2021-01-21T05:11:00Z</dc:date>
+    </item>
     <item>
       <title>Home Office升级记 - 1</title>
       <link>http://chaopeng.me/blog/2020/06/17/home-office-setup.html</link>
@@ -34,7 +44,7 @@
       <title>Nas折腾记</title>
       <link>http://chaopeng.me/blog/2019/10/23/nas.html</link>
       <description>记录我怎么折腾自己的Nas</description>
-      <category>linux</category>
+      <category>homelab</category>
       <pubDate>Wed, 23 Jan 2019 05:10:00 GMT</pubDate>
       <guid>http://chaopeng.me/blog/2019/10/23/nas.html</guid>
       <dc:creator>ChaoPeng</dc:creator>
@@ -199,16 +209,6 @@
       <guid>http://chaopeng.me/blog/2015/01/20/awesome-java.html</guid>
       <dc:creator>ChaoPeng</dc:creator>
       <dc:date>2015-01-20T05:01:00Z</dc:date>
-    </item>
-    <item>
-      <title>怎样写加拿大简历</title>
-      <link>http://chaopeng.me/blog/2014/11/04/how-to-write-canadian-resume.html</link>
-      <description />
-      <category>Canada</category>
-      <pubDate>Sat, 04 Jan 2014 05:11:00 GMT</pubDate>
-      <guid>http://chaopeng.me/blog/2014/11/04/how-to-write-canadian-resume.html</guid>
-      <dc:creator>ChaoPeng</dc:creator>
-      <dc:date>2014-01-04T05:11:00Z</dc:date>
     </item>
   </channel>
 </rss>

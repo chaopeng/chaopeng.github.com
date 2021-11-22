@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>我的家用WiFi</title>
+<meta name="description" content="记录我的家用wifi配置">
+<meta name="author" content="ChaoPeng">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.1/jquery.qtip.min.css">
+<link rel="stylesheet" href="/assets/css/chaoscodebox.css">
+<link rel="stylesheet" href="/assets/css/github.css">
+<link rel="stylesheet" href="/assets/css/blog.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.0/clipboard.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.1/jquery.qtip.min.js"></script>
+<script src="/assets/js/jq-sticky-anything.min.js"></script>
+<script src="/assets/js/chaoscodebox.js"></script>
+<script src="/assets/js/blog.js"></script>
+<script src="/assets/js/load.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="row">
+      <!-- mobile -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/blog/index.html">巢鹏的Pensieve</a>
+      </div>
+
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="">
+            <a href="/blog/aboutme.html">关于我</a>
+          </li>
+          <li class="">
+            <a href="/blog/categories.html">分类</a>
+          </li>
+          <li class="">
+            <a href="/blog/tags.html">标签</a>
+          </li>
+          <li class="">
+            <a href="/blog/archive.html">归档</a>
+          </li>
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="navbar-form navbar-search">
+            <form role="search" action="javascript:search();">
+              <div class="form-group input-group">
+                <input id="search-input" type="text" class="form-control" placeholder="Search">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                </span>
+              </div>
+            </form>
+          </li>
+          <li>
+            <a class="f2x" href="/blog/rss.xml"><i class="fa fa-rss fa-2x"></i></a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+
+	<div class="row">
+		<div class="col-md-9 post">
+			<!-- post -->
+        <div class="post-title">
+					<h1>【<a href="/blog/categories.html#homelab">homelab</a>】 我的家用WiFi</h1>
+          <div><i class="fa fa-calendar"></i> 2021-11-21</div>
+        </div>
+
+        <div class="post-content">
+					<h2 id="背景">背景</h2>
+<p>熟悉我的朋友都知道我今年换了新房子，而且为新房子的WiFi花费了不少，已到达家用无死角。我使用了也有一段不短的时间，而且有些朋友找到我希望我分享一下。</p>
+<h3 id="买房小故事">买房小故事</h3>
+<p>插一个小故事，2020年6月份的一天，那时候疫情刚开始在加拿大大规模传播的时候，有位国内的朋友当天在基金亏了很多觉得自己离买房子越来越远了，就问起我加拿大的房子的事情，然后我就很自觉打开了realter看看，看到有个我和老婆都很喜欢的新区有一套还没建，但是房型已经定下来的新房子放出来，看到价钱能负担得起，当天下午冒着大雨就去实地看具体位置，然后就跟经纪拍板，要了。因为我速度够快，对方经纪马上就跟我签合同了。交房时间定在了2021年的4月。这里真的必须感谢那位亏钱的朋友。房子定下来以后就要快速决定如何布置新房子的WiFi了。</p>
+<h3 id="问题">问题</h3>
+<p>我旧房子用的是3只一套的<a href="https://www.samsung.com/ca/smartthings/hub/samsung-connect-home-pro-et-wv530bwegca/">Samsung Connect Home Pro</a>的Mesh WiFi，而且支持Zigbee和zwave的智能家居的连接。但是问题也不少：</p>
+<ul>
+<li>连接设备多的时候会出问题，偶尔有设备掉线（大概一个月一次）</li>
+<li>二楼的mesh节点只有一半的速度</li>
+<li>覆盖不好，一楼厕所，二楼厕所关上门以后都比较容易掉线</li>
+<li>Samsung Connect Home Pro这玩意发热厉害，所以里面有风扇，这声音尽管不大，但是在安静的晚上还是能感觉到的，特别是失眠的夜晚</li>
+</ul>
+<p>说起设备多，我家设备在旧家就有50多，新家起码要到60多，考虑未来增长就更多了。</p>
+<ul>
+<li>我家主要是我和老婆，但是岳父母也会来住，所以人口应该算4个，然后每人平均无线设备5个</li>
+<li>Google Home基本一个活动区域1个，8个左右</li>
+<li>电视3个，chromecast要联网</li>
+<li>摄像头，温控器，任地狱Switch，打印机等等加起来10个</li>
+<li>新家我准备增加10个智能开关，扫地机器人2个，还要加若干传感器，若干智能插座，室外摄像头</li>
+</ul>
+<p>新家要比旧家大50%，但是进深是类似的，空间也相似，所以我可以在旧家测试覆盖。</p>
+<p>另外我新家需要考虑部分设备10G内网和大于1G的外网。</p>
+<h2 id="解决方案">解决方案</h2>
+<p>在整理好问题以后，我先联系了我认识的最专业的<a href="https://weibo.com/u/2169039837">牙医大大</a>。我主要有几个问题：</p>
+<p>Q mesh还是AC+AP的方案<br> A mesh无线回传需要找好角度，还有开销，如果有线回传不如跟AP也就没啥区别了，AP因为是商用为主带机量会好很多，AP走吸顶的覆盖最好。因为房子还没建所以还是布线上ap最好。</p>
+<p>Q 用WiFi 6吗<br> A 牙医跟我都认为跟WiFi 5 wave 2区别不大，感觉更像过渡性的，加钱上不划算。PS：后来WiFi 6x出来就更确定了我的直觉。</p>
+<p>Q 布点布哪里<br> A 牙医根据我的floor plan给我做了一套设计，基本就是信号尽量少过墙，AP尽量在主要活动的区域。最后是每层2个前后各一个，地下室因为空旷就1个，室外前后院各一个。</p>
+<p>Q 如果走线走什么线，CAT-6或者更好<br> A CAT-6就够了</p>
+<p>后续我旧房子测试了一下，如果将AP放房子中间的话两边的信号确实都会有点弱，所以我就按照牙医的设计给开发商布线了。</p>
+<h3 id="路由器">路由器</h3>
+<p>我主要用Bell这个运营商，光纤到户的服务，最多可以给1.5G下行1G上行，Bell的HH3K的路由器有个好处就是里面有个光模块可以拔出来，可以插到10G的网卡上，所以就可以自己搞pfsense做好IDS/IPS。</p>
+<h3 id="交换机">交换机</h3>
+<p>因为AP需要7个以上的POE供电，还有一些有线设备，交换机这里可以选的就少很多，一开始我为了便宜，去ebay买了一台下架的48口交换机Enterasys c5g124-48p2，66刀，是07年发布的机器，只有千兆的SFP口。缺点很明显就是能耗特别高。后续我10G的网卡都到了，就买了CRS328-24P-4S+RM，那个老交换机就100刀卖掉了。然后路由器-交换机，交换机-nas这两段就可以做到万兆。</p>
+
+<div class="cc">
+  <div class="cc-icon">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank">
+      <img src="https://i.creativecommons.org/l/by-nc-sa/3.0/cn/88x31.png">
+    </a>
+    <br> 本作品采用
+    <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/">
+          			知识共享署名-非商业性使用-相同方式共享 3.0 中国大陆许可协议
+          		</a> 进行许可。
+  </div>
+  <div>
+    »<b>本文链接：</b>
+    <a rel="bookmark" title="我的家用WiFi" href="https://chaopeng.me/blog/2021/11/21/home-wifi.html">
+          			https://chaopeng.me/blog/2021/11/21/home-wifi.html
+          		</a>
+  </div>
+  <div>
+    »<b>订阅本站：</b>
+    <a title="巢鹏的Pensieve" href="https://chaopeng.me/blog">
+          			https://chaopeng.me/blog
+          		</a>
+  </div>
+</div>
+<!--disqus begin-->
+<div id="disqus_thread"></div>
+<script>
+
+var disqus_config = function () {
+  this.page.url = "https://chaopeng.me/blog/2021/11/21/home-wifi.html";
+  this.page.identifier = "/blog/2021/11/21/home-wifi.html";
+  this.page.title = "我的家用WiFi";
+};
+(function() {
+    var d = document, s = d.createElement('script');
+    s.src = '//chaopeng-me.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<!--disqus end-->
+				</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="sidebar">
+<div>
+	<div class="left">
+		<img alt="avatar" src="https://secure.gravatar.com/avatar/8930cff8bcfb6e1477e9bca0aab79fe3&s=80">
+	</div>
+	<ul class="right">
+		<li><a href="mailto:chaojianpeng@gmail.com"><i class="fa fa-envelope-o"></i> E-Mail</a></li>
+		<li><a href="http://weibo.com/chaojianpeng" target="_blank"><i class="fa fa-weibo"></i> Weibo</a></li>
+		<li><a onclick="javascript:openMyWechat('Xszl-ULEKx9UrQae95lM');" href="javascript:void(0);"><i class="fa fa-wechat"></i>Wechat</a></li>
+		<li><a href="https://github.com/chaopeng" target="_blank"><i class="fa fa-github"></i> Github</a></li>
+	</ul>
+</div>
+
+<div>
+	<h2>分享</h2>
+	<a class="share wb" onclick="javascript:shareToWeibo();" href="javascript:void(0);"><i class="fa fa-weibo fa-2x"></i></a>
+	<a class="share wc" onclick="javascript:shareToWechat();" href="javascript:void(0);"><i class="fa fa-wechat fa-2x"></i></a>
+</div>
+
+<div>
+	<h2>标签</h2>
+	<ul>
+		<li>
+			<i class="fa fa-tag"></i> <a href="/blog/tags.html#WiFi">WiFi</a>
+		</li>
+		<li>
+			<i class="fa fa-tag"></i> <a href="/blog/tags.html#diy">diy</a>
+		</li>
+	</ul>
+</div>
+
+<div>
+	<h2>友情链接</h2>
+	<ul>
+		<li><a href="http://www.wutianqi.com/" target="_blank">TankyWoo基神的博客</a></li>
+		<li><a href="http://www.thislinux.com/" target="_blank">龙哥的博客</a></li>
+    <li><a href="https://eller.tech" target="_blank">Eller的博客</a></li>
+	</ul>
+</div>
+
+<div>
+	<h2>声明</h2>
+	本博客仅供自娱自乐。
+	<br>欢迎捐助！
+</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="copyright">
+      &copy巢鹏的Pensieve-版权所有-转载请尊重文章许可
+      <br> 博客使用
+      <a href="https://github.com/chaopeng/chaosblog" target="_blank">ChaosBlog</a>生成
+    </div>
+  </div>
+</div>
+
+<!--back to top-->
+<a href="#" id="back-to-top"><i class="fa fa-angle-up fa-4x"></i></a>
+
+</body>
+</html>
